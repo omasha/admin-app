@@ -12,6 +12,8 @@ import { LoginCallback, LoginPage, NoAccess, StartPage } from "./pages/auth";
 import { ArrangeBlocks } from "./pages/arrangeBlocks";
 import { ContentBlockForm, ContentBlockList } from "./pages/contentBlocks";
 import { EmbeddedFormForm, EmbeddedFormList } from "./pages/embeddedForms";
+import { GrantCreate, GrantList } from "./pages/grants";
+import { UserEdit, UserList, UserPassword, UserShow } from "./pages/users";
 import { WidgetForm, WidgetList } from "./pages/widgets";
 
 // Refine's success/error messages, shown as Mantine notifications.
@@ -25,7 +27,7 @@ const notificationProvider: NotificationProvider = {
   close: (key) => notifications.hide(key),
 };
 
-// Each resource: its list, create and edit pages.
+// The content resources: list, create and edit pages each.
 const resourceDefs = [
   { name: "content-blocks", List: ContentBlockList, Form: ContentBlockForm },
   { name: "widgets", List: WidgetList, Form: WidgetForm },
@@ -49,9 +51,14 @@ export function App() {
         accessControlProvider={accessControlProvider}
         notificationProvider={notificationProvider}
         routerProvider={routerProvider}
-        resources={resourceDefs.map(({ name }) => ({
-          name, list: `/${name}`, create: `/${name}/create`, edit: `/${name}/edit/:id`,
-        }))}
+        resources={[
+          ...resourceDefs.map(({ name }) => ({
+            name, list: `/${name}`, create: `/${name}/create`, edit: `/${name}/edit/:id`,
+          })),
+          { name: "users", list: "/users", show: "/users/show/:id", edit: "/users/edit/:id" },
+          { name: "user-profiles" },
+          { name: "grants", list: "/grants", create: "/grants/create" },
+        ]}
         options={{ syncWithLocation: true, warnWhenUnsavedChanges: true, disableTelemetry: true }}
       >
         <Routes>
@@ -74,6 +81,28 @@ export function App() {
             ))}
             <Route path="/content-blocks/arrange" element={<Guarded resource="content-blocks" action="edit" />}>
               <Route index element={<ArrangeBlocks />} />
+            </Route>
+            <Route path="/users">
+              <Route element={<Guarded resource="users" action="list" />}>
+                <Route index element={<UserList />} />
+              </Route>
+              <Route element={<Guarded resource="users" action="show" />}>
+                <Route path="show/:id" element={<UserShow />} />
+              </Route>
+              <Route element={<Guarded resource="users" action="edit" />}>
+                <Route path="edit/:id" element={<UserEdit />} />
+              </Route>
+              <Route element={<Guarded resource="users" action="edit" />}>
+                <Route path="password/:id" element={<UserPassword />} />
+              </Route>
+            </Route>
+            <Route path="/grants">
+              <Route element={<Guarded resource="grants" action="list" />}>
+                <Route index element={<GrantList />} />
+              </Route>
+              <Route element={<Guarded resource="grants" action="create" />}>
+                <Route path="create" element={<GrantCreate />} />
+              </Route>
             </Route>
             <Route path="*" element={<NoAccess />} />
           </Route>

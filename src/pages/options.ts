@@ -1,7 +1,7 @@
 // Choices shown in selects. The values are the API's own (src/api/generated/types.gen.ts);
 // `satisfies` makes the build fail if the API's list changes and these don't.
 
-import type { ContentBlockIn, EmbeddedFormIn, WidgetIn } from "../api/generated/types.gen";
+import type { ContentBlockIn, EmbeddedFormIn, GrantIn, UserSummary, WidgetIn } from "../api/generated/types.gen";
 
 type Option<V> = { value: V; label: string };
 
@@ -33,6 +33,23 @@ export const embedTypes = [
   { value: "iframe", label: "Frame (iframe)" },
   { value: "jsembed", label: "Script embed" },
 ] satisfies Option<NonNullable<EmbeddedFormIn["embed_type"]>>[];
+
+// What each permission lets someone do (identity/models.py in portal-api-v2). Each includes
+// the ones below it.
+export const permissions = [
+  { value: "fuser", label: "Find people",
+    description: "Search accounts and see the account summary: name, email, username, bpguid, status." },
+  { value: "fuser_details", label: "Find people + see profiles",
+    description: "Also see the whole profile, and change a person's username, email or password (in Okta too)." },
+  { value: "staff_admin", label: "Staff admin",
+    description: "Everything: content, forms and permissions, as well as all of the above." },
+] satisfies (Option<GrantIn["permission"]> & { description: string })[];
+
+export const userStatuses = [
+  { value: "active", label: "Active" },
+  { value: "flagged_for_deletion", label: "Flagged for deletion" },
+  { value: "deactivated", label: "Deactivated" },
+] satisfies Option<UserSummary["status"]>[];
 
 export const yesNo = [
   { value: "true", label: "Yes" },

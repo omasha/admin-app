@@ -13,10 +13,13 @@ export function getOktaAuth(): OktaAuth | null {
       redirectUri: `${window.location.origin}/login/callback`,
       scopes: ["openid", "profile", "email", ...(env.oktaRefreshTokens ? ["offline_access"] : [])],
       pkce: true,
-      // sessionStorage: tokens are cleared when the tab closes, so an admin login doesn't
-      // linger on a shared computer.
-      tokenManager: { storage: "sessionStorage", autoRenew: true },
+      // localStorage: one login shared by every tab of the admin app, like the portal. It lasts
+      // until logging out or the token runs out (24 hours), even if the browser is closed.
+      tokenManager: { storage: "localStorage", autoRenew: true },
     });
+    // Start okta-auth-js's background service, as the portal does (its AuthProvider): it renews
+    // the login before it runs out.
+    void instance.start();
   }
   return instance;
 }

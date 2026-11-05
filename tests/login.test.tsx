@@ -9,6 +9,8 @@ import { LoginCallback } from "../src/pages/auth";
 import { theme } from "../src/theme";
 import { renderAt } from "./render";
 import { fakeOkta } from "./fakeOkta";
+import { http, HttpResponse } from "msw";
+import { API, server } from "./server";
 
 describe("logging in", () => {
   it("never returns to the login pages or another site", () => {
@@ -28,6 +30,26 @@ describe("logging in", () => {
   it("sends someone already logged in straight on from /login", async () => {
     renderAt("/login?to=%2Fcontent-blocks");
     expect(await screen.findByRole("heading", { name: "Content blocks" })).toBeInTheDocument();
+  });
+
+  it("logging out asks Okta to come back to the registered address", async () => {
+    renderAt("/content-blocks");
+    await userEvent.setup().click(await screen.findByRole("button", { name: "Log out" }));
+    await waitFor(() => expect(fakeOkta.signOut).toHaveBeenCalledWith(
+      { postLogoutRedirectUri: window.location.origin, clearTokensBeforeRedirect: true }));
+  });
+
+  it("a saved login the API refuses is forgotten, and the login page shown", async () => {
+    server.use(http.get(`${API}/v1/me`, () => HttpResponse.json(
+      { type: "about:blank", title: "Unauthorized", status: 401, code: "invalid_token", detail: "Please log in again." },
+      { status: 401, headers: { "Content-Type": "application/problem+json" } })));
+    fakeOkta.tokenManager.clear.mockImplementation(() => {
+      fakeOkta.isAuthenticated.mockImplementation(async () => false);
+    });
+    renderAt("/content-blocks");
+    expect(await screen.findByRole("button", { name: "Log in with Okta" })).toBeInTheDocument();
+    expect(fakeOkta.tokenManager.clear).toHaveBeenCalled();
+    expect(screen.queryByRole("heading", { name: "No access" })).not.toBeInTheDocument();
   });
 
   it("uses Okta's one-time code once, even when React runs the page twice", async () => {

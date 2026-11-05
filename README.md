@@ -3,7 +3,8 @@
 A prototype of the unified admin app in `../refactor/REFACTOR_PLAN.md` §5 and `POC_PLAN.md`:
 **Refine** for data, login and permissions, **Mantine 8** screens, over the **TypeScript client
 generated** from `portal-api-v2`'s API description. It covers content blocks, widgets and embedded
-forms, with the rich text editor (decision #13).
+forms, with the rich text editor (decision #13), plus People (today's WordPress "fuser" screens)
+and Permissions.
 
 The backend side is on `portal-api-v2`'s branch `feat-admin-app` (its README: "The plan's own database").
 This is separate from the allocator prototype (`../allocator-admin`, its own database, Okta groups).
@@ -11,8 +12,17 @@ This is separate from the allocator prototype (`../allocator-admin`, its own dat
 ## Who sees what
 
 Permissions are rows in the backend's `admin_grants` table, not Okta groups (REFACTOR_PLAN §2.2).
-`staff_admin` sees all three sections. Anyone else gets "No access", which shows the command
-that grants access. The API refuses them too; hiding the menu is only a convenience.
+Each one includes the ones above it in this table, and the menu shows only what a person may use:
+
+| Permission | Sees | Can |
+|---|---|---|
+| `fuser` | People | search for accounts (a form, never a list of everyone), open the account summary |
+| `fuser_details` | People | also see the whole profile (view only); change a person's username, email or password (sent to Okta) |
+| `staff_admin` | everything | content, forms, Permissions, and all of the above |
+
+"/" opens the first section the person may use. Someone with no permission gets "No access". The
+API refuses them too; hiding things here is only a convenience. Staff admins give and remove
+permissions on the Permissions page, or from a person's page ("Give a permission").
 
 ## Run locally
 
@@ -20,7 +30,7 @@ that grants access. The API refuses them too; hiding the menu is only a convenie
    migrations, `add-user … --bpguid … --grant staff_admin`), then `./start-local.sh` there.
 2. `npm install`, then `cp .env.sample .env.local` and fill it in.
 3. In Okta (dev): add `http://localhost:3100/login/callback` to the Okta app's sign-in redirect
-   URIs. If it's an Okta app of its own, add its client ID to `OKTA_EXTRA_CLIENT_IDS` in the
+   URIs, and `http://localhost:3100` (exactly that) to its sign-out redirect URIs. If it's an Okta app of its own, add its client ID to `OKTA_EXTRA_CLIENT_IDS` in the
    backend's `.env`. No groups or extra claims are needed.
 4. `npm run dev`, then http://localhost:3100
 
@@ -58,6 +68,10 @@ src/
     FormPage.tsx, Layout.tsx
   pages/                  one file per resource: its columns and its form fields
   pages/arrangeBlocks.tsx drag-and-drop order for one placement's blocks (dnd-kit), saved in one request
+  api/people.ts           the people search: at least one field, each matched from its start
+  pages/users.tsx         People: the search form, the person's page (summary, profile, permissions), username/email
+                          change and new password (both sent to Okta by the backend)
+  pages/grants.tsx        Permissions: the list, and "Give a permission" with a person search
 ```
 
 ## Findings so far (for comparing prototypes)
@@ -74,4 +88,9 @@ src/
 - **react-router, not TanStack Router.** Refine has no TanStack Router adapter; the portal uses TanStack Router.
 - **Drag and drop isn't part of Refine.** The Arrange view uses dnd-kit (with ↑ ↓ buttons and the
   keyboard as alternatives) and one backend route that renumbers a whole placement at once.
+- **Different permissions per action** fit Refine's access control as it is: each resource lists
+  the permission per action (`auth/providers.ts`), and the profile is a resource of its own
+  (`user-profiles`) because it needs `fuser_details`.
+- **One login for all tabs**, kept in localStorage like the portal: it lasts until logging out or
+  the token runs out (24 hours), even if the browser is closed.
 - **Size:** about 1.4 MB of JavaScript (420 kB compressed) before any code splitting.

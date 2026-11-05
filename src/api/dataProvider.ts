@@ -23,11 +23,11 @@ type Call = (options: {
 }) => Promise<{ data?: unknown; error?: unknown; response?: Response }>;
 
 type ResourceCalls = {
-  list: Call;
-  get: Call;
-  create: Call;
-  update: Call;
-  remove: Call;
+  list?: Call;
+  get?: Call;
+  create?: Call;
+  update?: Call;
+  remove?: Call;
   idParam: string; // the id's name in the route, e.g. /admin/content-blocks/{block_id}
 };
 
@@ -58,12 +58,35 @@ export const resources: Record<string, ResourceCalls> = {
     remove: asCall(sdk.deleteEmbeddedForm),
     idParam: "form_id",
   },
+  // People (fuser): no create or delete here. Their profile is a resource of its own because it
+  // needs a different permission (fuser_details) and comes from its own route.
+  // (no list: the people search is its own call, src/api/people.ts)
+  users: {
+    get: asCall(sdk.getUser),
+    update: asCall(sdk.updateUser),
+    idParam: "user_id",
+  },
+  "user-profiles": {
+    get: asCall(sdk.getUserProfile),
+    idParam: "user_id",
+  },
+  // Permissions: give (create) and take away (remove); nothing to edit.
+  grants: {
+    list: asCall(sdk.listGrants),
+    create: asCall(sdk.createGrant),
+    remove: asCall(sdk.deleteGrant),
+    idParam: "grant_id",
+  },
 };
 
-function callsFor(resource: string): ResourceCalls {
+type Method = "list" | "get" | "create" | "update" | "remove";
+
+function callsFor(resource: string, method: Method): { call: Call; idParam: string } {
   const calls = resources[resource];
   if (!calls) throw new Error(`No API routes registered for resource "${resource}"`);
-  return calls;
+  const call = calls[method];
+  if (!call) throw new Error(`"${resource}" has no ${method} route`);
+  return { call, idParam: calls.idParam };
 }
 
 async function run<T>(call: Call, options: Parameters<Call>[0]): Promise<T> {
@@ -97,32 +120,32 @@ export const dataProvider: DataProvider = {
   getApiUrl: () => env.apiUrl ?? "",
 
   getList: async ({ resource, pagination, sorters, filters }) => {
-    const page = await run<{ items: BaseRecord[]; total: number }>(callsFor(resource).list, {
+    const page = await run<{ items: BaseRecord[]; total: number }>(callsFor(resource, "list").call, {
       query: listQuery(pagination, sorters, filters),
     });
     return { data: page.items as never[], total: page.total };
   },
 
   getOne: async ({ resource, id }) => {
-    const calls = callsFor(resource);
-    const data = await run<BaseRecord>(calls.get, { path: { [calls.idParam]: id } });
+    const { call, idParam } = callsFor(resource, "get");
+    const data = await run<BaseRecord>(call, { path: { [idParam]: id } });
     return { data: data as never };
   },
 
   create: async ({ resource, variables }) => {
-    const data = await run<BaseRecord>(callsFor(resource).create, { body: variables });
+    const data = await run<BaseRecord>(callsFor(resource, "create").call, { body: variables });
     return { data: data as never };
   },
 
   update: async ({ resource, id, variables }) => {
-    const calls = callsFor(resource);
-    const data = await run<BaseRecord>(calls.update, { path: { [calls.idParam]: id }, body: variables });
+    const { call, idParam } = callsFor(resource, "update");
+    const data = await run<BaseRecord>(call, { path: { [idParam]: id }, body: variables });
     return { data: data as never };
   },
 
   deleteOne: async ({ resource, id }) => {
-    const calls = callsFor(resource);
-    await run(calls.remove, { path: { [calls.idParam]: id } });
+    const { call, idParam } = callsFor(resource, "remove");
+    await run(call, { path: { [idParam]: id } });
     return { data: { id } as never };
   },
 };

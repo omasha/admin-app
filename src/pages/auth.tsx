@@ -6,7 +6,8 @@ import { useLogin, usePermissions } from "@refinedev/core";
 import { Alert, Button, Center, Code, Loader, Paper, Stack, Text, Title } from "@mantine/core";
 import { isOktaConfigured } from "../config/env";
 import { getOktaAuth } from "../auth/okta";
-import { loadMe, safeReturnPath } from "../auth/providers";
+import { allowed, loadMe, safeReturnPath } from "../auth/providers";
+import { sections } from "../components/Layout";
 import type { CurrentUser as Me } from "../api/generated/types.gen";
 
 export function LoginPage() {
@@ -68,8 +69,8 @@ export function LoginCallback() {
 export function StartPage() {
   const { data: permissions, isLoading } = usePermissions<string[]>({});
   if (isLoading) return <Loader />;
-  if (permissions?.includes("staff_admin")) return <Navigate to="/content-blocks" replace />;
-  return <NoAccess />;
+  const first = sections.find((s) => allowed(permissions, s.resource, "list"));
+  return first ? <Navigate to={`/${first.resource}`} replace /> : <NoAccess />;
 }
 
 export function NoAccess() {
@@ -87,10 +88,13 @@ export function NoAccess() {
             ? <>Account #{me.account.id} ({me.account.email}) has: {me.permissions.join(", ") || "no permissions"}.</>
             : <>No account in this database has this login's bpguid ({me.bpguid}).</>}
           <br />
-          Prototype: {me.account ? "grant access" : "add an account"} with{" "}
-          <Code>{me.account
-            ? `.venv/bin/python -m portal_api_v2.identity.cli grant ${me.account.email} staff_admin`
-            : `.venv/bin/python -m portal_api_v2.identity.cli add-user <email> --bpguid ${me.bpguid} --grant staff_admin`}</Code>
+          {me.account ? (
+            <>A staff admin can give a permission on the Permissions page, or (prototype){" "}
+              <Code>{`.venv/bin/python -m portal_api_v2.identity.cli grant ${me.account.email} fuser`}</Code></>
+          ) : (
+            <>Prototype: import WordPress's people (<Code>cli import-wp</Code>) or add the account with{" "}
+              <Code>{`.venv/bin/python -m portal_api_v2.identity.cli add-user <email> --bpguid ${me.bpguid}`}</Code></>
+          )}
         </Alert>
       )}
     </Stack>

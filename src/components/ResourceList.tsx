@@ -4,7 +4,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "react-router";
-import { useDelete, useTable, type BaseRecord, type CrudSort } from "@refinedev/core";
+import { useDelete, useTable, type BaseRecord, type CrudFilter, type CrudSort } from "@refinedev/core";
 import {
   ActionIcon, Alert, Anchor, Button, Group, Pagination, Popover, Select, Stack, Table, Text, TextInput, Title,
   UnstyledButton,
@@ -33,16 +33,23 @@ type Props<T> = {
   initialSort?: CrudSort[];
   rowLabel: (row: T) => string;
   actions?: ReactNode; // extra buttons next to "Add"
+  addLabel?: string | null; // null: no "Add" button
+  rowLink?: ((row: T) => string) | null; // where the first column links to; null: no link
+  deleteLabel?: string | null; // null: no delete button
+  extraQuery?: CrudFilter[]; // fixed filters, e.g. one person's permissions
 };
 
 export function ResourceList<T extends BaseRecord>({
   resource, title, columns, filters = [], searchPlaceholder = "Search", initialSort = [], rowLabel, actions,
+  addLabel = "Add", rowLink, deleteLabel = "Delete", extraQuery,
 }: Props<T>) {
+  const linkTo = rowLink === undefined ? (row: T) => `/${resource}/edit/${row.id}` : rowLink;
   const table = useTable<T>({
     resource,
     pagination: { pageSize: 25 },
     sorters: { initial: initialSort },
-    syncWithLocation: true,
+    filters: extraQuery ? { permanent: extraQuery } : undefined,
+    syncWithLocation: !extraQuery,
   });
   const { tableQuery, result, currentPage, setCurrentPage, pageCount, sorters, setSorters, setFilters } = table;
 
@@ -69,7 +76,7 @@ export function ResourceList<T extends BaseRecord>({
         <Title order={2}>{title}</Title>
         <Group gap="xs">
           {actions}
-          <Button component={Link} to={`/${resource}/create`}>Add</Button>
+          {addLabel !== null && <Button component={Link} to={`/${resource}/create`}>{addLabel}</Button>}
         </Group>
       </Group>
 
@@ -99,7 +106,7 @@ export function ResourceList<T extends BaseRecord>({
                 ) : c.label}
               </Table.Th>
             ))}
-            <Table.Th />
+            {deleteLabel !== null && <Table.Th />}
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
@@ -107,20 +114,22 @@ export function ResourceList<T extends BaseRecord>({
             <Table.Tr key={String(row.id)}>
               {columns.map((c, i) => (
                 <Table.Td key={c.key}>
-                  {i === 0 ? (
-                    <Anchor component={Link} to={`/${resource}/edit/${row.id}`}>
+                  {i === 0 && linkTo ? (
+                    <Anchor component={Link} to={linkTo(row)}>
                       {c.render ? c.render(row) : String(row[c.key] ?? "")}
                     </Anchor>
                   ) : c.render ? c.render(row) : String(row[c.key] ?? "")}
                 </Table.Td>
               ))}
-              <Table.Td w={1}>
-                <DeleteButton resource={resource} id={row.id!} label={rowLabel(row)} />
-              </Table.Td>
+              {deleteLabel !== null && (
+                <Table.Td w={1}>
+                  <DeleteButton resource={resource} id={row.id!} label={rowLabel(row)} verb={deleteLabel} />
+                </Table.Td>
+              )}
             </Table.Tr>
           ))}
           {!tableQuery.isLoading && result.data.length === 0 && (
-            <Table.Tr><Table.Td colSpan={columns.length + 1}><Text c="dimmed">Nothing found.</Text></Table.Td></Table.Tr>
+            <Table.Tr><Table.Td colSpan={columns.length + (deleteLabel !== null ? 1 : 0)}><Text c="dimmed">Nothing found.</Text></Table.Td></Table.Tr>
           )}
         </Table.Tbody>
       </Table>
@@ -133,22 +142,22 @@ export function ResourceList<T extends BaseRecord>({
   );
 }
 
-function DeleteButton({ resource, id, label }: { resource: string; id: string | number; label: string }) {
+function DeleteButton({ resource, id, label, verb }: { resource: string; id: string | number; label: string; verb: string }) {
   const { mutate, mutation } = useDelete();
   const [open, setOpen] = useState(false);
   return (
     <Popover opened={open} onChange={setOpen} position="left" withArrow>
       <Popover.Target>
-        <ActionIcon variant="subtle" color="bmpRed" aria-label={`Delete ${label}`} onClick={() => setOpen((o) => !o)}>
+        <ActionIcon variant="subtle" color="bmpRed" aria-label={`${verb} ${label}`} onClick={() => setOpen((o) => !o)}>
           ✕
         </ActionIcon>
       </Popover.Target>
       <Popover.Dropdown>
-        <Text size="sm" mb="xs">Delete “{label}”?</Text>
+        <Text size="sm" mb="xs">{verb} “{label}”?</Text>
         <Group gap="xs">
           <Button size="xs" color="bmpRed" loading={mutation.isPending}
                   onClick={() => mutate({ resource, id }, { onSettled: () => setOpen(false) })}>
-            Delete
+            {verb}
           </Button>
           <Button size="xs" variant="default" onClick={() => setOpen(false)}>Cancel</Button>
         </Group>

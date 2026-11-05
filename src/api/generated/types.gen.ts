@@ -35,6 +35,20 @@ export type Account = {
 };
 
 /**
+ * AccountChange
+ */
+export type AccountChange = {
+    /**
+     * Username
+     */
+    username: string;
+    /**
+     * Email
+     */
+    email: string;
+};
+
+/**
  * AddedMember
  */
 export type AddedMember = {
@@ -709,6 +723,40 @@ export type EmbeddedFormOut = {
 };
 
 /**
+ * GrantIn
+ */
+export type GrantIn = {
+    /**
+     * User Id
+     */
+    user_id: number;
+    /**
+     * Permission
+     */
+    permission: 'staff_admin' | 'fuser' | 'fuser_details';
+};
+
+/**
+ * GrantOut
+ */
+export type GrantOut = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Permission
+     */
+    permission: 'staff_admin' | 'fuser' | 'fuser_details';
+    user: PersonBrief;
+    granted_by: PersonBrief | null;
+    /**
+     * Created At
+     */
+    created_at: string;
+};
+
+/**
  * GroupChanges
  *
  * Only the fields sent are changed.
@@ -1204,6 +1252,20 @@ export type PageEmbeddedFormOut = {
 };
 
 /**
+ * Page[GrantOut]
+ */
+export type PageGrantOut = {
+    /**
+     * Items
+     */
+    items: Array<GrantOut>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
  * Page[PortalForm]
  */
 export type PagePortalForm = {
@@ -1243,6 +1305,44 @@ export type PageWidgetOut = {
      * Total
      */
     total: number;
+};
+
+/**
+ * PasswordChange
+ *
+ * Okta decides whether it's strong enough (its password policy).
+ */
+export type PasswordChange = {
+    /**
+     * Password
+     */
+    password: string;
+};
+
+/**
+ * PersonBrief
+ */
+export type PersonBrief = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Email
+     */
+    email: string;
+    /**
+     * Username
+     */
+    username: string;
+    /**
+     * First Name
+     */
+    first_name: string;
+    /**
+     * Last Name
+     */
+    last_name: string;
 };
 
 /**
@@ -1437,6 +1537,82 @@ export type PortalWidgetList = {
      * Total
      */
     total: number;
+};
+
+/**
+ * ProfileDetails
+ *
+ * What `fuser_details` also sees: the whole profile, the private fields decrypted.
+ */
+export type ProfileDetails = {
+    /**
+     * Playa Name
+     */
+    playa_name: string | null;
+    /**
+     * Url
+     */
+    url: string | null;
+    /**
+     * Addr1
+     */
+    addr1: string | null;
+    /**
+     * Addr2
+     */
+    addr2: string | null;
+    /**
+     * City
+     */
+    city: string | null;
+    /**
+     * State
+     */
+    state: string;
+    /**
+     * Zip
+     */
+    zip: string;
+    /**
+     * Country
+     */
+    country: string;
+    /**
+     * Phone
+     */
+    phone: string | null;
+    /**
+     * Descr
+     */
+    descr: string | null;
+    /**
+     * Work
+     */
+    work: string | null;
+    /**
+     * Org
+     */
+    org: string | null;
+    /**
+     * Title
+     */
+    title: string | null;
+    /**
+     * Years
+     */
+    years: Array<number>;
+    /**
+     * Affiliations
+     */
+    affiliations: Array<string>;
+    /**
+     * Completed
+     */
+    completed: boolean;
+    /**
+     * Updated At
+     */
+    updated_at: string;
 };
 
 /**
@@ -1680,6 +1856,74 @@ export type UploadResult = {
      * Content
      */
     content: Array<Array<string>>;
+};
+
+/**
+ * UserSearchResults
+ */
+export type UserSearchResults = {
+    /**
+     * Items
+     */
+    items: Array<UserSummary>;
+    /**
+     * More
+     *
+     * More people match than were sent: narrow the search
+     */
+    more: boolean;
+};
+
+/**
+ * UserSummary
+ *
+ * What `fuser` sees: enough to find the right person and tell them apart.
+ */
+export type UserSummary = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Bpguid
+     */
+    bpguid: string;
+    /**
+     * Email
+     */
+    email: string;
+    /**
+     * Username
+     */
+    username: string;
+    /**
+     * First Name
+     */
+    first_name: string;
+    /**
+     * Last Name
+     */
+    last_name: string;
+    /**
+     * Status
+     */
+    status: 'active' | 'flagged_for_deletion' | 'deactivated';
+    /**
+     * Legacy Wpid
+     *
+     * The person's old WordPress user ID
+     */
+    legacy_wpid: number | null;
+    /**
+     * Completed
+     *
+     * Profile filled in; null: no profile yet
+     */
+    completed: boolean | null;
+    /**
+     * Created At
+     */
+    created_at: string;
 };
 
 /**
@@ -3078,6 +3322,293 @@ export type GetMeResponses = {
 };
 
 export type GetMeResponse = GetMeResponses[keyof GetMeResponses];
+
+export type SearchUsersData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Username
+         */
+        username?: string | null;
+        /**
+         * First Name
+         */
+        first_name?: string | null;
+        /**
+         * Last Name
+         */
+        last_name?: string | null;
+        /**
+         * Email
+         */
+        email?: string | null;
+        /**
+         * Bpguid
+         */
+        bpguid?: string | null;
+        /**
+         * Status
+         */
+        status?: 'active' | 'flagged_for_deletion' | 'deactivated' | null;
+        /**
+         * Limit
+         */
+        limit?: number;
+    };
+    url: '/v1/admin/users';
+};
+
+export type SearchUsersErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type SearchUsersError = SearchUsersErrors[keyof SearchUsersErrors];
+
+export type SearchUsersResponses = {
+    /**
+     * Successful Response
+     */
+    200: UserSearchResults;
+};
+
+export type SearchUsersResponse = SearchUsersResponses[keyof SearchUsersResponses];
+
+export type GetUserData = {
+    body?: never;
+    path: {
+        /**
+         * User Id
+         */
+        user_id: number;
+    };
+    query?: never;
+    url: '/v1/admin/users/{user_id}';
+};
+
+export type GetUserErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetUserError = GetUserErrors[keyof GetUserErrors];
+
+export type GetUserResponses = {
+    /**
+     * Successful Response
+     */
+    200: UserSummary;
+};
+
+export type GetUserResponse = GetUserResponses[keyof GetUserResponses];
+
+export type UpdateUserData = {
+    body: AccountChange;
+    path: {
+        /**
+         * User Id
+         */
+        user_id: number;
+    };
+    query?: never;
+    url: '/v1/admin/users/{user_id}';
+};
+
+export type UpdateUserErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateUserError = UpdateUserErrors[keyof UpdateUserErrors];
+
+export type UpdateUserResponses = {
+    /**
+     * Successful Response
+     */
+    200: UserSummary;
+};
+
+export type UpdateUserResponse = UpdateUserResponses[keyof UpdateUserResponses];
+
+export type GetUserProfileData = {
+    body?: never;
+    path: {
+        /**
+         * User Id
+         */
+        user_id: number;
+    };
+    query?: never;
+    url: '/v1/admin/users/{user_id}/profile';
+};
+
+export type GetUserProfileErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetUserProfileError = GetUserProfileErrors[keyof GetUserProfileErrors];
+
+export type GetUserProfileResponses = {
+    /**
+     * Successful Response
+     */
+    200: ProfileDetails;
+};
+
+export type GetUserProfileResponse = GetUserProfileResponses[keyof GetUserProfileResponses];
+
+export type SetUserPasswordData = {
+    body: PasswordChange;
+    path: {
+        /**
+         * User Id
+         */
+        user_id: number;
+    };
+    query?: never;
+    url: '/v1/admin/users/{user_id}/password';
+};
+
+export type SetUserPasswordErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type SetUserPasswordError = SetUserPasswordErrors[keyof SetUserPasswordErrors];
+
+export type SetUserPasswordResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type SetUserPasswordResponse = SetUserPasswordResponses[keyof SetUserPasswordResponses];
+
+export type ListGrantsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Permission
+         */
+        permission?: 'staff_admin' | 'fuser' | 'fuser_details' | null;
+        /**
+         * User Id
+         */
+        user_id?: number | null;
+        /**
+         * Page
+         *
+         * 1-based page number
+         */
+        page?: number;
+        /**
+         * Per Page
+         *
+         * Items per page (max 100)
+         */
+        per_page?: number;
+        /**
+         * Sort
+         *
+         * Comma-separated fields; a leading minus sorts descending
+         */
+        sort?: string | null;
+        /**
+         * Q
+         *
+         * Free-text search
+         */
+        q?: string | null;
+    };
+    url: '/v1/admin/grants';
+};
+
+export type ListGrantsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListGrantsError = ListGrantsErrors[keyof ListGrantsErrors];
+
+export type ListGrantsResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageGrantOut;
+};
+
+export type ListGrantsResponse = ListGrantsResponses[keyof ListGrantsResponses];
+
+export type CreateGrantData = {
+    body: GrantIn;
+    path?: never;
+    query?: never;
+    url: '/v1/admin/grants';
+};
+
+export type CreateGrantErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CreateGrantError = CreateGrantErrors[keyof CreateGrantErrors];
+
+export type CreateGrantResponses = {
+    /**
+     * Successful Response
+     */
+    201: GrantOut;
+};
+
+export type CreateGrantResponse = CreateGrantResponses[keyof CreateGrantResponses];
+
+export type DeleteGrantData = {
+    body?: never;
+    path: {
+        /**
+         * Grant Id
+         */
+        grant_id: number;
+    };
+    query?: never;
+    url: '/v1/admin/grants/{grant_id}';
+};
+
+export type DeleteGrantErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type DeleteGrantError = DeleteGrantErrors[keyof DeleteGrantErrors];
+
+export type DeleteGrantResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type DeleteGrantResponse = DeleteGrantResponses[keyof DeleteGrantResponses];
 
 export type ListPublishedContentData = {
     body?: never;

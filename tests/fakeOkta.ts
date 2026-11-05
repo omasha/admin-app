@@ -6,6 +6,7 @@ export const fakeOkta = {
   signInWithRedirect: vi.fn(async (_options?: { originalUri?: string }) => undefined),
   signOut: vi.fn(async () => undefined),
   handleLoginRedirect: vi.fn(async () => undefined),
+  tokenManager: { clear: vi.fn() },
 };
 
 export function resetFakeOkta(): void {

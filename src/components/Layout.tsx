@@ -4,10 +4,14 @@ import { AppShell, Badge, Button, Group, NavLink, Stack, Text, Title } from "@ma
 
 type Identity = { name: string; email: string };
 
-const sections = [
+// The menu, in order. Each shows only to people allowed to list it; "/" opens the first one
+// the person may use (pages/auth.tsx, StartPage).
+export const sections = [
   { resource: "content-blocks", label: "Content blocks" },
   { resource: "widgets", label: "Widgets" },
   { resource: "embedded-forms", label: "Embedded forms" },
+  { resource: "users", label: "People" },
+  { resource: "grants", label: "Permissions" },
 ];
 
 export function Layout() {
