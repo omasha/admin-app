@@ -1,0 +1,140 @@
+/*
+ * Burning Man Project brand tokens (--bmp-*), copied from
+ * brand-guidelines/burningman-style-reference.html (Firebird theme).
+ * The Mantine theme in src/theme/index.ts is built from these same values.
+ * Rule: component code never uses raw hex — reference the theme or these vars.
+ */
+:root {
+  /* Semantic */
+  --bmp-text-body: #292929;
+  --bmp-text-heading: #292929;
+  --bmp-text-subheading: #525252;
+  --bmp-text-title: #141414;
+  --bmp-text-link: #534be7;
+  --bmp-text-link-hover: #181287;
+  --bmp-bg-page: #ffffff;
+  --bmp-bg-surface: #f5f5f5;
+  --bmp-border-color: #d6d6d6;
+  --bmp-color-black: #000000;
+
+  /* Buttons */
+  --bmp-btn-bg: #141414;
+  --bmp-btn-bg-hover: #534be7;
+  --bmp-btn-text: #ffffff;
+  --bmp-btn-alt-bg: #2018b4;
+  --bmp-btn-alt-bg-hover: #534be7;
+  --bmp-btn-outline-border: #534be7;
+  --bmp-btn-outline-bg-hover: #534be7;
+  --bmp-btn-subtle-border: #7e78ed;
+  --bmp-btn-subtle-text: #181287;
+  --bmp-btn-subtle-bg-hover: #d4d2f9;
+
+  /* Purple — primary brand color (Purple 400 is the primary action color) */
+  --bmp-purple-25: #f2f4f7;
+  --bmp-purple-50: #d4d2f9;
+  --bmp-purple-100: #a9a5f3;
+  --bmp-purple-200: #7e78ed;
+  --bmp-purple-300: #7069e6;
+  --bmp-purple-400: #534be7;
+  --bmp-purple-500: #2018b4;
+  --bmp-purple-600: #181287;
+  --bmp-purple-700: #120e66; /* extrapolated, not in brand reference */
+  --bmp-purple-800: #0c0a45; /* extrapolated, not in brand reference */
+
+  /* Orange — accent (Orange 200 is the prominent accent) */
+  --bmp-orange-25: #fff1ea;
+  --bmp-orange-50: #ffddcc;
+  --bmp-orange-100: #ffbb99;
+  --bmp-orange-200: #ffa477;
+  --bmp-orange-300: #ff9966;
+  --bmp-orange-400: #ff7733;
+  --bmp-orange-500: #cc4400;
+  --bmp-orange-600: #993300;
+  --bmp-orange-700: #662200; /* extrapolated, not in brand reference */
+  --bmp-orange-800: #331100; /* extrapolated, not in brand reference */
+
+  /* Grayscale */
+  --bmp-gray-25: #fcfcfc;
+  --bmp-gray-50: #fafafa;
+  --bmp-gray-100: #f5f5f5;
+  --bmp-gray-200: #e5e5e5; /* WCAG pairs doc value; brand reference has e5e5e7 */
+  --bmp-gray-300: #d6d6d6;
+  --bmp-gray-400: #a3a3a3;
+  --bmp-gray-500: #737373;
+  --bmp-gray-600: #525252;
+  --bmp-gray-700: #424242;
+  --bmp-gray-800: #292929;
+  --bmp-gray-900: #141414;
+  --bmp-gray-950: #0f0f0f;
+
+  /* Supporting — brand only defines 50-600 for these; 25/700/800 extrapolated */
+  --bmp-blue-25: #e8effc;
+  --bmp-blue-50: #d1defa;
+  --bmp-blue-100: #a3bdf5;
+  --bmp-blue-200: #749cf1;
+  --bmp-blue-300: #467bec;
+  --bmp-blue-400: #3d74eb;
+  --bmp-blue-500: #1348b9;
+  --bmp-blue-600: #0e368b;
+  --bmp-blue-700: #0a2661;
+  --bmp-blue-800: #06183f;
+
+  --bmp-green-25: #eafbf8;
+  --bmp-green-50: #d4f7f2;
+  --bmp-green-100: #a9efe6;
+  --bmp-green-200: #7ee7d9;
+  --bmp-green-300: #53dfcc;
+  --bmp-green-400: #20ac99;
+  --bmp-green-500: #1d9d8c;
+  --bmp-green-600: #188173;
+  --bmp-green-700: #115a51;
+  --bmp-green-800: #0b3a34;
+
+  --bmp-yellow-25: #fffae5;
+  --bmp-yellow-50: #fff5cc;
+  --bmp-yellow-100: #ffeb99;
+  --bmp-yellow-200: #ffe066;
+  --bmp-yellow-300: #ffd633;
+  --bmp-yellow-400: #ffcc00;
+  --bmp-yellow-500: #cca300;
+  --bmp-yellow-600: #997a00;
+  --bmp-yellow-700: #6b5500;
+  --bmp-yellow-800: #453700;
+
+  --bmp-red-25: #fee9e6;
+  --bmp-red-50: #fdd3ce;
+  --bmp-red-100: #faa79e;
+  --bmp-red-200: #f87b6d;
+  --bmp-red-300: #f77263;
+  --bmp-red-400: #f54f3d;
+  --bmp-red-500: #c21c0a;
+  --bmp-red-600: #921507;
+  --bmp-red-700: #660f05;
+  --bmp-red-800: #420903;
+
+  --bmp-font-weight-regular: 400;
+  --bmp-font-weight-medium: 500;
+  --bmp-font-weight-bold: 700;
+
+  /* Spacing (theme.json settings.custom.unit.spacing — key names are the
+     brand's own numeric slugs, values are their px sizes) */
+  --bmp-space-40: 4px;
+  --bmp-space-100: 10px;
+  --bmp-space-120: 12px;
+  --bmp-space-160: 16px;
+  --bmp-space-200: 20px;
+  --bmp-space-320: 32px;
+  --bmp-space-400: 40px;
+
+  /* Typography (Roboto Slab for headings — decided 2026-07-21, no Bespoke Slab license) */
+  --bmp-font-heading: "Roboto Slab", Rockwell, "Rockwell Nova", "DejaVu Serif",
+    "Sitka Small", serif;
+  --bmp-font-body: Roboto, Inter, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+    Arial, sans-serif;
+  --bmp-font-size-sm: 0.875rem;
+  --bmp-font-size-base: 1rem;
+  --bmp-font-size-lg: 1.125rem;
+  --bmp-font-size-xl: clamp(1.25rem, 1.125rem + 0.5vw, 1.375rem);
+  --bmp-font-size-2xl: clamp(1.5rem, 1.25rem + 1vw, 1.75rem);
+  --bmp-font-size-3xl: clamp(1.75rem, 1.25rem + 1.5vw, 2.25rem);
+}
