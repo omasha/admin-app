@@ -71,6 +71,32 @@ export type AddedMember = {
 };
 
 /**
+ * AddressIn
+ */
+export type AddressIn = {
+    /**
+     * Addr1
+     */
+    addr1?: string;
+    /**
+     * Addr2
+     */
+    addr2?: string;
+    /**
+     * City
+     */
+    city?: string;
+    /**
+     * State
+     */
+    state?: string;
+    /**
+     * Zip
+     */
+    zip?: string;
+};
+
+/**
  * AllocatorAccessWidget
  */
 export type AllocatorAccessWidget = {
@@ -1008,6 +1034,10 @@ export type LookupOut = {
      */
     found: boolean;
     /**
+     * Bpguid
+     */
+    bpguid?: string | null;
+    /**
      * Wpid
      */
     wpid?: number | null;
@@ -1038,9 +1068,9 @@ export type LookupOut = {
  */
 export type Me = {
     /**
-     * Wpid
+     * Bpguid
      */
-    wpid: number;
+    bpguid: string;
     /**
      * Email
      */
@@ -1133,6 +1163,106 @@ export type MemberOut = {
      * Assigned
      */
     assigned: Array<AssignedOut>;
+};
+
+/**
+ * MyProfile
+ *
+ * The person's own account and profile: the portal's profile fields, decrypted.
+ */
+export type MyProfile = {
+    /**
+     * Bpguid
+     */
+    bpguid: string;
+    /**
+     * Username
+     */
+    username: string;
+    /**
+     * Email
+     */
+    email: string;
+    /**
+     * First Name
+     */
+    first_name: string;
+    /**
+     * Last Name
+     */
+    last_name: string;
+    /**
+     * Playa Name
+     */
+    playa_name: string;
+    /**
+     * Addr1
+     */
+    addr1: string;
+    /**
+     * Addr2
+     */
+    addr2: string;
+    /**
+     * City
+     */
+    city: string;
+    /**
+     * State
+     */
+    state: string;
+    /**
+     * Zip
+     */
+    zip: string;
+    /**
+     * Country
+     */
+    country: string;
+    /**
+     * Phone
+     */
+    phone: string;
+    /**
+     * Url
+     */
+    url: string;
+    /**
+     * Org
+     */
+    org: string;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Work
+     */
+    work: string;
+    /**
+     * Descr
+     */
+    descr: string;
+    /**
+     * Years
+     */
+    years: Array<number>;
+    /**
+     * Never Attended
+     */
+    never_attended: boolean;
+    /**
+     * Affiliations
+     */
+    affiliations: Array<string>;
+    /**
+     * Completed
+     */
+    completed: boolean;
+    /**
+     * Flagged For Deletion
+     */
+    flagged_for_deletion: boolean;
 };
 
 /**
@@ -1350,9 +1480,13 @@ export type PersonBrief = {
  */
 export type PersonMatch = {
     /**
+     * Bpguid
+     */
+    bpguid: string;
+    /**
      * Wpid
      */
-    wpid: number;
+    wpid?: number | null;
     /**
      * Email
      */
@@ -1372,9 +1506,13 @@ export type PersonMatch = {
  */
 export type PersonOut = {
     /**
+     * Bpguid
+     */
+    bpguid: string;
+    /**
      * Wpid
      */
-    wpid: number;
+    wpid?: number | null;
     /**
      * Email
      */
@@ -1616,6 +1754,93 @@ export type ProfileDetails = {
 };
 
 /**
+ * ProfileFields
+ *
+ * What a participant fills in, at signup and when editing. Lengths are today's WordPress
+ * column sizes. Empty text is "not given".
+ */
+export type ProfileFields = {
+    /**
+     * Email
+     */
+    email?: string;
+    /**
+     * First Name
+     */
+    first_name?: string;
+    /**
+     * Last Name
+     */
+    last_name?: string;
+    /**
+     * Playa Name
+     */
+    playa_name?: string;
+    /**
+     * Addr1
+     */
+    addr1?: string;
+    /**
+     * Addr2
+     */
+    addr2?: string;
+    /**
+     * City
+     */
+    city?: string;
+    /**
+     * State
+     */
+    state?: string;
+    /**
+     * Zip
+     */
+    zip?: string;
+    /**
+     * Country
+     */
+    country?: string;
+    /**
+     * Phone
+     */
+    phone?: string;
+    /**
+     * Url
+     */
+    url?: string | null;
+    /**
+     * Org
+     */
+    org?: string;
+    /**
+     * Title
+     */
+    title?: string;
+    /**
+     * Work
+     */
+    work?: string;
+    /**
+     * Descr
+     */
+    descr?: string;
+    /**
+     * Years
+     */
+    years?: Array<number>;
+    /**
+     * Never Attended
+     *
+     * The portal's "Never": no years, on purpose
+     */
+    never_attended?: boolean;
+    /**
+     * Affiliations
+     */
+    affiliations?: Array<'Theme Camp' | 'Mutant Vehicle' | 'Art Installation' | 'Volunteer/Staff' | 'Regional/Year-Round Event' | 'Regional Community' | 'Burners Without Borders (BWB)' | 'Black Rock Arts Foundation (BRAF)' | 'Black Rock Labs' | 'Burning Man Project' | 'Published Media or Educational' | 'Other'>;
+};
+
+/**
  * PublicBlock
  *
  * What the portal gets: published blocks only, without admin fields.
@@ -1780,6 +2005,114 @@ export type SearchResult = {
      * Groups
      */
     groups: Array<GroupMatch>;
+};
+
+/**
+ * SignupIn
+ */
+export type SignupIn = {
+    /**
+     * Email
+     */
+    email?: string;
+    /**
+     * First Name
+     */
+    first_name?: string;
+    /**
+     * Last Name
+     */
+    last_name?: string;
+    /**
+     * Playa Name
+     */
+    playa_name?: string;
+    /**
+     * Addr1
+     */
+    addr1?: string;
+    /**
+     * Addr2
+     */
+    addr2?: string;
+    /**
+     * City
+     */
+    city?: string;
+    /**
+     * State
+     */
+    state?: string;
+    /**
+     * Zip
+     */
+    zip?: string;
+    /**
+     * Country
+     */
+    country?: string;
+    /**
+     * Phone
+     */
+    phone?: string;
+    /**
+     * Url
+     */
+    url?: string | null;
+    /**
+     * Org
+     */
+    org?: string;
+    /**
+     * Title
+     */
+    title?: string;
+    /**
+     * Work
+     */
+    work?: string;
+    /**
+     * Descr
+     */
+    descr?: string;
+    /**
+     * Years
+     */
+    years?: Array<number>;
+    /**
+     * Never Attended
+     *
+     * The portal's "Never": no years, on purpose
+     */
+    never_attended?: boolean;
+    /**
+     * Affiliations
+     */
+    affiliations?: Array<'Theme Camp' | 'Mutant Vehicle' | 'Art Installation' | 'Volunteer/Staff' | 'Regional/Year-Round Event' | 'Regional Community' | 'Burners Without Borders (BWB)' | 'Black Rock Arts Foundation (BRAF)' | 'Black Rock Labs' | 'Burning Man Project' | 'Published Media or Educational' | 'Other'>;
+    /**
+     * Turnstile Token
+     *
+     * From the Cloudflare Turnstile widget on the signup form
+     */
+    turnstile_token: string;
+    /**
+     * Username
+     */
+    username?: string;
+};
+
+/**
+ * SignupOut
+ */
+export type SignupOut = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Bpguid
+     */
+    bpguid: string;
 };
 
 /**
@@ -3322,6 +3655,117 @@ export type GetMeResponses = {
 };
 
 export type GetMeResponse = GetMeResponses[keyof GetMeResponses];
+
+export type GetMyProfileData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/profile';
+};
+
+export type GetMyProfileResponses = {
+    /**
+     * Successful Response
+     */
+    200: MyProfile;
+};
+
+export type GetMyProfileResponse = GetMyProfileResponses[keyof GetMyProfileResponses];
+
+export type SignUpData = {
+    body: SignupIn;
+    path?: never;
+    query?: never;
+    url: '/v1/profile';
+};
+
+export type SignUpErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type SignUpError = SignUpErrors[keyof SignUpErrors];
+
+export type SignUpResponses = {
+    /**
+     * Successful Response
+     */
+    201: SignupOut;
+};
+
+export type SignUpResponse = SignUpResponses[keyof SignUpResponses];
+
+export type UpdateMyProfileData = {
+    body: ProfileFields;
+    path?: never;
+    query?: never;
+    url: '/v1/profile';
+};
+
+export type UpdateMyProfileErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateMyProfileError = UpdateMyProfileErrors[keyof UpdateMyProfileErrors];
+
+export type UpdateMyProfileResponses = {
+    /**
+     * Successful Response
+     */
+    200: MyProfile;
+};
+
+export type UpdateMyProfileResponse = UpdateMyProfileResponses[keyof UpdateMyProfileResponses];
+
+export type CheckAddressData = {
+    body: AddressIn;
+    path?: never;
+    query?: never;
+    url: '/v1/profile/address-check';
+};
+
+export type CheckAddressErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CheckAddressError = CheckAddressErrors[keyof CheckAddressErrors];
+
+export type CheckAddressResponses = {
+    /**
+     * Response Checkaddress
+     *
+     * Successful Response
+     */
+    200: {
+        [key: string]: unknown;
+    };
+};
+
+export type CheckAddressResponse = CheckAddressResponses[keyof CheckAddressResponses];
+
+export type FlagMyAccountForDeletionData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/profile/flag-delete';
+};
+
+export type FlagMyAccountForDeletionResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type FlagMyAccountForDeletionResponse = FlagMyAccountForDeletionResponses[keyof FlagMyAccountForDeletionResponses];
 
 export type SearchUsersData = {
     body?: never;
