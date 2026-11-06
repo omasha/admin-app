@@ -203,9 +203,9 @@ export type BlockOrder = {
 };
 
 /**
- * Body_upload_delivery_methods_v1_admin_allocator_uploads_delivery_methods_post
+ * Body_uploadDeliveryMethods
  */
-export type BodyUploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPost = {
+export type BodyUploadDeliveryMethods = {
     /**
      * File
      */
@@ -213,9 +213,9 @@ export type BodyUploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPost 
 };
 
 /**
- * Body_upload_groups_v1_admin_allocator_uploads_groups_post
+ * Body_uploadGroups
  */
-export type BodyUploadGroupsV1AdminAllocatorUploadsGroupsPost = {
+export type BodyUploadGroups = {
     /**
      * File
      */
@@ -223,9 +223,9 @@ export type BodyUploadGroupsV1AdminAllocatorUploadsGroupsPost = {
 };
 
 /**
- * Body_upload_members_v1_allocator_groups__group_id__members_upload_post
+ * Body_uploadMembers
  */
-export type BodyUploadMembersV1AllocatorGroupsGroupIdMembersUploadPost = {
+export type BodyUploadMembers = {
     /**
      * Csvfile
      */
@@ -233,9 +233,9 @@ export type BodyUploadMembersV1AllocatorGroupsGroupIdMembersUploadPost = {
 };
 
 /**
- * Body_upload_template_v1_admin_allocator_uploads_templates_post
+ * Body_uploadTemplates
  */
-export type BodyUploadTemplateV1AdminAllocatorUploadsTemplatesPost = {
+export type BodyUploadTemplates = {
     /**
      * File
      */
@@ -493,7 +493,7 @@ export type DepartmentDetail = {
     /**
      * Templates
      */
-    templates: Array<PortalApiV2AllocatorRoutesDepartmentsTemplateOut>;
+    templates: Array<TemplateRef>;
     /**
      * Owners
      */
@@ -502,6 +502,28 @@ export type DepartmentDetail = {
      * Pools
      */
     pools: Array<PoolOut>;
+};
+
+/**
+ * DepartmentItemOut
+ */
+export type DepartmentItemOut = {
+    /**
+     * Item Type Id
+     */
+    item_type_id: number;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Kind
+     */
+    kind: string;
+    /**
+     * Department Quantity
+     */
+    department_quantity: number;
 };
 
 /**
@@ -545,7 +567,7 @@ export type DepartmentOut = {
     /**
      * Templates
      */
-    templates: Array<PortalApiV2AllocatorRoutesDepartmentsTemplateOut>;
+    templates: Array<TemplateRef>;
     /**
      * Owners
      */
@@ -841,13 +863,11 @@ export type GroupDetail = {
     /**
      * Department Items
      */
-    department_items: Array<{
-        [key: string]: unknown;
-    }>;
+    department_items: Array<DepartmentItemOut>;
     /**
      * Warnings
      */
-    warnings?: Array<string>;
+    warnings: Array<string>;
 };
 
 /**
@@ -857,7 +877,7 @@ export type GroupList = {
     /**
      * Items
      */
-    items: Array<PortalApiV2AllocatorRoutesGroupsGroupOut>;
+    items: Array<GroupOut>;
     /**
      * Total
      */
@@ -884,6 +904,40 @@ export type GroupMatch = {
      * Department Name
      */
     department_name: string;
+};
+
+/**
+ * GroupOut
+ */
+export type GroupOut = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Department Id
+     */
+    department_id: number;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Description
+     */
+    description: string;
+    /**
+     * Locked
+     */
+    locked: boolean;
+    /**
+     * Owners
+     */
+    owners: Array<PersonOut>;
+    /**
+     * Pools
+     */
+    pools: Array<GroupPoolOut>;
 };
 
 /**
@@ -1036,31 +1090,31 @@ export type LookupOut = {
     /**
      * Bpguid
      */
-    bpguid?: string | null;
+    bpguid: string | null;
     /**
      * Wpid
      */
-    wpid?: number | null;
+    wpid: number | null;
     /**
      * Email
      */
-    email?: string | null;
+    email: string | null;
     /**
      * Name
      */
-    name?: string | null;
+    name: string | null;
     /**
      * Profile Complete
      */
-    profile_complete?: boolean;
+    profile_complete: boolean;
     /**
      * Can Be Added
      */
-    can_be_added?: boolean;
+    can_be_added: boolean;
     /**
      * Reason
      */
-    reason?: string | null;
+    reason: string | null;
 };
 
 /**
@@ -1354,6 +1408,50 @@ export type OwnedDepartment = {
 };
 
 /**
+ * OwnerGroupOut
+ *
+ * One group as the portal's group-owner screen shows it (shaped like today's WordPress answer).
+ */
+export type OwnerGroupOut = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Locked
+     */
+    locked: string;
+    /**
+     * Multiple
+     */
+    multiple: string;
+    /**
+     * Start Label
+     */
+    start_label: string;
+    /**
+     * End Label
+     */
+    end_label: string;
+    /**
+     * Close Label
+     */
+    close_label: string;
+    /**
+     * Resources
+     */
+    resources: Array<ResourceOut>;
+    /**
+     * Members
+     */
+    members: Array<MemberOut>;
+};
+
+/**
  * Page[ContentBlockOut]
  */
 export type PageContentBlockOut = {
@@ -1486,7 +1584,7 @@ export type PersonMatch = {
     /**
      * Wpid
      */
-    wpid?: number | null;
+    wpid: number | null;
     /**
      * Email
      */
@@ -1512,7 +1610,7 @@ export type PersonOut = {
     /**
      * Wpid
      */
-    wpid?: number | null;
+    wpid: number | null;
     /**
      * Email
      */
@@ -1524,7 +1622,7 @@ export type PersonOut = {
     /**
      * Found
      */
-    found?: boolean;
+    found: boolean;
 };
 
 /**
@@ -1675,6 +1773,37 @@ export type PortalWidgetList = {
      * Total
      */
     total: number;
+};
+
+/**
+ * ProblemDetails
+ *
+ * What a /v1 error looks like, for the API description and the generated client. Answers
+ * are built by `problem_response`, not from this class. Extra keys are allowed because some
+ * errors add their own: `errors` (field problems, or an upload's report), `ok`, `applied`…
+ */
+export type ProblemDetails = {
+    /**
+     * Type
+     */
+    type?: string;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Status
+     */
+    status: number;
+    /**
+     * Code
+     */
+    code: string;
+    /**
+     * Detail
+     */
+    detail?: string | null;
+    [key: string]: unknown;
 };
 
 /**
@@ -1881,6 +2010,16 @@ export type PublicBlock = {
 };
 
 /**
+ * RemovedMember
+ */
+export type RemovedMember = {
+    /**
+     * Id
+     */
+    id: number;
+};
+
+/**
  * ReportOut
  */
 export type ReportOut = {
@@ -1955,11 +2094,11 @@ export type RoleOut = {
     /**
      * Group Id
      */
-    group_id?: number | null;
+    group_id: number | null;
     /**
      * Group Name
      */
-    group_name?: string | null;
+    group_name: string | null;
 };
 
 /**
@@ -2122,11 +2261,49 @@ export type TemplateList = {
     /**
      * Items
      */
-    items: Array<PortalApiV2AllocatorRoutesCatalogTemplateOut>;
+    items: Array<TemplateOut>;
     /**
      * Total
      */
     total: number;
+};
+
+/**
+ * TemplateOut
+ */
+export type TemplateOut = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Number
+     */
+    number: number;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Items
+     */
+    items: Array<ItemOut>;
+};
+
+/**
+ * TemplateRef
+ *
+ * A template a department uses: only its id and name (the catalog's templates list has the rest).
+ */
+export type TemplateRef = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Name
+     */
+    name: string;
 };
 
 /**
@@ -2140,27 +2317,27 @@ export type Tile = {
     /**
      * Closed
      */
-    closed?: boolean;
+    closed: boolean;
     /**
      * Heading
      */
-    heading?: string | null;
+    heading: string | null;
     /**
      * Sentence
      */
-    sentence?: string | null;
+    sentence: string | null;
     /**
      * Groups
      */
-    groups?: Array<TileGroup>;
+    groups: Array<TileGroup>;
     /**
      * Invitation Start
      */
-    invitation_start?: string | null;
+    invitation_start: string | null;
     /**
      * Invitation End
      */
-    invitation_end?: string | null;
+    invitation_end: string | null;
 };
 
 /**
@@ -2363,135 +2540,56 @@ export type WidgetOut = {
     updated_at: string;
 };
 
-/**
- * TemplateOut
- */
-export type PortalApiV2AllocatorRoutesCatalogTemplateOut = {
-    /**
-     * Id
-     */
-    id: number;
-    /**
-     * Number
-     */
-    number: number;
-    /**
-     * Name
-     */
-    name: string;
-    /**
-     * Items
-     */
-    items: Array<ItemOut>;
-};
-
-/**
- * TemplateOut
- */
-export type PortalApiV2AllocatorRoutesDepartmentsTemplateOut = {
-    /**
-     * Id
-     */
-    id: number;
-    /**
-     * Name
-     */
-    name: string;
-};
-
-/**
- * GroupOut
- */
-export type PortalApiV2AllocatorRoutesGroupOwnerGroupOut = {
-    /**
-     * Id
-     */
-    id: number;
-    /**
-     * Name
-     */
-    name: string;
-    /**
-     * Locked
-     */
-    locked: string;
-    /**
-     * Multiple
-     */
-    multiple?: string;
-    /**
-     * Start Label
-     */
-    start_label: string;
-    /**
-     * End Label
-     */
-    end_label: string;
-    /**
-     * Close Label
-     */
-    close_label: string;
-    /**
-     * Resources
-     */
-    resources: Array<ResourceOut>;
-    /**
-     * Members
-     */
-    members: Array<MemberOut>;
-};
-
-/**
- * GroupOut
- */
-export type PortalApiV2AllocatorRoutesGroupsGroupOut = {
-    /**
-     * Id
-     */
-    id: number;
-    /**
-     * Department Id
-     */
-    department_id: number;
-    /**
-     * Name
-     */
-    name: string;
-    /**
-     * Description
-     */
-    description: string;
-    /**
-     * Locked
-     */
-    locked: boolean;
-    /**
-     * Owners
-     */
-    owners: Array<PersonOut>;
-    /**
-     * Pools
-     */
-    pools: Array<GroupPoolOut>;
-};
-
-export type MeV1AdminAllocatorMeGetData = {
+export type GetMyAllocatorRolesData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/v1/admin/allocator/me';
 };
 
-export type MeV1AdminAllocatorMeGetResponses = {
+export type GetMyAllocatorRolesErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
+};
+
+export type GetMyAllocatorRolesError = GetMyAllocatorRolesErrors[keyof GetMyAllocatorRolesErrors];
+
+export type GetMyAllocatorRolesResponses = {
     /**
      * Successful Response
      */
     200: Me;
 };
 
-export type MeV1AdminAllocatorMeGetResponse = MeV1AdminAllocatorMeGetResponses[keyof MeV1AdminAllocatorMeGetResponses];
+export type GetMyAllocatorRolesResponse = GetMyAllocatorRolesResponses[keyof GetMyAllocatorRolesResponses];
 
-export type TemplatesV1AdminAllocatorTemplatesGetData = {
+export type ListTemplatesData = {
     body?: never;
     path?: never;
     query?: {
@@ -2503,108 +2601,246 @@ export type TemplatesV1AdminAllocatorTemplatesGetData = {
     url: '/v1/admin/allocator/templates';
 };
 
-export type TemplatesV1AdminAllocatorTemplatesGetErrors = {
+export type ListTemplatesErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type TemplatesV1AdminAllocatorTemplatesGetError = TemplatesV1AdminAllocatorTemplatesGetErrors[keyof TemplatesV1AdminAllocatorTemplatesGetErrors];
+export type ListTemplatesError = ListTemplatesErrors[keyof ListTemplatesErrors];
 
-export type TemplatesV1AdminAllocatorTemplatesGetResponses = {
+export type ListTemplatesResponses = {
     /**
      * Successful Response
      */
     200: TemplateList;
 };
 
-export type TemplatesV1AdminAllocatorTemplatesGetResponse = TemplatesV1AdminAllocatorTemplatesGetResponses[keyof TemplatesV1AdminAllocatorTemplatesGetResponses];
+export type ListTemplatesResponse = ListTemplatesResponses[keyof ListTemplatesResponses];
 
-export type ListCyclesV1AdminAllocatorCyclesGetData = {
+export type ListCyclesData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/v1/admin/allocator/cycles';
 };
 
-export type ListCyclesV1AdminAllocatorCyclesGetResponses = {
+export type ListCyclesErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
+};
+
+export type ListCyclesError = ListCyclesErrors[keyof ListCyclesErrors];
+
+export type ListCyclesResponses = {
     /**
      * Successful Response
      */
     200: CycleList;
 };
 
-export type ListCyclesV1AdminAllocatorCyclesGetResponse = ListCyclesV1AdminAllocatorCyclesGetResponses[keyof ListCyclesV1AdminAllocatorCyclesGetResponses];
+export type ListCyclesResponse = ListCyclesResponses[keyof ListCyclesResponses];
 
-export type StartCycleV1AdminAllocatorCyclesPostData = {
+export type StartCycleData = {
     body: NewCycle;
     path?: never;
     query?: never;
     url: '/v1/admin/allocator/cycles';
 };
 
-export type StartCycleV1AdminAllocatorCyclesPostErrors = {
+export type StartCycleErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type StartCycleV1AdminAllocatorCyclesPostError = StartCycleV1AdminAllocatorCyclesPostErrors[keyof StartCycleV1AdminAllocatorCyclesPostErrors];
+export type StartCycleError = StartCycleErrors[keyof StartCycleErrors];
 
-export type StartCycleV1AdminAllocatorCyclesPostResponses = {
+export type StartCycleResponses = {
     /**
      * Successful Response
      */
     201: CycleOut;
 };
 
-export type StartCycleV1AdminAllocatorCyclesPostResponse = StartCycleV1AdminAllocatorCyclesPostResponses[keyof StartCycleV1AdminAllocatorCyclesPostResponses];
+export type StartCycleResponse = StartCycleResponses[keyof StartCycleResponses];
 
-export type GetSettingsV1AdminAllocatorSettingsGetData = {
+export type GetAllocatorSettingsData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/v1/admin/allocator/settings';
 };
 
-export type GetSettingsV1AdminAllocatorSettingsGetResponses = {
+export type GetAllocatorSettingsErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
+};
+
+export type GetAllocatorSettingsError = GetAllocatorSettingsErrors[keyof GetAllocatorSettingsErrors];
+
+export type GetAllocatorSettingsResponses = {
     /**
      * Successful Response
      */
     200: CycleOut;
 };
 
-export type GetSettingsV1AdminAllocatorSettingsGetResponse = GetSettingsV1AdminAllocatorSettingsGetResponses[keyof GetSettingsV1AdminAllocatorSettingsGetResponses];
+export type GetAllocatorSettingsResponse = GetAllocatorSettingsResponses[keyof GetAllocatorSettingsResponses];
 
-export type UpdateSettingsV1AdminAllocatorSettingsPutData = {
+export type UpdateAllocatorSettingsData = {
     body: CycleTimes;
     path?: never;
     query?: never;
     url: '/v1/admin/allocator/settings';
 };
 
-export type UpdateSettingsV1AdminAllocatorSettingsPutErrors = {
+export type UpdateAllocatorSettingsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UpdateSettingsV1AdminAllocatorSettingsPutError = UpdateSettingsV1AdminAllocatorSettingsPutErrors[keyof UpdateSettingsV1AdminAllocatorSettingsPutErrors];
+export type UpdateAllocatorSettingsError = UpdateAllocatorSettingsErrors[keyof UpdateAllocatorSettingsErrors];
 
-export type UpdateSettingsV1AdminAllocatorSettingsPutResponses = {
+export type UpdateAllocatorSettingsResponses = {
     /**
      * Successful Response
      */
     200: CycleOut;
 };
 
-export type UpdateSettingsV1AdminAllocatorSettingsPutResponse = UpdateSettingsV1AdminAllocatorSettingsPutResponses[keyof UpdateSettingsV1AdminAllocatorSettingsPutResponses];
+export type UpdateAllocatorSettingsResponse = UpdateAllocatorSettingsResponses[keyof UpdateAllocatorSettingsResponses];
 
-export type UploadTemplateV1AdminAllocatorUploadsTemplatesPostData = {
-    body: BodyUploadTemplateV1AdminAllocatorUploadsTemplatesPost;
+export type UploadTemplatesData = {
+    body: BodyUploadTemplates;
     path?: never;
     query?: {
         /**
@@ -2615,26 +2851,50 @@ export type UploadTemplateV1AdminAllocatorUploadsTemplatesPostData = {
     url: '/v1/admin/allocator/uploads/templates';
 };
 
-export type UploadTemplateV1AdminAllocatorUploadsTemplatesPostErrors = {
+export type UploadTemplatesErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UploadTemplateV1AdminAllocatorUploadsTemplatesPostError = UploadTemplateV1AdminAllocatorUploadsTemplatesPostErrors[keyof UploadTemplateV1AdminAllocatorUploadsTemplatesPostErrors];
+export type UploadTemplatesError = UploadTemplatesErrors[keyof UploadTemplatesErrors];
 
-export type UploadTemplateV1AdminAllocatorUploadsTemplatesPostResponses = {
+export type UploadTemplatesResponses = {
     /**
      * Successful Response
      */
     200: ReportOut;
 };
 
-export type UploadTemplateV1AdminAllocatorUploadsTemplatesPostResponse = UploadTemplateV1AdminAllocatorUploadsTemplatesPostResponses[keyof UploadTemplateV1AdminAllocatorUploadsTemplatesPostResponses];
+export type UploadTemplatesResponse = UploadTemplatesResponses[keyof UploadTemplatesResponses];
 
-export type UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostData = {
-    body: BodyUploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPost;
+export type UploadDeliveryMethodsData = {
+    body: BodyUploadDeliveryMethods;
     path?: never;
     query?: {
         /**
@@ -2645,26 +2905,50 @@ export type UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostData 
     url: '/v1/admin/allocator/uploads/delivery-methods';
 };
 
-export type UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostErrors = {
+export type UploadDeliveryMethodsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostError = UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostErrors[keyof UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostErrors];
+export type UploadDeliveryMethodsError = UploadDeliveryMethodsErrors[keyof UploadDeliveryMethodsErrors];
 
-export type UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostResponses = {
+export type UploadDeliveryMethodsResponses = {
     /**
      * Successful Response
      */
     200: ReportOut;
 };
 
-export type UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostResponse = UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostResponses[keyof UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostResponses];
+export type UploadDeliveryMethodsResponse = UploadDeliveryMethodsResponses[keyof UploadDeliveryMethodsResponses];
 
-export type UploadGroupsV1AdminAllocatorUploadsGroupsPostData = {
-    body: BodyUploadGroupsV1AdminAllocatorUploadsGroupsPost;
+export type UploadGroupsData = {
+    body: BodyUploadGroups;
     path?: never;
     query: {
         /**
@@ -2679,25 +2963,49 @@ export type UploadGroupsV1AdminAllocatorUploadsGroupsPostData = {
     url: '/v1/admin/allocator/uploads/groups';
 };
 
-export type UploadGroupsV1AdminAllocatorUploadsGroupsPostErrors = {
+export type UploadGroupsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UploadGroupsV1AdminAllocatorUploadsGroupsPostError = UploadGroupsV1AdminAllocatorUploadsGroupsPostErrors[keyof UploadGroupsV1AdminAllocatorUploadsGroupsPostErrors];
+export type UploadGroupsError = UploadGroupsErrors[keyof UploadGroupsErrors];
 
-export type UploadGroupsV1AdminAllocatorUploadsGroupsPostResponses = {
+export type UploadGroupsResponses = {
     /**
      * Successful Response
      */
     200: ReportOut;
 };
 
-export type UploadGroupsV1AdminAllocatorUploadsGroupsPostResponse = UploadGroupsV1AdminAllocatorUploadsGroupsPostResponses[keyof UploadGroupsV1AdminAllocatorUploadsGroupsPostResponses];
+export type UploadGroupsResponse = UploadGroupsResponses[keyof UploadGroupsResponses];
 
-export type DepartmentsListV1AdminAllocatorDepartmentsExportGetData = {
+export type ExportDepartmentsData = {
     body?: never;
     path?: never;
     query?: {
@@ -2709,23 +3017,49 @@ export type DepartmentsListV1AdminAllocatorDepartmentsExportGetData = {
     url: '/v1/admin/allocator/departments/export';
 };
 
-export type DepartmentsListV1AdminAllocatorDepartmentsExportGetErrors = {
+export type ExportDepartmentsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type DepartmentsListV1AdminAllocatorDepartmentsExportGetError = DepartmentsListV1AdminAllocatorDepartmentsExportGetErrors[keyof DepartmentsListV1AdminAllocatorDepartmentsExportGetErrors];
+export type ExportDepartmentsError = ExportDepartmentsErrors[keyof ExportDepartmentsErrors];
 
-export type DepartmentsListV1AdminAllocatorDepartmentsExportGetResponses = {
+export type ExportDepartmentsResponses = {
     /**
-     * Successful Response
+     * A CSV file (Content-Disposition carries its name)
      */
-    200: unknown;
+    200: Blob | File;
 };
 
-export type TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetData = {
+export type ExportDepartmentsResponse = ExportDepartmentsResponses[keyof ExportDepartmentsResponses];
+
+export type ExportTrsData = {
     body?: never;
     path: {
         /**
@@ -2737,23 +3071,49 @@ export type TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetData = {
     url: '/v1/admin/allocator/departments/{department_id}/export';
 };
 
-export type TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetErrors = {
+export type ExportTrsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetError = TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetErrors[keyof TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetErrors];
+export type ExportTrsError = ExportTrsErrors[keyof ExportTrsErrors];
 
-export type TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetResponses = {
+export type ExportTrsResponses = {
     /**
-     * Successful Response
+     * A zip file (Content-Disposition carries its name)
      */
-    200: unknown;
+    200: Blob | File;
 };
 
-export type GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetData = {
+export type ExportTrsResponse = ExportTrsResponses[keyof ExportTrsResponses];
+
+export type ExportGroupsWithItemsData = {
     body?: never;
     path: {
         /**
@@ -2765,23 +3125,49 @@ export type GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsW
     url: '/v1/admin/allocator/departments/{department_id}/exports/groups-with-items';
 };
 
-export type GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetErrors = {
+export type ExportGroupsWithItemsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetError = GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetErrors[keyof GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetErrors];
+export type ExportGroupsWithItemsError = ExportGroupsWithItemsErrors[keyof ExportGroupsWithItemsErrors];
 
-export type GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetResponses = {
+export type ExportGroupsWithItemsResponses = {
     /**
-     * Successful Response
+     * A CSV file (Content-Disposition carries its name)
      */
-    200: unknown;
+    200: Blob | File;
 };
 
-export type GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetData = {
+export type ExportGroupsWithItemsResponse = ExportGroupsWithItemsResponses[keyof ExportGroupsWithItemsResponses];
+
+export type ExportGroupsWithoutMemberItemsData = {
     body?: never;
     path: {
         /**
@@ -2793,23 +3179,49 @@ export type GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExpor
     url: '/v1/admin/allocator/departments/{department_id}/exports/groups-without-member-items';
 };
 
-export type GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetErrors = {
+export type ExportGroupsWithoutMemberItemsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetError = GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetErrors[keyof GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetErrors];
+export type ExportGroupsWithoutMemberItemsError = ExportGroupsWithoutMemberItemsErrors[keyof ExportGroupsWithoutMemberItemsErrors];
 
-export type GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetResponses = {
+export type ExportGroupsWithoutMemberItemsResponses = {
     /**
-     * Successful Response
+     * A CSV file (Content-Disposition carries its name)
      */
-    200: unknown;
+    200: Blob | File;
 };
 
-export type GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetData = {
+export type ExportGroupsWithoutMemberItemsResponse = ExportGroupsWithoutMemberItemsResponses[keyof ExportGroupsWithoutMemberItemsResponses];
+
+export type ExportGroupsReportData = {
     body?: never;
     path: {
         /**
@@ -2821,23 +3233,49 @@ export type GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetDa
     url: '/v1/admin/allocator/departments/{department_id}/groups/export';
 };
 
-export type GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetErrors = {
+export type ExportGroupsReportErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetError = GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetErrors[keyof GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetErrors];
+export type ExportGroupsReportError = ExportGroupsReportErrors[keyof ExportGroupsReportErrors];
 
-export type GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetResponses = {
+export type ExportGroupsReportResponses = {
     /**
-     * Successful Response
+     * A CSV file (Content-Disposition carries its name)
      */
-    200: unknown;
+    200: Blob | File;
 };
 
-export type LogExportV1AdminAllocatorLogExportGetData = {
+export type ExportGroupsReportResponse = ExportGroupsReportResponses[keyof ExportGroupsReportResponses];
+
+export type ExportActivityLogData = {
     body?: never;
     path?: never;
     query?: {
@@ -2855,23 +3293,49 @@ export type LogExportV1AdminAllocatorLogExportGetData = {
     url: '/v1/admin/allocator/log/export';
 };
 
-export type LogExportV1AdminAllocatorLogExportGetErrors = {
+export type ExportActivityLogErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type LogExportV1AdminAllocatorLogExportGetError = LogExportV1AdminAllocatorLogExportGetErrors[keyof LogExportV1AdminAllocatorLogExportGetErrors];
+export type ExportActivityLogError = ExportActivityLogErrors[keyof ExportActivityLogErrors];
 
-export type LogExportV1AdminAllocatorLogExportGetResponses = {
+export type ExportActivityLogResponses = {
     /**
-     * Successful Response
+     * A CSV file (Content-Disposition carries its name)
      */
-    200: unknown;
+    200: Blob | File;
 };
 
-export type SearchV1AdminAllocatorSearchGetData = {
+export type ExportActivityLogResponse = ExportActivityLogResponses[keyof ExportActivityLogResponses];
+
+export type SearchAllocatorData = {
     body?: never;
     path?: never;
     query: {
@@ -2883,25 +3347,49 @@ export type SearchV1AdminAllocatorSearchGetData = {
     url: '/v1/admin/allocator/search';
 };
 
-export type SearchV1AdminAllocatorSearchGetErrors = {
+export type SearchAllocatorErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type SearchV1AdminAllocatorSearchGetError = SearchV1AdminAllocatorSearchGetErrors[keyof SearchV1AdminAllocatorSearchGetErrors];
+export type SearchAllocatorError = SearchAllocatorErrors[keyof SearchAllocatorErrors];
 
-export type SearchV1AdminAllocatorSearchGetResponses = {
+export type SearchAllocatorResponses = {
     /**
      * Successful Response
      */
     200: SearchResult;
 };
 
-export type SearchV1AdminAllocatorSearchGetResponse = SearchV1AdminAllocatorSearchGetResponses[keyof SearchV1AdminAllocatorSearchGetResponses];
+export type SearchAllocatorResponse = SearchAllocatorResponses[keyof SearchAllocatorResponses];
 
-export type ListDepartmentsV1AdminAllocatorDepartmentsGetData = {
+export type ListDepartmentsData = {
     body?: never;
     path?: never;
     query?: {
@@ -2915,50 +3403,98 @@ export type ListDepartmentsV1AdminAllocatorDepartmentsGetData = {
     url: '/v1/admin/allocator/departments';
 };
 
-export type ListDepartmentsV1AdminAllocatorDepartmentsGetErrors = {
+export type ListDepartmentsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type ListDepartmentsV1AdminAllocatorDepartmentsGetError = ListDepartmentsV1AdminAllocatorDepartmentsGetErrors[keyof ListDepartmentsV1AdminAllocatorDepartmentsGetErrors];
+export type ListDepartmentsError = ListDepartmentsErrors[keyof ListDepartmentsErrors];
 
-export type ListDepartmentsV1AdminAllocatorDepartmentsGetResponses = {
+export type ListDepartmentsResponses = {
     /**
      * Successful Response
      */
     200: DepartmentList;
 };
 
-export type ListDepartmentsV1AdminAllocatorDepartmentsGetResponse = ListDepartmentsV1AdminAllocatorDepartmentsGetResponses[keyof ListDepartmentsV1AdminAllocatorDepartmentsGetResponses];
+export type ListDepartmentsResponse = ListDepartmentsResponses[keyof ListDepartmentsResponses];
 
-export type CreateDepartmentV1AdminAllocatorDepartmentsPostData = {
+export type CreateDepartmentData = {
     body: NewDepartment;
     path?: never;
     query?: never;
     url: '/v1/admin/allocator/departments';
 };
 
-export type CreateDepartmentV1AdminAllocatorDepartmentsPostErrors = {
+export type CreateDepartmentErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type CreateDepartmentV1AdminAllocatorDepartmentsPostError = CreateDepartmentV1AdminAllocatorDepartmentsPostErrors[keyof CreateDepartmentV1AdminAllocatorDepartmentsPostErrors];
+export type CreateDepartmentError = CreateDepartmentErrors[keyof CreateDepartmentErrors];
 
-export type CreateDepartmentV1AdminAllocatorDepartmentsPostResponses = {
+export type CreateDepartmentResponses = {
     /**
      * Successful Response
      */
     201: DepartmentDetail;
 };
 
-export type CreateDepartmentV1AdminAllocatorDepartmentsPostResponse = CreateDepartmentV1AdminAllocatorDepartmentsPostResponses[keyof CreateDepartmentV1AdminAllocatorDepartmentsPostResponses];
+export type CreateDepartmentResponse = CreateDepartmentResponses[keyof CreateDepartmentResponses];
 
-export type DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteData = {
+export type DeleteDepartmentData = {
     body?: never;
     path: {
         /**
@@ -2970,25 +3506,49 @@ export type DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteData = 
     url: '/v1/admin/allocator/departments/{department_id}';
 };
 
-export type DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteErrors = {
+export type DeleteDepartmentErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteError = DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteErrors[keyof DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteErrors];
+export type DeleteDepartmentError = DeleteDepartmentErrors[keyof DeleteDepartmentErrors];
 
-export type DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteResponses = {
+export type DeleteDepartmentResponses = {
     /**
      * Successful Response
      */
     204: void;
 };
 
-export type DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteResponse = DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteResponses[keyof DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteResponses];
+export type DeleteDepartmentResponse = DeleteDepartmentResponses[keyof DeleteDepartmentResponses];
 
-export type GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetData = {
+export type GetDepartmentData = {
     body?: never;
     path: {
         /**
@@ -3000,25 +3560,49 @@ export type GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetData = {
     url: '/v1/admin/allocator/departments/{department_id}';
 };
 
-export type GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetErrors = {
+export type GetDepartmentErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetError = GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetErrors[keyof GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetErrors];
+export type GetDepartmentError = GetDepartmentErrors[keyof GetDepartmentErrors];
 
-export type GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetResponses = {
+export type GetDepartmentResponses = {
     /**
      * Successful Response
      */
     200: DepartmentDetail;
 };
 
-export type GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetResponse = GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetResponses[keyof GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetResponses];
+export type GetDepartmentResponse = GetDepartmentResponses[keyof GetDepartmentResponses];
 
-export type UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutData = {
+export type UpdateDepartmentData = {
     body: DepartmentChanges;
     path: {
         /**
@@ -3030,25 +3614,49 @@ export type UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutData = {
     url: '/v1/admin/allocator/departments/{department_id}';
 };
 
-export type UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutErrors = {
+export type UpdateDepartmentErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutError = UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutErrors[keyof UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutErrors];
+export type UpdateDepartmentError = UpdateDepartmentErrors[keyof UpdateDepartmentErrors];
 
-export type UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutResponses = {
+export type UpdateDepartmentResponses = {
     /**
      * Successful Response
      */
     200: DepartmentDetail;
 };
 
-export type UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutResponse = UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutResponses[keyof UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutResponses];
+export type UpdateDepartmentResponse = UpdateDepartmentResponses[keyof UpdateDepartmentResponses];
 
-export type UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutData = {
+export type SetDepartmentPoolsData = {
     body: PoolChanges;
     path: {
         /**
@@ -3060,25 +3668,49 @@ export type UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutData = {
     url: '/v1/admin/allocator/departments/{department_id}/pools';
 };
 
-export type UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutErrors = {
+export type SetDepartmentPoolsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutError = UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutErrors[keyof UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutErrors];
+export type SetDepartmentPoolsError = SetDepartmentPoolsErrors[keyof SetDepartmentPoolsErrors];
 
-export type UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutResponses = {
+export type SetDepartmentPoolsResponses = {
     /**
      * Successful Response
      */
     200: DepartmentDetail;
 };
 
-export type UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutResponse = UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutResponses[keyof UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutResponses];
+export type SetDepartmentPoolsResponse = SetDepartmentPoolsResponses[keyof SetDepartmentPoolsResponses];
 
-export type LockV1AdminAllocatorDepartmentsDepartmentIdLockPostData = {
+export type LockDepartmentData = {
     body?: never;
     path: {
         /**
@@ -3090,25 +3722,49 @@ export type LockV1AdminAllocatorDepartmentsDepartmentIdLockPostData = {
     url: '/v1/admin/allocator/departments/{department_id}/lock';
 };
 
-export type LockV1AdminAllocatorDepartmentsDepartmentIdLockPostErrors = {
+export type LockDepartmentErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type LockV1AdminAllocatorDepartmentsDepartmentIdLockPostError = LockV1AdminAllocatorDepartmentsDepartmentIdLockPostErrors[keyof LockV1AdminAllocatorDepartmentsDepartmentIdLockPostErrors];
+export type LockDepartmentError = LockDepartmentErrors[keyof LockDepartmentErrors];
 
-export type LockV1AdminAllocatorDepartmentsDepartmentIdLockPostResponses = {
+export type LockDepartmentResponses = {
     /**
      * Successful Response
      */
     200: LockResult;
 };
 
-export type LockV1AdminAllocatorDepartmentsDepartmentIdLockPostResponse = LockV1AdminAllocatorDepartmentsDepartmentIdLockPostResponses[keyof LockV1AdminAllocatorDepartmentsDepartmentIdLockPostResponses];
+export type LockDepartmentResponse = LockDepartmentResponses[keyof LockDepartmentResponses];
 
-export type UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostData = {
+export type UnlockDepartmentData = {
     body?: never;
     path: {
         /**
@@ -3120,25 +3776,49 @@ export type UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostData = {
     url: '/v1/admin/allocator/departments/{department_id}/unlock';
 };
 
-export type UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostErrors = {
+export type UnlockDepartmentErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostError = UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostErrors[keyof UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostErrors];
+export type UnlockDepartmentError = UnlockDepartmentErrors[keyof UnlockDepartmentErrors];
 
-export type UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostResponses = {
+export type UnlockDepartmentResponses = {
     /**
      * Successful Response
      */
     200: LockResult;
 };
 
-export type UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostResponse = UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostResponses[keyof UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostResponses];
+export type UnlockDepartmentResponse = UnlockDepartmentResponses[keyof UnlockDepartmentResponses];
 
-export type LookupPersonV1AdminAllocatorPeopleLookupGetData = {
+export type LookupPersonData = {
     body?: never;
     path?: never;
     query: {
@@ -3150,25 +3830,49 @@ export type LookupPersonV1AdminAllocatorPeopleLookupGetData = {
     url: '/v1/admin/allocator/people/lookup';
 };
 
-export type LookupPersonV1AdminAllocatorPeopleLookupGetErrors = {
+export type LookupPersonErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type LookupPersonV1AdminAllocatorPeopleLookupGetError = LookupPersonV1AdminAllocatorPeopleLookupGetErrors[keyof LookupPersonV1AdminAllocatorPeopleLookupGetErrors];
+export type LookupPersonError = LookupPersonErrors[keyof LookupPersonErrors];
 
-export type LookupPersonV1AdminAllocatorPeopleLookupGetResponses = {
+export type LookupPersonResponses = {
     /**
      * Successful Response
      */
     200: LookupOut;
 };
 
-export type LookupPersonV1AdminAllocatorPeopleLookupGetResponse = LookupPersonV1AdminAllocatorPeopleLookupGetResponses[keyof LookupPersonV1AdminAllocatorPeopleLookupGetResponses];
+export type LookupPersonResponse = LookupPersonResponses[keyof LookupPersonResponses];
 
-export type ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetData = {
+export type ListGroupsData = {
     body?: never;
     path: {
         /**
@@ -3180,25 +3884,49 @@ export type ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetData = {
     url: '/v1/admin/allocator/departments/{department_id}/groups';
 };
 
-export type ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetErrors = {
+export type ListGroupsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetError = ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetErrors[keyof ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetErrors];
+export type ListGroupsError = ListGroupsErrors[keyof ListGroupsErrors];
 
-export type ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetResponses = {
+export type ListGroupsResponses = {
     /**
      * Successful Response
      */
     200: GroupList;
 };
 
-export type ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetResponse = ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetResponses[keyof ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetResponses];
+export type ListGroupsResponse = ListGroupsResponses[keyof ListGroupsResponses];
 
-export type CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostData = {
+export type CreateGroupData = {
     body: NewGroup;
     path: {
         /**
@@ -3210,25 +3938,49 @@ export type CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostData = {
     url: '/v1/admin/allocator/departments/{department_id}/groups';
 };
 
-export type CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostErrors = {
+export type CreateGroupErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostError = CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostErrors[keyof CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostErrors];
+export type CreateGroupError = CreateGroupErrors[keyof CreateGroupErrors];
 
-export type CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostResponses = {
+export type CreateGroupResponses = {
     /**
      * Successful Response
      */
     201: GroupDetail;
 };
 
-export type CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostResponse = CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostResponses[keyof CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostResponses];
+export type CreateGroupResponse = CreateGroupResponses[keyof CreateGroupResponses];
 
-export type DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteData = {
+export type DeleteGroupData = {
     body?: never;
     path: {
         /**
@@ -3240,25 +3992,49 @@ export type DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteData = {
     url: '/v1/admin/allocator/groups/{group_id}';
 };
 
-export type DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteErrors = {
+export type DeleteGroupErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteError = DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteErrors[keyof DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteErrors];
+export type DeleteGroupError = DeleteGroupErrors[keyof DeleteGroupErrors];
 
-export type DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteResponses = {
+export type DeleteGroupResponses = {
     /**
      * Successful Response
      */
     204: void;
 };
 
-export type DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteResponse = DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteResponses[keyof DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteResponses];
+export type DeleteGroupResponse = DeleteGroupResponses[keyof DeleteGroupResponses];
 
-export type GetGroupV1AdminAllocatorGroupsGroupIdGetData = {
+export type GetGroupData = {
     body?: never;
     path: {
         /**
@@ -3270,25 +4046,49 @@ export type GetGroupV1AdminAllocatorGroupsGroupIdGetData = {
     url: '/v1/admin/allocator/groups/{group_id}';
 };
 
-export type GetGroupV1AdminAllocatorGroupsGroupIdGetErrors = {
+export type GetGroupErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type GetGroupV1AdminAllocatorGroupsGroupIdGetError = GetGroupV1AdminAllocatorGroupsGroupIdGetErrors[keyof GetGroupV1AdminAllocatorGroupsGroupIdGetErrors];
+export type GetGroupError = GetGroupErrors[keyof GetGroupErrors];
 
-export type GetGroupV1AdminAllocatorGroupsGroupIdGetResponses = {
+export type GetGroupResponses = {
     /**
      * Successful Response
      */
     200: GroupDetail;
 };
 
-export type GetGroupV1AdminAllocatorGroupsGroupIdGetResponse = GetGroupV1AdminAllocatorGroupsGroupIdGetResponses[keyof GetGroupV1AdminAllocatorGroupsGroupIdGetResponses];
+export type GetGroupResponse = GetGroupResponses[keyof GetGroupResponses];
 
-export type UpdateGroupV1AdminAllocatorGroupsGroupIdPutData = {
+export type UpdateGroupData = {
     body: GroupChanges;
     path: {
         /**
@@ -3300,25 +4100,49 @@ export type UpdateGroupV1AdminAllocatorGroupsGroupIdPutData = {
     url: '/v1/admin/allocator/groups/{group_id}';
 };
 
-export type UpdateGroupV1AdminAllocatorGroupsGroupIdPutErrors = {
+export type UpdateGroupErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UpdateGroupV1AdminAllocatorGroupsGroupIdPutError = UpdateGroupV1AdminAllocatorGroupsGroupIdPutErrors[keyof UpdateGroupV1AdminAllocatorGroupsGroupIdPutErrors];
+export type UpdateGroupError = UpdateGroupErrors[keyof UpdateGroupErrors];
 
-export type UpdateGroupV1AdminAllocatorGroupsGroupIdPutResponses = {
+export type UpdateGroupResponses = {
     /**
      * Successful Response
      */
     200: GroupDetail;
 };
 
-export type UpdateGroupV1AdminAllocatorGroupsGroupIdPutResponse = UpdateGroupV1AdminAllocatorGroupsGroupIdPutResponses[keyof UpdateGroupV1AdminAllocatorGroupsGroupIdPutResponses];
+export type UpdateGroupResponse = UpdateGroupResponses[keyof UpdateGroupResponses];
 
-export type UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutData = {
+export type SetGroupPoolsData = {
     body: GroupPoolChanges;
     path: {
         /**
@@ -3330,25 +4154,49 @@ export type UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutData = {
     url: '/v1/admin/allocator/groups/{group_id}/pools';
 };
 
-export type UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutErrors = {
+export type SetGroupPoolsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutError = UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutErrors[keyof UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutErrors];
+export type SetGroupPoolsError = SetGroupPoolsErrors[keyof SetGroupPoolsErrors];
 
-export type UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutResponses = {
+export type SetGroupPoolsResponses = {
     /**
      * Successful Response
      */
     200: GroupDetail;
 };
 
-export type UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutResponse = UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutResponses[keyof UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutResponses];
+export type SetGroupPoolsResponse = SetGroupPoolsResponses[keyof SetGroupPoolsResponses];
 
-export type UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutData = {
+export type SetGroupDeliveryData = {
     body: DeliveryChoice;
     path: {
         /**
@@ -3364,25 +4212,49 @@ export type UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPu
     url: '/v1/admin/allocator/groups/{group_id}/delivery/{item_type_id}';
 };
 
-export type UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutErrors = {
+export type SetGroupDeliveryErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutError = UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutErrors[keyof UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutErrors];
+export type SetGroupDeliveryError = SetGroupDeliveryErrors[keyof SetGroupDeliveryErrors];
 
-export type UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutResponses = {
+export type SetGroupDeliveryResponses = {
     /**
      * Successful Response
      */
     200: GroupDetail;
 };
 
-export type UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutResponse = UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutResponses[keyof UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutResponses];
+export type SetGroupDeliveryResponse = SetGroupDeliveryResponses[keyof SetGroupDeliveryResponses];
 
-export type ListMembersV1AdminAllocatorGroupsGroupIdMembersGetData = {
+export type ListGroupMembersData = {
     body?: never;
     path: {
         /**
@@ -3394,25 +4266,49 @@ export type ListMembersV1AdminAllocatorGroupsGroupIdMembersGetData = {
     url: '/v1/admin/allocator/groups/{group_id}/members';
 };
 
-export type ListMembersV1AdminAllocatorGroupsGroupIdMembersGetErrors = {
+export type ListGroupMembersErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type ListMembersV1AdminAllocatorGroupsGroupIdMembersGetError = ListMembersV1AdminAllocatorGroupsGroupIdMembersGetErrors[keyof ListMembersV1AdminAllocatorGroupsGroupIdMembersGetErrors];
+export type ListGroupMembersError = ListGroupMembersErrors[keyof ListGroupMembersErrors];
 
-export type ListMembersV1AdminAllocatorGroupsGroupIdMembersGetResponses = {
+export type ListGroupMembersResponses = {
     /**
      * Successful Response
      */
     200: MemberList;
 };
 
-export type ListMembersV1AdminAllocatorGroupsGroupIdMembersGetResponse = ListMembersV1AdminAllocatorGroupsGroupIdMembersGetResponses[keyof ListMembersV1AdminAllocatorGroupsGroupIdMembersGetResponses];
+export type ListGroupMembersResponse = ListGroupMembersResponses[keyof ListGroupMembersResponses];
 
-export type ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetData = {
+export type ExportGroupMembersData = {
     body?: never;
     path: {
         /**
@@ -3424,23 +4320,49 @@ export type ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetData = {
     url: '/v1/admin/allocator/groups/{group_id}/members/export';
 };
 
-export type ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetErrors = {
+export type ExportGroupMembersErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetError = ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetErrors[keyof ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetErrors];
+export type ExportGroupMembersError = ExportGroupMembersErrors[keyof ExportGroupMembersErrors];
 
-export type ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetResponses = {
+export type ExportGroupMembersResponses = {
     /**
-     * Successful Response
+     * A CSV file (Content-Disposition carries its name)
      */
-    200: unknown;
+    200: Blob | File;
 };
 
-export type GetGroupV1AllocatorGroupsGroupIdGetData = {
+export type ExportGroupMembersResponse = ExportGroupMembersResponses[keyof ExportGroupMembersResponses];
+
+export type GetOwnerGroupData = {
     body?: never;
     path: {
         /**
@@ -3452,25 +4374,49 @@ export type GetGroupV1AllocatorGroupsGroupIdGetData = {
     url: '/v1/allocator/groups/{group_id}';
 };
 
-export type GetGroupV1AllocatorGroupsGroupIdGetErrors = {
+export type GetOwnerGroupErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type GetGroupV1AllocatorGroupsGroupIdGetError = GetGroupV1AllocatorGroupsGroupIdGetErrors[keyof GetGroupV1AllocatorGroupsGroupIdGetErrors];
+export type GetOwnerGroupError = GetOwnerGroupErrors[keyof GetOwnerGroupErrors];
 
-export type GetGroupV1AllocatorGroupsGroupIdGetResponses = {
+export type GetOwnerGroupResponses = {
     /**
      * Successful Response
      */
-    200: PortalApiV2AllocatorRoutesGroupOwnerGroupOut;
+    200: OwnerGroupOut;
 };
 
-export type GetGroupV1AllocatorGroupsGroupIdGetResponse = GetGroupV1AllocatorGroupsGroupIdGetResponses[keyof GetGroupV1AllocatorGroupsGroupIdGetResponses];
+export type GetOwnerGroupResponse = GetOwnerGroupResponses[keyof GetOwnerGroupResponses];
 
-export type ExportMembersV1AllocatorGroupsGroupIdMembersExportGetData = {
+export type ExportOwnerGroupMembersData = {
     body?: never;
     path: {
         /**
@@ -3482,23 +4428,49 @@ export type ExportMembersV1AllocatorGroupsGroupIdMembersExportGetData = {
     url: '/v1/allocator/groups/{group_id}/members/export';
 };
 
-export type ExportMembersV1AllocatorGroupsGroupIdMembersExportGetErrors = {
+export type ExportOwnerGroupMembersErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type ExportMembersV1AllocatorGroupsGroupIdMembersExportGetError = ExportMembersV1AllocatorGroupsGroupIdMembersExportGetErrors[keyof ExportMembersV1AllocatorGroupsGroupIdMembersExportGetErrors];
+export type ExportOwnerGroupMembersError = ExportOwnerGroupMembersErrors[keyof ExportOwnerGroupMembersErrors];
 
-export type ExportMembersV1AllocatorGroupsGroupIdMembersExportGetResponses = {
+export type ExportOwnerGroupMembersResponses = {
     /**
-     * Successful Response
+     * A CSV file (Content-Disposition carries its name)
      */
-    200: unknown;
+    200: Blob | File;
 };
 
-export type AddMemberV1AllocatorGroupsGroupIdMembersPostData = {
+export type ExportOwnerGroupMembersResponse = ExportOwnerGroupMembersResponses[keyof ExportOwnerGroupMembersResponses];
+
+export type AddMemberData = {
     body: NewMember;
     path: {
         /**
@@ -3510,26 +4482,50 @@ export type AddMemberV1AllocatorGroupsGroupIdMembersPostData = {
     url: '/v1/allocator/groups/{group_id}/members';
 };
 
-export type AddMemberV1AllocatorGroupsGroupIdMembersPostErrors = {
+export type AddMemberErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type AddMemberV1AllocatorGroupsGroupIdMembersPostError = AddMemberV1AllocatorGroupsGroupIdMembersPostErrors[keyof AddMemberV1AllocatorGroupsGroupIdMembersPostErrors];
+export type AddMemberError = AddMemberErrors[keyof AddMemberErrors];
 
-export type AddMemberV1AllocatorGroupsGroupIdMembersPostResponses = {
+export type AddMemberResponses = {
     /**
      * Successful Response
      */
     200: AddedMember;
 };
 
-export type AddMemberV1AllocatorGroupsGroupIdMembersPostResponse = AddMemberV1AllocatorGroupsGroupIdMembersPostResponses[keyof AddMemberV1AllocatorGroupsGroupIdMembersPostResponses];
+export type AddMemberResponse = AddMemberResponses[keyof AddMemberResponses];
 
-export type UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostData = {
-    body: BodyUploadMembersV1AllocatorGroupsGroupIdMembersUploadPost;
+export type UploadMembersData = {
+    body: BodyUploadMembers;
     path: {
         /**
          * Group Id
@@ -3540,25 +4536,49 @@ export type UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostData = {
     url: '/v1/allocator/groups/{group_id}/members/upload';
 };
 
-export type UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostErrors = {
+export type UploadMembersErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostError = UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostErrors[keyof UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostErrors];
+export type UploadMembersError = UploadMembersErrors[keyof UploadMembersErrors];
 
-export type UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostResponses = {
+export type UploadMembersResponses = {
     /**
      * Successful Response
      */
     200: UploadResult;
 };
 
-export type UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostResponse = UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostResponses[keyof UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostResponses];
+export type UploadMembersResponse = UploadMembersResponses[keyof UploadMembersResponses];
 
-export type RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteData = {
+export type RemoveMemberData = {
     body?: never;
     path: {
         /**
@@ -3574,23 +4594,49 @@ export type RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteData = {
     url: '/v1/allocator/groups/{group_id}/members/{member_id}';
 };
 
-export type RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteErrors = {
+export type RemoveMemberErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteError = RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteErrors[keyof RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteErrors];
+export type RemoveMemberError = RemoveMemberErrors[keyof RemoveMemberErrors];
 
-export type RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteResponses = {
+export type RemoveMemberResponses = {
     /**
      * Successful Response
      */
-    200: unknown;
+    200: RemovedMember;
 };
 
-export type SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutData = {
+export type RemoveMemberResponse = RemoveMemberResponses[keyof RemoveMemberResponses];
+
+export type SetMemberItemsData = {
     body: MemberItems;
     path: {
         /**
@@ -3606,39 +4652,96 @@ export type SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutData = {
     url: '/v1/allocator/groups/{group_id}/members/{member_id}';
 };
 
-export type SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutErrors = {
+export type SetMemberItemsErrors = {
     /**
-     * Validation Error
+     * Bad Request
      */
-    422: HttpValidationError;
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
 };
 
-export type SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutError = SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutErrors[keyof SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutErrors];
+export type SetMemberItemsError = SetMemberItemsErrors[keyof SetMemberItemsErrors];
 
-export type SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutResponses = {
+export type SetMemberItemsResponses = {
     /**
      * Successful Response
      */
     200: MemberItemsResult;
 };
 
-export type SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutResponse = SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutResponses[keyof SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutResponses];
+export type SetMemberItemsResponse = SetMemberItemsResponses[keyof SetMemberItemsResponses];
 
-export type MyTileV1AllocatorMeGetData = {
+export type GetAllocatorTileData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/v1/allocator/me';
 };
 
-export type MyTileV1AllocatorMeGetResponses = {
+export type GetAllocatorTileErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetails;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetails;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetails;
+    /**
+     * Not Found
+     */
+    404: ProblemDetails;
+    /**
+     * Conflict
+     */
+    409: ProblemDetails;
+    /**
+     * Unprocessable Content
+     */
+    422: ProblemDetails;
+    /**
+     * Service Unavailable
+     */
+    503: ProblemDetails;
+};
+
+export type GetAllocatorTileError = GetAllocatorTileErrors[keyof GetAllocatorTileErrors];
+
+export type GetAllocatorTileResponses = {
     /**
      * Successful Response
      */
     200: Tile;
 };
 
-export type MyTileV1AllocatorMeGetResponse = MyTileV1AllocatorMeGetResponses[keyof MyTileV1AllocatorMeGetResponses];
+export type GetAllocatorTileResponse = GetAllocatorTileResponses[keyof GetAllocatorTileResponses];
 
 export type GetMeData = {
     body?: never;

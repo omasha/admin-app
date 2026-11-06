@@ -2,7 +2,7 @@
 
 import { type Client, type ClientMeta, formDataBodySerializer, type Options as Options2, type RequestResult, type TDataShape } from './client';
 import { client } from './client.gen';
-import type { AddMemberV1AllocatorGroupsGroupIdMembersPostData, AddMemberV1AllocatorGroupsGroupIdMembersPostErrors, AddMemberV1AllocatorGroupsGroupIdMembersPostResponses, CheckAddressData, CheckAddressErrors, CheckAddressResponses, CreateContentBlockData, CreateContentBlockErrors, CreateContentBlockResponses, CreateDepartmentV1AdminAllocatorDepartmentsPostData, CreateDepartmentV1AdminAllocatorDepartmentsPostErrors, CreateDepartmentV1AdminAllocatorDepartmentsPostResponses, CreateEmbeddedFormData, CreateEmbeddedFormErrors, CreateEmbeddedFormResponses, CreateGrantData, CreateGrantErrors, CreateGrantResponses, CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostData, CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostErrors, CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostResponses, CreateWidgetData, CreateWidgetErrors, CreateWidgetResponses, DeleteContentBlockData, DeleteContentBlockErrors, DeleteContentBlockResponses, DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteData, DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteErrors, DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteResponses, DeleteEmbeddedFormData, DeleteEmbeddedFormErrors, DeleteEmbeddedFormResponses, DeleteGrantData, DeleteGrantErrors, DeleteGrantResponses, DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteData, DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteErrors, DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteResponses, DeleteWidgetData, DeleteWidgetErrors, DeleteWidgetResponses, DepartmentsListV1AdminAllocatorDepartmentsExportGetData, DepartmentsListV1AdminAllocatorDepartmentsExportGetErrors, DepartmentsListV1AdminAllocatorDepartmentsExportGetResponses, ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetData, ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetErrors, ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetResponses, ExportMembersV1AllocatorGroupsGroupIdMembersExportGetData, ExportMembersV1AllocatorGroupsGroupIdMembersExportGetErrors, ExportMembersV1AllocatorGroupsGroupIdMembersExportGetResponses, FlagMyAccountForDeletionData, FlagMyAccountForDeletionResponses, GetContentBlockData, GetContentBlockErrors, GetContentBlockResponses, GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetData, GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetErrors, GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetResponses, GetEmbeddedFormData, GetEmbeddedFormErrors, GetEmbeddedFormResponses, GetGroupV1AdminAllocatorGroupsGroupIdGetData, GetGroupV1AdminAllocatorGroupsGroupIdGetErrors, GetGroupV1AdminAllocatorGroupsGroupIdGetResponses, GetGroupV1AllocatorGroupsGroupIdGetData, GetGroupV1AllocatorGroupsGroupIdGetErrors, GetGroupV1AllocatorGroupsGroupIdGetResponses, GetMeData, GetMeResponses, GetMyProfileData, GetMyProfileResponses, GetPrivateFormData, GetPrivateFormErrors, GetPrivateFormResponses, GetPublicFormData, GetPublicFormErrors, GetPublicFormResponses, GetSettingsV1AdminAllocatorSettingsGetData, GetSettingsV1AdminAllocatorSettingsGetResponses, GetUserData, GetUserErrors, GetUserProfileData, GetUserProfileErrors, GetUserProfileResponses, GetUserResponses, GetWidgetData, GetWidgetErrors, GetWidgetResponses, GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetData, GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetErrors, GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetResponses, GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetData, GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetErrors, GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetResponses, GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetData, GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetErrors, GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetResponses, ListContentBlocksData, ListContentBlocksErrors, ListContentBlocksResponses, ListCyclesV1AdminAllocatorCyclesGetData, ListCyclesV1AdminAllocatorCyclesGetResponses, ListDepartmentsV1AdminAllocatorDepartmentsGetData, ListDepartmentsV1AdminAllocatorDepartmentsGetErrors, ListDepartmentsV1AdminAllocatorDepartmentsGetResponses, ListEmbeddedFormsData, ListEmbeddedFormsErrors, ListEmbeddedFormsResponses, ListGrantsData, ListGrantsErrors, ListGrantsResponses, ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetData, ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetErrors, ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetResponses, ListMembersV1AdminAllocatorGroupsGroupIdMembersGetData, ListMembersV1AdminAllocatorGroupsGroupIdMembersGetErrors, ListMembersV1AdminAllocatorGroupsGroupIdMembersGetResponses, ListMyWidgetsData, ListMyWidgetsResponses, ListPublicFormsData, ListPublicFormsErrors, ListPublicFormsResponses, ListPublishedContentData, ListPublishedContentErrors, ListPublishedContentResponses, ListWidgetsData, ListWidgetsErrors, ListWidgetsResponses, LockV1AdminAllocatorDepartmentsDepartmentIdLockPostData, LockV1AdminAllocatorDepartmentsDepartmentIdLockPostErrors, LockV1AdminAllocatorDepartmentsDepartmentIdLockPostResponses, LogExportV1AdminAllocatorLogExportGetData, LogExportV1AdminAllocatorLogExportGetErrors, LogExportV1AdminAllocatorLogExportGetResponses, LookupPersonV1AdminAllocatorPeopleLookupGetData, LookupPersonV1AdminAllocatorPeopleLookupGetErrors, LookupPersonV1AdminAllocatorPeopleLookupGetResponses, MeV1AdminAllocatorMeGetData, MeV1AdminAllocatorMeGetResponses, MyTileV1AllocatorMeGetData, MyTileV1AllocatorMeGetResponses, RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteData, RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteErrors, RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteResponses, ReorderContentBlocksData, ReorderContentBlocksErrors, ReorderContentBlocksResponses, SearchUsersData, SearchUsersErrors, SearchUsersResponses, SearchV1AdminAllocatorSearchGetData, SearchV1AdminAllocatorSearchGetErrors, SearchV1AdminAllocatorSearchGetResponses, SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutData, SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutErrors, SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutResponses, SetUserPasswordData, SetUserPasswordErrors, SetUserPasswordResponses, SignUpData, SignUpErrors, SignUpResponses, StartCycleV1AdminAllocatorCyclesPostData, StartCycleV1AdminAllocatorCyclesPostErrors, StartCycleV1AdminAllocatorCyclesPostResponses, TemplatesV1AdminAllocatorTemplatesGetData, TemplatesV1AdminAllocatorTemplatesGetErrors, TemplatesV1AdminAllocatorTemplatesGetResponses, TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetData, TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetErrors, TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetResponses, UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostData, UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostErrors, UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostResponses, UpdateContentBlockData, UpdateContentBlockErrors, UpdateContentBlockResponses, UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutData, UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutErrors, UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutResponses, UpdateEmbeddedFormData, UpdateEmbeddedFormErrors, UpdateEmbeddedFormResponses, UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutData, UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutErrors, UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutResponses, UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutData, UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutErrors, UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutResponses, UpdateGroupV1AdminAllocatorGroupsGroupIdPutData, UpdateGroupV1AdminAllocatorGroupsGroupIdPutErrors, UpdateGroupV1AdminAllocatorGroupsGroupIdPutResponses, UpdateMyProfileData, UpdateMyProfileErrors, UpdateMyProfileResponses, UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutData, UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutErrors, UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutResponses, UpdateSettingsV1AdminAllocatorSettingsPutData, UpdateSettingsV1AdminAllocatorSettingsPutErrors, UpdateSettingsV1AdminAllocatorSettingsPutResponses, UpdateUserData, UpdateUserErrors, UpdateUserResponses, UpdateWidgetData, UpdateWidgetErrors, UpdateWidgetResponses, UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostData, UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostErrors, UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostResponses, UploadGroupsV1AdminAllocatorUploadsGroupsPostData, UploadGroupsV1AdminAllocatorUploadsGroupsPostErrors, UploadGroupsV1AdminAllocatorUploadsGroupsPostResponses, UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostData, UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostErrors, UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostResponses, UploadTemplateV1AdminAllocatorUploadsTemplatesPostData, UploadTemplateV1AdminAllocatorUploadsTemplatesPostErrors, UploadTemplateV1AdminAllocatorUploadsTemplatesPostResponses } from './types.gen';
+import type { AddMemberData, AddMemberErrors, AddMemberResponses, CheckAddressData, CheckAddressErrors, CheckAddressResponses, CreateContentBlockData, CreateContentBlockErrors, CreateContentBlockResponses, CreateDepartmentData, CreateDepartmentErrors, CreateDepartmentResponses, CreateEmbeddedFormData, CreateEmbeddedFormErrors, CreateEmbeddedFormResponses, CreateGrantData, CreateGrantErrors, CreateGrantResponses, CreateGroupData, CreateGroupErrors, CreateGroupResponses, CreateWidgetData, CreateWidgetErrors, CreateWidgetResponses, DeleteContentBlockData, DeleteContentBlockErrors, DeleteContentBlockResponses, DeleteDepartmentData, DeleteDepartmentErrors, DeleteDepartmentResponses, DeleteEmbeddedFormData, DeleteEmbeddedFormErrors, DeleteEmbeddedFormResponses, DeleteGrantData, DeleteGrantErrors, DeleteGrantResponses, DeleteGroupData, DeleteGroupErrors, DeleteGroupResponses, DeleteWidgetData, DeleteWidgetErrors, DeleteWidgetResponses, ExportActivityLogData, ExportActivityLogErrors, ExportActivityLogResponses, ExportDepartmentsData, ExportDepartmentsErrors, ExportDepartmentsResponses, ExportGroupMembersData, ExportGroupMembersErrors, ExportGroupMembersResponses, ExportGroupsReportData, ExportGroupsReportErrors, ExportGroupsReportResponses, ExportGroupsWithItemsData, ExportGroupsWithItemsErrors, ExportGroupsWithItemsResponses, ExportGroupsWithoutMemberItemsData, ExportGroupsWithoutMemberItemsErrors, ExportGroupsWithoutMemberItemsResponses, ExportOwnerGroupMembersData, ExportOwnerGroupMembersErrors, ExportOwnerGroupMembersResponses, ExportTrsData, ExportTrsErrors, ExportTrsResponses, FlagMyAccountForDeletionData, FlagMyAccountForDeletionResponses, GetAllocatorSettingsData, GetAllocatorSettingsErrors, GetAllocatorSettingsResponses, GetAllocatorTileData, GetAllocatorTileErrors, GetAllocatorTileResponses, GetContentBlockData, GetContentBlockErrors, GetContentBlockResponses, GetDepartmentData, GetDepartmentErrors, GetDepartmentResponses, GetEmbeddedFormData, GetEmbeddedFormErrors, GetEmbeddedFormResponses, GetGroupData, GetGroupErrors, GetGroupResponses, GetMeData, GetMeResponses, GetMyAllocatorRolesData, GetMyAllocatorRolesErrors, GetMyAllocatorRolesResponses, GetMyProfileData, GetMyProfileResponses, GetOwnerGroupData, GetOwnerGroupErrors, GetOwnerGroupResponses, GetPrivateFormData, GetPrivateFormErrors, GetPrivateFormResponses, GetPublicFormData, GetPublicFormErrors, GetPublicFormResponses, GetUserData, GetUserErrors, GetUserProfileData, GetUserProfileErrors, GetUserProfileResponses, GetUserResponses, GetWidgetData, GetWidgetErrors, GetWidgetResponses, ListContentBlocksData, ListContentBlocksErrors, ListContentBlocksResponses, ListCyclesData, ListCyclesErrors, ListCyclesResponses, ListDepartmentsData, ListDepartmentsErrors, ListDepartmentsResponses, ListEmbeddedFormsData, ListEmbeddedFormsErrors, ListEmbeddedFormsResponses, ListGrantsData, ListGrantsErrors, ListGrantsResponses, ListGroupMembersData, ListGroupMembersErrors, ListGroupMembersResponses, ListGroupsData, ListGroupsErrors, ListGroupsResponses, ListMyWidgetsData, ListMyWidgetsResponses, ListPublicFormsData, ListPublicFormsErrors, ListPublicFormsResponses, ListPublishedContentData, ListPublishedContentErrors, ListPublishedContentResponses, ListTemplatesData, ListTemplatesErrors, ListTemplatesResponses, ListWidgetsData, ListWidgetsErrors, ListWidgetsResponses, LockDepartmentData, LockDepartmentErrors, LockDepartmentResponses, LookupPersonData, LookupPersonErrors, LookupPersonResponses, RemoveMemberData, RemoveMemberErrors, RemoveMemberResponses, ReorderContentBlocksData, ReorderContentBlocksErrors, ReorderContentBlocksResponses, SearchAllocatorData, SearchAllocatorErrors, SearchAllocatorResponses, SearchUsersData, SearchUsersErrors, SearchUsersResponses, SetDepartmentPoolsData, SetDepartmentPoolsErrors, SetDepartmentPoolsResponses, SetGroupDeliveryData, SetGroupDeliveryErrors, SetGroupDeliveryResponses, SetGroupPoolsData, SetGroupPoolsErrors, SetGroupPoolsResponses, SetMemberItemsData, SetMemberItemsErrors, SetMemberItemsResponses, SetUserPasswordData, SetUserPasswordErrors, SetUserPasswordResponses, SignUpData, SignUpErrors, SignUpResponses, StartCycleData, StartCycleErrors, StartCycleResponses, UnlockDepartmentData, UnlockDepartmentErrors, UnlockDepartmentResponses, UpdateAllocatorSettingsData, UpdateAllocatorSettingsErrors, UpdateAllocatorSettingsResponses, UpdateContentBlockData, UpdateContentBlockErrors, UpdateContentBlockResponses, UpdateDepartmentData, UpdateDepartmentErrors, UpdateDepartmentResponses, UpdateEmbeddedFormData, UpdateEmbeddedFormErrors, UpdateEmbeddedFormResponses, UpdateGroupData, UpdateGroupErrors, UpdateGroupResponses, UpdateMyProfileData, UpdateMyProfileErrors, UpdateMyProfileResponses, UpdateUserData, UpdateUserErrors, UpdateUserResponses, UpdateWidgetData, UpdateWidgetErrors, UpdateWidgetResponses, UploadDeliveryMethodsData, UploadDeliveryMethodsErrors, UploadDeliveryMethodsResponses, UploadGroupsData, UploadGroupsErrors, UploadGroupsResponses, UploadMembersData, UploadMembersErrors, UploadMembersResponses, UploadTemplatesData, UploadTemplatesErrors, UploadTemplatesResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -21,22 +21,22 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
 /**
  * Me
  */
-export const meV1AdminAllocatorMeGet = <ThrowOnError extends boolean = false>(options?: Options<MeV1AdminAllocatorMeGetData, ThrowOnError>): RequestResult<MeV1AdminAllocatorMeGetResponses, unknown, ThrowOnError> => (options?.client ?? client).get<MeV1AdminAllocatorMeGetResponses, unknown, ThrowOnError>({ url: '/v1/admin/allocator/me', ...options });
+export const getMyAllocatorRoles = <ThrowOnError extends boolean = false>(options?: Options<GetMyAllocatorRolesData, ThrowOnError>): RequestResult<GetMyAllocatorRolesResponses, GetMyAllocatorRolesErrors, ThrowOnError> => (options?.client ?? client).get<GetMyAllocatorRolesResponses, GetMyAllocatorRolesErrors, ThrowOnError>({ url: '/v1/admin/allocator/me', ...options });
 
 /**
  * Templates
  */
-export const templatesV1AdminAllocatorTemplatesGet = <ThrowOnError extends boolean = false>(options?: Options<TemplatesV1AdminAllocatorTemplatesGetData, ThrowOnError>): RequestResult<TemplatesV1AdminAllocatorTemplatesGetResponses, TemplatesV1AdminAllocatorTemplatesGetErrors, ThrowOnError> => (options?.client ?? client).get<TemplatesV1AdminAllocatorTemplatesGetResponses, TemplatesV1AdminAllocatorTemplatesGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/templates', ...options });
+export const listTemplates = <ThrowOnError extends boolean = false>(options?: Options<ListTemplatesData, ThrowOnError>): RequestResult<ListTemplatesResponses, ListTemplatesErrors, ThrowOnError> => (options?.client ?? client).get<ListTemplatesResponses, ListTemplatesErrors, ThrowOnError>({ url: '/v1/admin/allocator/templates', ...options });
 
 /**
  * List Cycles
  */
-export const listCyclesV1AdminAllocatorCyclesGet = <ThrowOnError extends boolean = false>(options?: Options<ListCyclesV1AdminAllocatorCyclesGetData, ThrowOnError>): RequestResult<ListCyclesV1AdminAllocatorCyclesGetResponses, unknown, ThrowOnError> => (options?.client ?? client).get<ListCyclesV1AdminAllocatorCyclesGetResponses, unknown, ThrowOnError>({ url: '/v1/admin/allocator/cycles', ...options });
+export const listCycles = <ThrowOnError extends boolean = false>(options?: Options<ListCyclesData, ThrowOnError>): RequestResult<ListCyclesResponses, ListCyclesErrors, ThrowOnError> => (options?.client ?? client).get<ListCyclesResponses, ListCyclesErrors, ThrowOnError>({ url: '/v1/admin/allocator/cycles', ...options });
 
 /**
  * Start Cycle
  */
-export const startCycleV1AdminAllocatorCyclesPost = <ThrowOnError extends boolean = false>(options: Options<StartCycleV1AdminAllocatorCyclesPostData, ThrowOnError>): RequestResult<StartCycleV1AdminAllocatorCyclesPostResponses, StartCycleV1AdminAllocatorCyclesPostErrors, ThrowOnError> => (options.client ?? client).post<StartCycleV1AdminAllocatorCyclesPostResponses, StartCycleV1AdminAllocatorCyclesPostErrors, ThrowOnError>({
+export const startCycle = <ThrowOnError extends boolean = false>(options: Options<StartCycleData, ThrowOnError>): RequestResult<StartCycleResponses, StartCycleErrors, ThrowOnError> => (options.client ?? client).post<StartCycleResponses, StartCycleErrors, ThrowOnError>({
     url: '/v1/admin/allocator/cycles',
     ...options,
     headers: {
@@ -48,12 +48,12 @@ export const startCycleV1AdminAllocatorCyclesPost = <ThrowOnError extends boolea
 /**
  * Get Settings
  */
-export const getSettingsV1AdminAllocatorSettingsGet = <ThrowOnError extends boolean = false>(options?: Options<GetSettingsV1AdminAllocatorSettingsGetData, ThrowOnError>): RequestResult<GetSettingsV1AdminAllocatorSettingsGetResponses, unknown, ThrowOnError> => (options?.client ?? client).get<GetSettingsV1AdminAllocatorSettingsGetResponses, unknown, ThrowOnError>({ url: '/v1/admin/allocator/settings', ...options });
+export const getAllocatorSettings = <ThrowOnError extends boolean = false>(options?: Options<GetAllocatorSettingsData, ThrowOnError>): RequestResult<GetAllocatorSettingsResponses, GetAllocatorSettingsErrors, ThrowOnError> => (options?.client ?? client).get<GetAllocatorSettingsResponses, GetAllocatorSettingsErrors, ThrowOnError>({ url: '/v1/admin/allocator/settings', ...options });
 
 /**
  * Update Settings
  */
-export const updateSettingsV1AdminAllocatorSettingsPut = <ThrowOnError extends boolean = false>(options: Options<UpdateSettingsV1AdminAllocatorSettingsPutData, ThrowOnError>): RequestResult<UpdateSettingsV1AdminAllocatorSettingsPutResponses, UpdateSettingsV1AdminAllocatorSettingsPutErrors, ThrowOnError> => (options.client ?? client).put<UpdateSettingsV1AdminAllocatorSettingsPutResponses, UpdateSettingsV1AdminAllocatorSettingsPutErrors, ThrowOnError>({
+export const updateAllocatorSettings = <ThrowOnError extends boolean = false>(options: Options<UpdateAllocatorSettingsData, ThrowOnError>): RequestResult<UpdateAllocatorSettingsResponses, UpdateAllocatorSettingsErrors, ThrowOnError> => (options.client ?? client).put<UpdateAllocatorSettingsResponses, UpdateAllocatorSettingsErrors, ThrowOnError>({
     url: '/v1/admin/allocator/settings',
     ...options,
     headers: {
@@ -65,7 +65,7 @@ export const updateSettingsV1AdminAllocatorSettingsPut = <ThrowOnError extends b
 /**
  * Upload Template
  */
-export const uploadTemplateV1AdminAllocatorUploadsTemplatesPost = <ThrowOnError extends boolean = false>(options: Options<UploadTemplateV1AdminAllocatorUploadsTemplatesPostData, ThrowOnError>): RequestResult<UploadTemplateV1AdminAllocatorUploadsTemplatesPostResponses, UploadTemplateV1AdminAllocatorUploadsTemplatesPostErrors, ThrowOnError> => (options.client ?? client).post<UploadTemplateV1AdminAllocatorUploadsTemplatesPostResponses, UploadTemplateV1AdminAllocatorUploadsTemplatesPostErrors, ThrowOnError>({
+export const uploadTemplates = <ThrowOnError extends boolean = false>(options: Options<UploadTemplatesData, ThrowOnError>): RequestResult<UploadTemplatesResponses, UploadTemplatesErrors, ThrowOnError> => (options.client ?? client).post<UploadTemplatesResponses, UploadTemplatesErrors, ThrowOnError>({
     ...formDataBodySerializer,
     url: '/v1/admin/allocator/uploads/templates',
     ...options,
@@ -78,7 +78,7 @@ export const uploadTemplateV1AdminAllocatorUploadsTemplatesPost = <ThrowOnError 
 /**
  * Upload Delivery Methods
  */
-export const uploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPost = <ThrowOnError extends boolean = false>(options: Options<UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostData, ThrowOnError>): RequestResult<UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostResponses, UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostErrors, ThrowOnError> => (options.client ?? client).post<UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostResponses, UploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPostErrors, ThrowOnError>({
+export const uploadDeliveryMethods = <ThrowOnError extends boolean = false>(options: Options<UploadDeliveryMethodsData, ThrowOnError>): RequestResult<UploadDeliveryMethodsResponses, UploadDeliveryMethodsErrors, ThrowOnError> => (options.client ?? client).post<UploadDeliveryMethodsResponses, UploadDeliveryMethodsErrors, ThrowOnError>({
     ...formDataBodySerializer,
     url: '/v1/admin/allocator/uploads/delivery-methods',
     ...options,
@@ -91,7 +91,7 @@ export const uploadDeliveryMethodsV1AdminAllocatorUploadsDeliveryMethodsPost = <
 /**
  * Upload Groups
  */
-export const uploadGroupsV1AdminAllocatorUploadsGroupsPost = <ThrowOnError extends boolean = false>(options: Options<UploadGroupsV1AdminAllocatorUploadsGroupsPostData, ThrowOnError>): RequestResult<UploadGroupsV1AdminAllocatorUploadsGroupsPostResponses, UploadGroupsV1AdminAllocatorUploadsGroupsPostErrors, ThrowOnError> => (options.client ?? client).post<UploadGroupsV1AdminAllocatorUploadsGroupsPostResponses, UploadGroupsV1AdminAllocatorUploadsGroupsPostErrors, ThrowOnError>({
+export const uploadGroups = <ThrowOnError extends boolean = false>(options: Options<UploadGroupsData, ThrowOnError>): RequestResult<UploadGroupsResponses, UploadGroupsErrors, ThrowOnError> => (options.client ?? client).post<UploadGroupsResponses, UploadGroupsErrors, ThrowOnError>({
     ...formDataBodySerializer,
     url: '/v1/admin/allocator/uploads/groups',
     ...options,
@@ -104,7 +104,7 @@ export const uploadGroupsV1AdminAllocatorUploadsGroupsPost = <ThrowOnError exten
 /**
  * Departments List
  */
-export const departmentsListV1AdminAllocatorDepartmentsExportGet = <ThrowOnError extends boolean = false>(options?: Options<DepartmentsListV1AdminAllocatorDepartmentsExportGetData, ThrowOnError>): RequestResult<DepartmentsListV1AdminAllocatorDepartmentsExportGetResponses, DepartmentsListV1AdminAllocatorDepartmentsExportGetErrors, ThrowOnError> => (options?.client ?? client).get<DepartmentsListV1AdminAllocatorDepartmentsExportGetResponses, DepartmentsListV1AdminAllocatorDepartmentsExportGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/export', ...options });
+export const exportDepartments = <ThrowOnError extends boolean = false>(options?: Options<ExportDepartmentsData, ThrowOnError>): RequestResult<ExportDepartmentsResponses, ExportDepartmentsErrors, ThrowOnError> => (options?.client ?? client).get<ExportDepartmentsResponses, ExportDepartmentsErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/export', ...options });
 
 /**
  * Trs Export
@@ -113,27 +113,27 @@ export const departmentsListV1AdminAllocatorDepartmentsExportGet = <ThrowOnError
  * showed then): locking rolls unclaimed items up first, and nothing can change afterwards.
  * Marks the department exported.
  */
-export const trsExportV1AdminAllocatorDepartmentsDepartmentIdExportGet = <ThrowOnError extends boolean = false>(options: Options<TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetData, ThrowOnError>): RequestResult<TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetResponses, TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetErrors, ThrowOnError> => (options.client ?? client).get<TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetResponses, TrsExportV1AdminAllocatorDepartmentsDepartmentIdExportGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/export', ...options });
+export const exportTrs = <ThrowOnError extends boolean = false>(options: Options<ExportTrsData, ThrowOnError>): RequestResult<ExportTrsResponses, ExportTrsErrors, ThrowOnError> => (options.client ?? client).get<ExportTrsResponses, ExportTrsErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/export', ...options });
 
 /**
  * Groups With Items
  */
-export const groupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGet = <ThrowOnError extends boolean = false>(options: Options<GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetData, ThrowOnError>): RequestResult<GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetResponses, GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetErrors, ThrowOnError> => (options.client ?? client).get<GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetResponses, GroupsWithItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithItemsGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/exports/groups-with-items', ...options });
+export const exportGroupsWithItems = <ThrowOnError extends boolean = false>(options: Options<ExportGroupsWithItemsData, ThrowOnError>): RequestResult<ExportGroupsWithItemsResponses, ExportGroupsWithItemsErrors, ThrowOnError> => (options.client ?? client).get<ExportGroupsWithItemsResponses, ExportGroupsWithItemsErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/exports/groups-with-items', ...options });
 
 /**
  * Groups Without Member Items
  */
-export const groupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGet = <ThrowOnError extends boolean = false>(options: Options<GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetData, ThrowOnError>): RequestResult<GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetResponses, GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetErrors, ThrowOnError> => (options.client ?? client).get<GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetResponses, GroupsWithoutMemberItemsV1AdminAllocatorDepartmentsDepartmentIdExportsGroupsWithoutMemberItemsGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/exports/groups-without-member-items', ...options });
+export const exportGroupsWithoutMemberItems = <ThrowOnError extends boolean = false>(options: Options<ExportGroupsWithoutMemberItemsData, ThrowOnError>): RequestResult<ExportGroupsWithoutMemberItemsResponses, ExportGroupsWithoutMemberItemsErrors, ThrowOnError> => (options.client ?? client).get<ExportGroupsWithoutMemberItemsResponses, ExportGroupsWithoutMemberItemsErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/exports/groups-without-member-items', ...options });
 
 /**
  * Groups Report
  */
-export const groupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGet = <ThrowOnError extends boolean = false>(options: Options<GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetData, ThrowOnError>): RequestResult<GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetResponses, GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetErrors, ThrowOnError> => (options.client ?? client).get<GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetResponses, GroupsReportV1AdminAllocatorDepartmentsDepartmentIdGroupsExportGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/groups/export', ...options });
+export const exportGroupsReport = <ThrowOnError extends boolean = false>(options: Options<ExportGroupsReportData, ThrowOnError>): RequestResult<ExportGroupsReportResponses, ExportGroupsReportErrors, ThrowOnError> => (options.client ?? client).get<ExportGroupsReportResponses, ExportGroupsReportErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/groups/export', ...options });
 
 /**
  * Log Export
  */
-export const logExportV1AdminAllocatorLogExportGet = <ThrowOnError extends boolean = false>(options?: Options<LogExportV1AdminAllocatorLogExportGetData, ThrowOnError>): RequestResult<LogExportV1AdminAllocatorLogExportGetResponses, LogExportV1AdminAllocatorLogExportGetErrors, ThrowOnError> => (options?.client ?? client).get<LogExportV1AdminAllocatorLogExportGetResponses, LogExportV1AdminAllocatorLogExportGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/log/export', ...options });
+export const exportActivityLog = <ThrowOnError extends boolean = false>(options?: Options<ExportActivityLogData, ThrowOnError>): RequestResult<ExportActivityLogResponses, ExportActivityLogErrors, ThrowOnError> => (options?.client ?? client).get<ExportActivityLogResponses, ExportActivityLogErrors, ThrowOnError>({ url: '/v1/admin/allocator/log/export', ...options });
 
 /**
  * Search
@@ -142,17 +142,17 @@ export const logExportV1AdminAllocatorLogExportGet = <ThrowOnError extends boole
  * name, in the current year. Only people who have a role in the allocator are searched, so
  * WordPress's 900k accounts are never scanned.
  */
-export const searchV1AdminAllocatorSearchGet = <ThrowOnError extends boolean = false>(options: Options<SearchV1AdminAllocatorSearchGetData, ThrowOnError>): RequestResult<SearchV1AdminAllocatorSearchGetResponses, SearchV1AdminAllocatorSearchGetErrors, ThrowOnError> => (options.client ?? client).get<SearchV1AdminAllocatorSearchGetResponses, SearchV1AdminAllocatorSearchGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/search', ...options });
+export const searchAllocator = <ThrowOnError extends boolean = false>(options: Options<SearchAllocatorData, ThrowOnError>): RequestResult<SearchAllocatorResponses, SearchAllocatorErrors, ThrowOnError> => (options.client ?? client).get<SearchAllocatorResponses, SearchAllocatorErrors, ThrowOnError>({ url: '/v1/admin/allocator/search', ...options });
 
 /**
  * List Departments
  */
-export const listDepartmentsV1AdminAllocatorDepartmentsGet = <ThrowOnError extends boolean = false>(options?: Options<ListDepartmentsV1AdminAllocatorDepartmentsGetData, ThrowOnError>): RequestResult<ListDepartmentsV1AdminAllocatorDepartmentsGetResponses, ListDepartmentsV1AdminAllocatorDepartmentsGetErrors, ThrowOnError> => (options?.client ?? client).get<ListDepartmentsV1AdminAllocatorDepartmentsGetResponses, ListDepartmentsV1AdminAllocatorDepartmentsGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments', ...options });
+export const listDepartments = <ThrowOnError extends boolean = false>(options?: Options<ListDepartmentsData, ThrowOnError>): RequestResult<ListDepartmentsResponses, ListDepartmentsErrors, ThrowOnError> => (options?.client ?? client).get<ListDepartmentsResponses, ListDepartmentsErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments', ...options });
 
 /**
  * Create Department
  */
-export const createDepartmentV1AdminAllocatorDepartmentsPost = <ThrowOnError extends boolean = false>(options: Options<CreateDepartmentV1AdminAllocatorDepartmentsPostData, ThrowOnError>): RequestResult<CreateDepartmentV1AdminAllocatorDepartmentsPostResponses, CreateDepartmentV1AdminAllocatorDepartmentsPostErrors, ThrowOnError> => (options.client ?? client).post<CreateDepartmentV1AdminAllocatorDepartmentsPostResponses, CreateDepartmentV1AdminAllocatorDepartmentsPostErrors, ThrowOnError>({
+export const createDepartment = <ThrowOnError extends boolean = false>(options: Options<CreateDepartmentData, ThrowOnError>): RequestResult<CreateDepartmentResponses, CreateDepartmentErrors, ThrowOnError> => (options.client ?? client).post<CreateDepartmentResponses, CreateDepartmentErrors, ThrowOnError>({
     url: '/v1/admin/allocator/departments',
     ...options,
     headers: {
@@ -164,17 +164,17 @@ export const createDepartmentV1AdminAllocatorDepartmentsPost = <ThrowOnError ext
 /**
  * Delete Department
  */
-export const deleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteData, ThrowOnError>): RequestResult<DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteResponses, DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteResponses, DeleteDepartmentV1AdminAllocatorDepartmentsDepartmentIdDeleteErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}', ...options });
+export const deleteDepartment = <ThrowOnError extends boolean = false>(options: Options<DeleteDepartmentData, ThrowOnError>): RequestResult<DeleteDepartmentResponses, DeleteDepartmentErrors, ThrowOnError> => (options.client ?? client).delete<DeleteDepartmentResponses, DeleteDepartmentErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}', ...options });
 
 /**
  * Get Department
  */
-export const getDepartmentV1AdminAllocatorDepartmentsDepartmentIdGet = <ThrowOnError extends boolean = false>(options: Options<GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetData, ThrowOnError>): RequestResult<GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetResponses, GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetErrors, ThrowOnError> => (options.client ?? client).get<GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetResponses, GetDepartmentV1AdminAllocatorDepartmentsDepartmentIdGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}', ...options });
+export const getDepartment = <ThrowOnError extends boolean = false>(options: Options<GetDepartmentData, ThrowOnError>): RequestResult<GetDepartmentResponses, GetDepartmentErrors, ThrowOnError> => (options.client ?? client).get<GetDepartmentResponses, GetDepartmentErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}', ...options });
 
 /**
  * Update Department
  */
-export const updateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPut = <ThrowOnError extends boolean = false>(options: Options<UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutData, ThrowOnError>): RequestResult<UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutResponses, UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutErrors, ThrowOnError> => (options.client ?? client).put<UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutResponses, UpdateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPutErrors, ThrowOnError>({
+export const updateDepartment = <ThrowOnError extends boolean = false>(options: Options<UpdateDepartmentData, ThrowOnError>): RequestResult<UpdateDepartmentResponses, UpdateDepartmentErrors, ThrowOnError> => (options.client ?? client).put<UpdateDepartmentResponses, UpdateDepartmentErrors, ThrowOnError>({
     url: '/v1/admin/allocator/departments/{department_id}',
     ...options,
     headers: {
@@ -186,7 +186,7 @@ export const updateDepartmentV1AdminAllocatorDepartmentsDepartmentIdPut = <Throw
 /**
  * Update Pools
  */
-export const updatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPut = <ThrowOnError extends boolean = false>(options: Options<UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutData, ThrowOnError>): RequestResult<UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutResponses, UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutErrors, ThrowOnError> => (options.client ?? client).put<UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutResponses, UpdatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPutErrors, ThrowOnError>({
+export const setDepartmentPools = <ThrowOnError extends boolean = false>(options: Options<SetDepartmentPoolsData, ThrowOnError>): RequestResult<SetDepartmentPoolsResponses, SetDepartmentPoolsErrors, ThrowOnError> => (options.client ?? client).put<SetDepartmentPoolsResponses, SetDepartmentPoolsErrors, ThrowOnError>({
     url: '/v1/admin/allocator/departments/{department_id}/pools',
     ...options,
     headers: {
@@ -202,7 +202,7 @@ export const updatePoolsV1AdminAllocatorDepartmentsDepartmentIdPoolsPut = <Throw
  *
  * All or nothing: if any group has no owner, nothing is locked and nothing moves.
  */
-export const lockV1AdminAllocatorDepartmentsDepartmentIdLockPost = <ThrowOnError extends boolean = false>(options: Options<LockV1AdminAllocatorDepartmentsDepartmentIdLockPostData, ThrowOnError>): RequestResult<LockV1AdminAllocatorDepartmentsDepartmentIdLockPostResponses, LockV1AdminAllocatorDepartmentsDepartmentIdLockPostErrors, ThrowOnError> => (options.client ?? client).post<LockV1AdminAllocatorDepartmentsDepartmentIdLockPostResponses, LockV1AdminAllocatorDepartmentsDepartmentIdLockPostErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/lock', ...options });
+export const lockDepartment = <ThrowOnError extends boolean = false>(options: Options<LockDepartmentData, ThrowOnError>): RequestResult<LockDepartmentResponses, LockDepartmentErrors, ThrowOnError> => (options.client ?? client).post<LockDepartmentResponses, LockDepartmentErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/lock', ...options });
 
 /**
  * Unlock
@@ -210,24 +210,24 @@ export const lockV1AdminAllocatorDepartmentsDepartmentIdLockPost = <ThrowOnError
  * Unlock the department. Clears "exported" too, as today. What the rollup gave to group
  * owners stays with them (as today).
  */
-export const unlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPost = <ThrowOnError extends boolean = false>(options: Options<UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostData, ThrowOnError>): RequestResult<UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostResponses, UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostErrors, ThrowOnError> => (options.client ?? client).post<UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostResponses, UnlockV1AdminAllocatorDepartmentsDepartmentIdUnlockPostErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/unlock', ...options });
+export const unlockDepartment = <ThrowOnError extends boolean = false>(options: Options<UnlockDepartmentData, ThrowOnError>): RequestResult<UnlockDepartmentResponses, UnlockDepartmentErrors, ThrowOnError> => (options.client ?? client).post<UnlockDepartmentResponses, UnlockDepartmentErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/unlock', ...options });
 
 /**
  * Lookup Person
  *
  * Before adding someone as an owner: does the account exist, and is the profile complete?
  */
-export const lookupPersonV1AdminAllocatorPeopleLookupGet = <ThrowOnError extends boolean = false>(options: Options<LookupPersonV1AdminAllocatorPeopleLookupGetData, ThrowOnError>): RequestResult<LookupPersonV1AdminAllocatorPeopleLookupGetResponses, LookupPersonV1AdminAllocatorPeopleLookupGetErrors, ThrowOnError> => (options.client ?? client).get<LookupPersonV1AdminAllocatorPeopleLookupGetResponses, LookupPersonV1AdminAllocatorPeopleLookupGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/people/lookup', ...options });
+export const lookupPerson = <ThrowOnError extends boolean = false>(options: Options<LookupPersonData, ThrowOnError>): RequestResult<LookupPersonResponses, LookupPersonErrors, ThrowOnError> => (options.client ?? client).get<LookupPersonResponses, LookupPersonErrors, ThrowOnError>({ url: '/v1/admin/allocator/people/lookup', ...options });
 
 /**
  * List Groups
  */
-export const listGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGet = <ThrowOnError extends boolean = false>(options: Options<ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetData, ThrowOnError>): RequestResult<ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetResponses, ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetErrors, ThrowOnError> => (options.client ?? client).get<ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetResponses, ListGroupsV1AdminAllocatorDepartmentsDepartmentIdGroupsGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/groups', ...options });
+export const listGroups = <ThrowOnError extends boolean = false>(options: Options<ListGroupsData, ThrowOnError>): RequestResult<ListGroupsResponses, ListGroupsErrors, ThrowOnError> => (options.client ?? client).get<ListGroupsResponses, ListGroupsErrors, ThrowOnError>({ url: '/v1/admin/allocator/departments/{department_id}/groups', ...options });
 
 /**
  * Create Group
  */
-export const createGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPost = <ThrowOnError extends boolean = false>(options: Options<CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostData, ThrowOnError>): RequestResult<CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostResponses, CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostErrors, ThrowOnError> => (options.client ?? client).post<CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostResponses, CreateGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPostErrors, ThrowOnError>({
+export const createGroup = <ThrowOnError extends boolean = false>(options: Options<CreateGroupData, ThrowOnError>): RequestResult<CreateGroupResponses, CreateGroupErrors, ThrowOnError> => (options.client ?? client).post<CreateGroupResponses, CreateGroupErrors, ThrowOnError>({
     url: '/v1/admin/allocator/departments/{department_id}/groups',
     ...options,
     headers: {
@@ -239,17 +239,17 @@ export const createGroupV1AdminAllocatorDepartmentsDepartmentIdGroupsPost = <Thr
 /**
  * Delete Group
  */
-export const deleteGroupV1AdminAllocatorGroupsGroupIdDelete = <ThrowOnError extends boolean = false>(options: Options<DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteData, ThrowOnError>): RequestResult<DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteResponses, DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteResponses, DeleteGroupV1AdminAllocatorGroupsGroupIdDeleteErrors, ThrowOnError>({ url: '/v1/admin/allocator/groups/{group_id}', ...options });
+export const deleteGroup = <ThrowOnError extends boolean = false>(options: Options<DeleteGroupData, ThrowOnError>): RequestResult<DeleteGroupResponses, DeleteGroupErrors, ThrowOnError> => (options.client ?? client).delete<DeleteGroupResponses, DeleteGroupErrors, ThrowOnError>({ url: '/v1/admin/allocator/groups/{group_id}', ...options });
 
 /**
  * Get Group
  */
-export const getGroupV1AdminAllocatorGroupsGroupIdGet = <ThrowOnError extends boolean = false>(options: Options<GetGroupV1AdminAllocatorGroupsGroupIdGetData, ThrowOnError>): RequestResult<GetGroupV1AdminAllocatorGroupsGroupIdGetResponses, GetGroupV1AdminAllocatorGroupsGroupIdGetErrors, ThrowOnError> => (options.client ?? client).get<GetGroupV1AdminAllocatorGroupsGroupIdGetResponses, GetGroupV1AdminAllocatorGroupsGroupIdGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/groups/{group_id}', ...options });
+export const getGroup = <ThrowOnError extends boolean = false>(options: Options<GetGroupData, ThrowOnError>): RequestResult<GetGroupResponses, GetGroupErrors, ThrowOnError> => (options.client ?? client).get<GetGroupResponses, GetGroupErrors, ThrowOnError>({ url: '/v1/admin/allocator/groups/{group_id}', ...options });
 
 /**
  * Update Group
  */
-export const updateGroupV1AdminAllocatorGroupsGroupIdPut = <ThrowOnError extends boolean = false>(options: Options<UpdateGroupV1AdminAllocatorGroupsGroupIdPutData, ThrowOnError>): RequestResult<UpdateGroupV1AdminAllocatorGroupsGroupIdPutResponses, UpdateGroupV1AdminAllocatorGroupsGroupIdPutErrors, ThrowOnError> => (options.client ?? client).put<UpdateGroupV1AdminAllocatorGroupsGroupIdPutResponses, UpdateGroupV1AdminAllocatorGroupsGroupIdPutErrors, ThrowOnError>({
+export const updateGroup = <ThrowOnError extends boolean = false>(options: Options<UpdateGroupData, ThrowOnError>): RequestResult<UpdateGroupResponses, UpdateGroupErrors, ThrowOnError> => (options.client ?? client).put<UpdateGroupResponses, UpdateGroupErrors, ThrowOnError>({
     url: '/v1/admin/allocator/groups/{group_id}',
     ...options,
     headers: {
@@ -261,7 +261,7 @@ export const updateGroupV1AdminAllocatorGroupsGroupIdPut = <ThrowOnError extends
 /**
  * Update Group Pools
  */
-export const updateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPut = <ThrowOnError extends boolean = false>(options: Options<UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutData, ThrowOnError>): RequestResult<UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutResponses, UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutErrors, ThrowOnError> => (options.client ?? client).put<UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutResponses, UpdateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPutErrors, ThrowOnError>({
+export const setGroupPools = <ThrowOnError extends boolean = false>(options: Options<SetGroupPoolsData, ThrowOnError>): RequestResult<SetGroupPoolsResponses, SetGroupPoolsErrors, ThrowOnError> => (options.client ?? client).put<SetGroupPoolsResponses, SetGroupPoolsErrors, ThrowOnError>({
     url: '/v1/admin/allocator/groups/{group_id}/pools',
     ...options,
     headers: {
@@ -273,7 +273,7 @@ export const updateGroupPoolsV1AdminAllocatorGroupsGroupIdPoolsPut = <ThrowOnErr
 /**
  * Update Group Delivery
  */
-export const updateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPut = <ThrowOnError extends boolean = false>(options: Options<UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutData, ThrowOnError>): RequestResult<UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutResponses, UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutErrors, ThrowOnError> => (options.client ?? client).put<UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutResponses, UpdateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdPutErrors, ThrowOnError>({
+export const setGroupDelivery = <ThrowOnError extends boolean = false>(options: Options<SetGroupDeliveryData, ThrowOnError>): RequestResult<SetGroupDeliveryResponses, SetGroupDeliveryErrors, ThrowOnError> => (options.client ?? client).put<SetGroupDeliveryResponses, SetGroupDeliveryErrors, ThrowOnError>({
     url: '/v1/admin/allocator/groups/{group_id}/delivery/{item_type_id}',
     ...options,
     headers: {
@@ -285,29 +285,29 @@ export const updateGroupDeliveryV1AdminAllocatorGroupsGroupIdDeliveryItemTypeIdP
 /**
  * List Members
  */
-export const listMembersV1AdminAllocatorGroupsGroupIdMembersGet = <ThrowOnError extends boolean = false>(options: Options<ListMembersV1AdminAllocatorGroupsGroupIdMembersGetData, ThrowOnError>): RequestResult<ListMembersV1AdminAllocatorGroupsGroupIdMembersGetResponses, ListMembersV1AdminAllocatorGroupsGroupIdMembersGetErrors, ThrowOnError> => (options.client ?? client).get<ListMembersV1AdminAllocatorGroupsGroupIdMembersGetResponses, ListMembersV1AdminAllocatorGroupsGroupIdMembersGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/groups/{group_id}/members', ...options });
+export const listGroupMembers = <ThrowOnError extends boolean = false>(options: Options<ListGroupMembersData, ThrowOnError>): RequestResult<ListGroupMembersResponses, ListGroupMembersErrors, ThrowOnError> => (options.client ?? client).get<ListGroupMembersResponses, ListGroupMembersErrors, ThrowOnError>({ url: '/v1/admin/allocator/groups/{group_id}/members', ...options });
 
 /**
  * Export Members
  */
-export const exportMembersV1AdminAllocatorGroupsGroupIdMembersExportGet = <ThrowOnError extends boolean = false>(options: Options<ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetData, ThrowOnError>): RequestResult<ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetResponses, ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetErrors, ThrowOnError> => (options.client ?? client).get<ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetResponses, ExportMembersV1AdminAllocatorGroupsGroupIdMembersExportGetErrors, ThrowOnError>({ url: '/v1/admin/allocator/groups/{group_id}/members/export', ...options });
+export const exportGroupMembers = <ThrowOnError extends boolean = false>(options: Options<ExportGroupMembersData, ThrowOnError>): RequestResult<ExportGroupMembersResponses, ExportGroupMembersErrors, ThrowOnError> => (options.client ?? client).get<ExportGroupMembersResponses, ExportGroupMembersErrors, ThrowOnError>({ url: '/v1/admin/allocator/groups/{group_id}/members/export', ...options });
 
 /**
  * Get Group
  */
-export const getGroupV1AllocatorGroupsGroupIdGet = <ThrowOnError extends boolean = false>(options: Options<GetGroupV1AllocatorGroupsGroupIdGetData, ThrowOnError>): RequestResult<GetGroupV1AllocatorGroupsGroupIdGetResponses, GetGroupV1AllocatorGroupsGroupIdGetErrors, ThrowOnError> => (options.client ?? client).get<GetGroupV1AllocatorGroupsGroupIdGetResponses, GetGroupV1AllocatorGroupsGroupIdGetErrors, ThrowOnError>({ url: '/v1/allocator/groups/{group_id}', ...options });
+export const getOwnerGroup = <ThrowOnError extends boolean = false>(options: Options<GetOwnerGroupData, ThrowOnError>): RequestResult<GetOwnerGroupResponses, GetOwnerGroupErrors, ThrowOnError> => (options.client ?? client).get<GetOwnerGroupResponses, GetOwnerGroupErrors, ThrowOnError>({ url: '/v1/allocator/groups/{group_id}', ...options });
 
 /**
  * Export Members
  *
  * Today's members download: Email, then one column per item the group holds.
  */
-export const exportMembersV1AllocatorGroupsGroupIdMembersExportGet = <ThrowOnError extends boolean = false>(options: Options<ExportMembersV1AllocatorGroupsGroupIdMembersExportGetData, ThrowOnError>): RequestResult<ExportMembersV1AllocatorGroupsGroupIdMembersExportGetResponses, ExportMembersV1AllocatorGroupsGroupIdMembersExportGetErrors, ThrowOnError> => (options.client ?? client).get<ExportMembersV1AllocatorGroupsGroupIdMembersExportGetResponses, ExportMembersV1AllocatorGroupsGroupIdMembersExportGetErrors, ThrowOnError>({ url: '/v1/allocator/groups/{group_id}/members/export', ...options });
+export const exportOwnerGroupMembers = <ThrowOnError extends boolean = false>(options: Options<ExportOwnerGroupMembersData, ThrowOnError>): RequestResult<ExportOwnerGroupMembersResponses, ExportOwnerGroupMembersErrors, ThrowOnError> => (options.client ?? client).get<ExportOwnerGroupMembersResponses, ExportOwnerGroupMembersErrors, ThrowOnError>({ url: '/v1/allocator/groups/{group_id}/members/export', ...options });
 
 /**
  * Add Member
  */
-export const addMemberV1AllocatorGroupsGroupIdMembersPost = <ThrowOnError extends boolean = false>(options: Options<AddMemberV1AllocatorGroupsGroupIdMembersPostData, ThrowOnError>): RequestResult<AddMemberV1AllocatorGroupsGroupIdMembersPostResponses, AddMemberV1AllocatorGroupsGroupIdMembersPostErrors, ThrowOnError> => (options.client ?? client).post<AddMemberV1AllocatorGroupsGroupIdMembersPostResponses, AddMemberV1AllocatorGroupsGroupIdMembersPostErrors, ThrowOnError>({
+export const addMember = <ThrowOnError extends boolean = false>(options: Options<AddMemberData, ThrowOnError>): RequestResult<AddMemberResponses, AddMemberErrors, ThrowOnError> => (options.client ?? client).post<AddMemberResponses, AddMemberErrors, ThrowOnError>({
     url: '/v1/allocator/groups/{group_id}/members',
     ...options,
     headers: {
@@ -322,7 +322,7 @@ export const addMemberV1AllocatorGroupsGroupIdMembersPost = <ThrowOnError extend
  * Today's bulk add: a CSV with one column, headed "email". Answers only the addresses that
  * weren't added, each with the reason (today's wording).
  */
-export const uploadMembersV1AllocatorGroupsGroupIdMembersUploadPost = <ThrowOnError extends boolean = false>(options: Options<UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostData, ThrowOnError>): RequestResult<UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostResponses, UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostErrors, ThrowOnError> => (options.client ?? client).post<UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostResponses, UploadMembersV1AllocatorGroupsGroupIdMembersUploadPostErrors, ThrowOnError>({
+export const uploadMembers = <ThrowOnError extends boolean = false>(options: Options<UploadMembersData, ThrowOnError>): RequestResult<UploadMembersResponses, UploadMembersErrors, ThrowOnError> => (options.client ?? client).post<UploadMembersResponses, UploadMembersErrors, ThrowOnError>({
     ...formDataBodySerializer,
     url: '/v1/allocator/groups/{group_id}/members/upload',
     ...options,
@@ -335,12 +335,12 @@ export const uploadMembersV1AllocatorGroupsGroupIdMembersUploadPost = <ThrowOnEr
 /**
  * Remove Member
  */
-export const removeMemberV1AllocatorGroupsGroupIdMembersMemberIdDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteData, ThrowOnError>): RequestResult<RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteResponses, RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteResponses, RemoveMemberV1AllocatorGroupsGroupIdMembersMemberIdDeleteErrors, ThrowOnError>({ url: '/v1/allocator/groups/{group_id}/members/{member_id}', ...options });
+export const removeMember = <ThrowOnError extends boolean = false>(options: Options<RemoveMemberData, ThrowOnError>): RequestResult<RemoveMemberResponses, RemoveMemberErrors, ThrowOnError> => (options.client ?? client).delete<RemoveMemberResponses, RemoveMemberErrors, ThrowOnError>({ url: '/v1/allocator/groups/{group_id}/members/{member_id}', ...options });
 
 /**
  * Set Member
  */
-export const setMemberV1AllocatorGroupsGroupIdMembersMemberIdPut = <ThrowOnError extends boolean = false>(options: Options<SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutData, ThrowOnError>): RequestResult<SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutResponses, SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutErrors, ThrowOnError> => (options.client ?? client).put<SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutResponses, SetMemberV1AllocatorGroupsGroupIdMembersMemberIdPutErrors, ThrowOnError>({
+export const setMemberItems = <ThrowOnError extends boolean = false>(options: Options<SetMemberItemsData, ThrowOnError>): RequestResult<SetMemberItemsResponses, SetMemberItemsErrors, ThrowOnError> => (options.client ?? client).put<SetMemberItemsResponses, SetMemberItemsErrors, ThrowOnError>({
     url: '/v1/allocator/groups/{group_id}/members/{member_id}',
     ...options,
     headers: {
@@ -352,7 +352,7 @@ export const setMemberV1AllocatorGroupsGroupIdMembersMemberIdPut = <ThrowOnError
 /**
  * My Tile
  */
-export const myTileV1AllocatorMeGet = <ThrowOnError extends boolean = false>(options?: Options<MyTileV1AllocatorMeGetData, ThrowOnError>): RequestResult<MyTileV1AllocatorMeGetResponses, unknown, ThrowOnError> => (options?.client ?? client).get<MyTileV1AllocatorMeGetResponses, unknown, ThrowOnError>({ url: '/v1/allocator/me', ...options });
+export const getAllocatorTile = <ThrowOnError extends boolean = false>(options?: Options<GetAllocatorTileData, ThrowOnError>): RequestResult<GetAllocatorTileResponses, GetAllocatorTileErrors, ThrowOnError> => (options?.client ?? client).get<GetAllocatorTileResponses, GetAllocatorTileErrors, ThrowOnError>({ url: '/v1/allocator/me', ...options });
 
 /**
  * Me
