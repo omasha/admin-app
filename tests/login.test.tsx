@@ -39,6 +39,16 @@ describe("logging in", () => {
       { postLogoutRedirectUri: window.location.origin, clearTokensBeforeRedirect: true }));
   });
 
+  it("logs out even when Okta's token cancel request can't be sent", async () => {
+    fakeOkta.signOut.mockRejectedValueOnce(Object.assign(new Error("Failed to fetch"), { name: "AuthApiError" }));
+    renderAt("/content-blocks");
+    await userEvent.setup().click(await screen.findByRole("button", { name: "Log out" }));
+    await waitFor(() => expect(fakeOkta.signOut).toHaveBeenCalledTimes(2));
+    expect(fakeOkta.signOut).toHaveBeenLastCalledWith({ postLogoutRedirectUri: window.location.origin,
+      clearTokensBeforeRedirect: true, revokeAccessToken: false, revokeRefreshToken: false });
+    expect(screen.queryByText("Failed to fetch")).not.toBeInTheDocument();
+  });
+
   it("a saved login the API refuses is forgotten, and the login page shown", async () => {
     server.use(http.get(`${API}/v1/me`, () => HttpResponse.json(
       { type: "about:blank", title: "Unauthorized", status: 401, code: "invalid_token", detail: "Please log in again." },

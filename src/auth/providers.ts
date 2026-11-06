@@ -75,7 +75,18 @@ export const authProvider: AuthProvider = {
     // clearTokensBeforeRedirect: otherwise okta-auth-js only marks the saved login for removal
     // and the background service removes it later, after the app has already found it on the
     // way back from Okta and treated the (now cancelled) login as current.
-    await getOktaAuth()?.signOut({ postLogoutRedirectUri: window.location.origin, clearTokensBeforeRedirect: true });
+    const options = { postLogoutRedirectUri: window.location.origin, clearTokensBeforeRedirect: true };
+    const okta = getOktaAuth();
+    try {
+      await okta?.signOut(options);
+    } catch (error) {
+      // signOut first asks Okta, from the browser, to cancel the tokens. If that request fails
+      // (seen as "AuthApiError: Failed to fetch", e.g. blocked by a browser extension), still
+      // log out: forget the tokens here and end the Okta session. The cancelled-or-not access
+      // token runs out by itself (at most 24 hours).
+      console.warn("Okta token revocation failed; logging out without it", error);
+      await okta?.signOut({ ...options, revokeAccessToken: false, revokeRefreshToken: false });
+    }
     return { success: true };
   },
 
