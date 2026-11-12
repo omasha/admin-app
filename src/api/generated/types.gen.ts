@@ -165,6 +165,12 @@ export type AllocatorAccessWidget = {
      */
     placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
     /**
+     * Sort Order
+     *
+     * Its place among the placement's content blocks and widgets
+     */
+    sort_order: number;
+    /**
      * Groups
      */
     groups: Array<AllocatorGroupLink>;
@@ -1086,6 +1092,12 @@ export type HtmlWidget = {
      * Placement
      */
     placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    /**
+     * Sort Order
+     *
+     * Its place among the placement's content blocks and widgets
+     */
+    sort_order: number;
     /**
      * Html
      */
