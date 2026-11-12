@@ -72,6 +72,8 @@ src/
   pages/users.tsx         People: the search form, the person's page (summary, profile, permissions), username/email
                           change and new password (both sent to Okta by the backend)
   pages/grants.tsx        Permissions: the list, and "Give a permission" with a person search
+  pages/stats.tsx         Statistics: counts of people by year attended, country, state (staff admins);
+                          pick filters and a "break down by", get a total and a table with bars
 ```
 
 ## Findings so far (for comparing prototypes)

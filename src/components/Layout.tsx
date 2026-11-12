@@ -12,6 +12,7 @@ export const sections = [
   { resource: "embedded-forms", label: "Embedded forms" },
   { resource: "users", label: "People" },
   { resource: "grants", label: "Permissions" },
+  { resource: "stats", label: "Statistics" },
 ];
 
 export function Layout() {
