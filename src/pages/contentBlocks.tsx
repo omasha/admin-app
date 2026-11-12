@@ -1,6 +1,6 @@
 // Content blocks (API_ENDPOINTS §3): list, add, edit. The resource's whole UI.
 //
-// Three types: an HTML block, a navigation tile, and a button. A button is its text and
+// Two types: an HTML block and a button. A button is its text and
 // where it goes, and lives on the Homepage placement: the portal's home page shows the
 // published ones to logged-in people, in order, on its photo (the first one stands out).
 //
@@ -84,7 +84,7 @@ const fromRecord = (b: ContentBlockOut): Values => ({
 
 const toPayload = (v: Values): ContentBlockIn => ({
   title: orNull(v.title), block_type: v.block_type, body: v.block_type === "button" ? null : orNull(v.body),
-  link: v.block_type === "html" ? null : orNull(v.link), css_class: orNull(v.css_class),
+  link: v.block_type === "button" ? orNull(v.link) : null, css_class: orNull(v.css_class),
   placement: v.placement as ContentBlockIn["placement"], sort_order: v.sort_order, published: v.published,
   audience: v.block_type === "button" ? "everyone" : v.audience,
 });
@@ -129,9 +129,6 @@ export function ContentBlockForm({ action }: { action: "create" | "edit" }) {
       <TextInput label={isButton ? "Button text" : "Title"} required={isButton}
                  description={isButton ? "What the button says, for example: Go to Your Profile" : undefined}
                  {...form.getInputProps("title")} />
-      {v.block_type === "nav" && (
-        <TextInput label="Link" description="Where the tile goes: https://… or mailto:…" {...form.getInputProps("link")} />
-      )}
       {isButton && (
         <TextInput label="Link" required
                    description="Where the button goes. A page in the portal: /my-profile. Anywhere else: https://… or mailto:…"

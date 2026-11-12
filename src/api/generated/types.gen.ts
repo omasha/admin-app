@@ -303,7 +303,7 @@ export type ContentBlockIn = {
     /**
      * Block Type
      */
-    block_type?: 'html' | 'nav' | 'button';
+    block_type?: 'html' | 'button';
     /**
      * Title
      *
@@ -317,7 +317,7 @@ export type ContentBlockIn = {
     /**
      * Link
      *
-     * Where a nav tile or button goes: https://…, http://… or mailto:…. A button's is required, and can also be a page of the portal, like /my-profile
+     * Where a button goes (required for a button): a page of the portal, like /my-profile, or https://…, http://… or mailto:…. Other blocks have no link: it's dropped
      */
     link?: string | null;
     /**
@@ -351,7 +351,7 @@ export type ContentBlockOut = {
     /**
      * Block Type
      */
-    block_type: 'html' | 'nav' | 'button';
+    block_type: 'html' | 'button';
     /**
      * Title
      *
@@ -365,7 +365,7 @@ export type ContentBlockOut = {
     /**
      * Link
      *
-     * Where a nav tile or button goes: https://…, http://… or mailto:…. A button's is required, and can also be a page of the portal, like /my-profile
+     * Where a button goes (required for a button): a page of the portal, like /my-profile, or https://…, http://… or mailto:…. Other blocks have no link: it's dropped
      */
     link: string | null;
     /**
@@ -2140,7 +2140,7 @@ export type PublicBlock = {
     /**
      * Block Type
      */
-    block_type: 'html' | 'nav' | 'button';
+    block_type: 'html' | 'button';
     /**
      * Body
      */
@@ -5480,7 +5480,7 @@ export type ListContentBlocksData = {
         /**
          * Block Type
          */
-        block_type?: 'html' | 'nav' | 'button' | null;
+        block_type?: 'html' | 'button' | null;
         /**
          * Audience
          */

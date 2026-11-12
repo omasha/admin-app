@@ -19,7 +19,6 @@ export const blockPlacements = [
 
 export const blockTypes = [
   { value: "html", label: "HTML block" },
-  { value: "nav", label: "Navigation tile" },
   { value: "button", label: "Button" },
 ] satisfies Option<NonNullable<ContentBlockIn["block_type"]>>[];
 
