@@ -11,11 +11,18 @@ export const placements = [
   { value: "ud_volunteer", label: "Volunteer (retired)" },
   { value: "sidebar", label: "Sidebar" },
   { value: "nav_panel", label: "Navigation panel" },
+] satisfies Option<WidgetIn["placement"]>[];
+
+// Content blocks can also go on the portal's home page, which takes buttons only.
+export const blockPlacements = [
+  ...placements,
+  { value: "homepage", label: "Homepage" },
 ] satisfies Option<ContentBlockIn["placement"]>[];
 
 export const blockTypes = [
   { value: "html", label: "HTML block" },
   { value: "nav", label: "Navigation tile" },
+  { value: "button", label: "Button" },
 ] satisfies Option<NonNullable<ContentBlockIn["block_type"]>>[];
 
 export const widgetTypes = [

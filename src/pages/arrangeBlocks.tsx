@@ -22,7 +22,7 @@ import { reorderContentBlocks } from "../api/generated/sdk.gen";
 import type { ContentBlockOut } from "../api/generated/types.gen";
 import { toHttpError } from "../api/client";
 import { Published } from "./contentBlocks";
-import { blockTypes, labelFor, placements } from "./options";
+import { blockPlacements as placements, blockTypes, labelFor } from "./options";
 
 const RESOURCE = "content-blocks";
 type Placement = ContentBlockOut["placement"];

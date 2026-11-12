@@ -241,7 +241,7 @@ export type BlockOrder = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage';
     /**
      * Ids
      *
@@ -295,19 +295,23 @@ export type BodyUploadTemplates = {
  */
 export type ContentBlockIn = {
     /**
-     * Title
-     */
-    title?: string | null;
-    /**
      * Block Type
      */
-    block_type?: 'html' | 'nav';
+    block_type?: 'html' | 'nav' | 'button';
+    /**
+     * Title
+     *
+     * A button's text; required for a button
+     */
+    title?: string | null;
     /**
      * Body
      */
     body?: string | null;
     /**
      * Link
+     *
+     * Where a nav tile or button goes: https://…, http://… or mailto:…. A button's is required, and can also be a page of the portal, like /my-profile
      */
     link?: string | null;
     /**
@@ -317,7 +321,7 @@ export type ContentBlockIn = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage';
     /**
      * Sort Order
      */
@@ -333,19 +337,23 @@ export type ContentBlockIn = {
  */
 export type ContentBlockOut = {
     /**
-     * Title
-     */
-    title: string | null;
-    /**
      * Block Type
      */
-    block_type: 'html' | 'nav';
+    block_type: 'html' | 'nav' | 'button';
+    /**
+     * Title
+     *
+     * A button's text; required for a button
+     */
+    title: string | null;
     /**
      * Body
      */
     body: string | null;
     /**
      * Link
+     *
+     * Where a nav tile or button goes: https://…, http://… or mailto:…. A button's is required, and can also be a page of the portal, like /my-profile
      */
     link: string | null;
     /**
@@ -355,7 +363,7 @@ export type ContentBlockOut = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage';
     /**
      * Sort Order
      */
@@ -2108,7 +2116,7 @@ export type PublicBlock = {
     /**
      * Block Type
      */
-    block_type: 'html' | 'nav';
+    block_type: 'html' | 'nav' | 'button';
     /**
      * Body
      */
@@ -2124,7 +2132,7 @@ export type PublicBlock = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage';
     /**
      * Sort Order
      */
@@ -5366,7 +5374,7 @@ export type ListPublishedContentData = {
         /**
          * Placement
          */
-        placement?: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | null;
+        placement?: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage' | null;
         /**
          * Page
          *
@@ -5436,7 +5444,7 @@ export type ListContentBlocksData = {
         /**
          * Placement
          */
-        placement?: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | null;
+        placement?: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage' | null;
         /**
          * Published
          */
@@ -5444,7 +5452,7 @@ export type ListContentBlocksData = {
         /**
          * Block Type
          */
-        block_type?: 'html' | 'nav' | null;
+        block_type?: 'html' | 'nav' | 'button' | null;
         /**
          * Page
          *

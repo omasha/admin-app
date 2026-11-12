@@ -1,13 +1,17 @@
 // Content blocks (API_ENDPOINTS §3): list, add, edit. The resource's whole UI.
+//
+// Three types: an HTML block, a navigation tile, and a button. A button is its text and
+// where it goes, and lives on the Homepage placement: the portal's home page shows the
+// published ones to logged-in people, in order, on its photo (the first one stands out).
 
 import { Link, useParams } from "react-router";
-import { Badge, Button, Group, NumberInput, Select, Switch, TextInput } from "@mantine/core";
+import { Alert, Badge, Button, Group, NumberInput, Select, Switch, TextInput } from "@mantine/core";
 import type { ContentBlockIn, ContentBlockOut } from "../api/generated/types.gen";
 import { FormPage, orNull } from "../components/FormPage";
 import { ResourceList } from "../components/ResourceList";
 import { RichTextField } from "../components/RichTextField";
 import { useResourceForm } from "../components/useResourceForm";
-import { blockTypes, labelFor, placements, yesNo } from "./options";
+import { blockPlacements as placements, blockTypes, labelFor, yesNo } from "./options";
 
 const RESOURCE = "content-blocks";
 
@@ -62,8 +66,8 @@ const fromRecord = (b: ContentBlockOut): Values => ({
 });
 
 const toPayload = (v: Values): ContentBlockIn => ({
-  title: orNull(v.title), block_type: v.block_type, body: orNull(v.body),
-  link: v.block_type === "nav" ? orNull(v.link) : null, css_class: orNull(v.css_class),
+  title: orNull(v.title), block_type: v.block_type, body: v.block_type === "button" ? null : orNull(v.body),
+  link: v.block_type === "html" ? null : orNull(v.link), css_class: orNull(v.css_class),
   placement: v.placement as ContentBlockIn["placement"], sort_order: v.sort_order, published: v.published,
 });
 
@@ -73,21 +77,52 @@ export function ContentBlockForm({ action }: { action: "create" | "edit" }) {
     resource: RESOURCE, action, id, initialValues: empty, fromRecord, toPayload,
   });
   const v = form.getValues();
+  const isButton = v.block_type === "button";
+  // A button goes on the home page, and the home page takes only buttons: picking one
+  // sets the other, so the two never disagree (the API refuses them if they do).
+  const setType = (type: string | null) => {
+    if (!type) return;
+    form.setFieldValue("block_type", type as Values["block_type"]);
+    if (type === "button") form.setFieldValue("placement", "homepage");
+    else if (v.placement === "homepage") form.setFieldValue("placement", null);
+  };
+  const setPlacement = (placement: string | null) => {
+    form.setFieldValue("placement", placement as Values["placement"]);
+    if (placement === "homepage") form.setFieldValue("block_type", "button");
+    else if (isButton) form.setFieldValue("block_type", "html");
+  };
 
   return (
     <FormPage title={action === "create" ? "Add content block" : "Edit content block"} backTo={`/${RESOURCE}`}
               backLabel="Content blocks" onSubmit={onSubmit} loading={loading} saving={saving} loadError={loadError}>
-      <TextInput label="Title" {...form.getInputProps("title")} />
       <Group grow>
-        <Select label="Placement" required data={placements} {...form.getInputProps("placement")} />
-        <Select label="Type" data={blockTypes} allowDeselect={false} {...form.getInputProps("block_type")} />
+        <Select label="Type" data={blockTypes} allowDeselect={false} {...form.getInputProps("block_type")}
+                onChange={setType} />
+        <Select label="Placement" required data={placements} {...form.getInputProps("placement")}
+                onChange={setPlacement} />
         <NumberInput label="Order" {...form.getInputProps("sort_order")} />
       </Group>
+      {isButton && (
+        <Alert color="bmpBlue">
+          Shows on the portal's home page, on the photo, to people who are logged in. With several buttons, the
+          first in order stands out and the others are outlined.
+        </Alert>
+      )}
+      <TextInput label={isButton ? "Button text" : "Title"} required={isButton}
+                 description={isButton ? "What the button says, for example: Go to Your Profile" : undefined}
+                 {...form.getInputProps("title")} />
       {v.block_type === "nav" && (
         <TextInput label="Link" description="Where the tile goes: https://… or mailto:…" {...form.getInputProps("link")} />
       )}
-      <RichTextField label="Body" value={v.body} onChange={(html) => form.setFieldValue("body", html)}
-                     error={form.errors.body as string | undefined} />
+      {isButton && (
+        <TextInput label="Link" required
+                   description="Where the button goes. A page in the portal: /my-profile. Anywhere else: https://… or mailto:…"
+                   {...form.getInputProps("link")} />
+      )}
+      {!isButton && (
+        <RichTextField label="Body" value={v.body} onChange={(html) => form.setFieldValue("body", html)}
+                       error={form.errors.body as string | undefined} />
+      )}
       <TextInput label="CSS class" description="Optional: a class the portal applies to the block"
                  {...form.getInputProps("css_class")} />
       <Switch label="Published" {...form.getInputProps("published", { type: "checkbox" })} />
