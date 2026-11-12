@@ -8,9 +8,7 @@ type Option<V> = { value: V; label: string };
 export const placements = [
   { value: "ud_participate", label: "Participate" },
   { value: "ud_tickets", label: "Tickets" },
-  { value: "ud_volunteer", label: "Volunteer (retired)" },
   { value: "sidebar", label: "Sidebar" },
-  { value: "nav_panel", label: "Navigation panel" },
 ] satisfies Option<WidgetIn["placement"]>[];
 
 // Content blocks can also go on the portal's home page, which takes buttons only.

@@ -163,7 +163,7 @@ export type AllocatorAccessWidget = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar';
     /**
      * Sort Order
      *
@@ -247,7 +247,7 @@ export type BlockOrder = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage';
     /**
      * Ids
      *
@@ -327,7 +327,7 @@ export type ContentBlockIn = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage';
     /**
      * Sort Order
      */
@@ -375,7 +375,7 @@ export type ContentBlockOut = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage';
     /**
      * Sort Order
      */
@@ -1091,7 +1091,7 @@ export type HtmlWidget = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar';
     /**
      * Sort Order
      *
@@ -2156,7 +2156,7 @@ export type PublicBlock = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage';
     /**
      * Sort Order
      */
@@ -2667,7 +2667,7 @@ export type WidgetIn = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar';
     /**
      * Sort Order
      */
@@ -2699,7 +2699,7 @@ export type WidgetOut = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar';
     /**
      * Sort Order
      */
@@ -5402,7 +5402,7 @@ export type ListPublishedContentData = {
         /**
          * Placement
          */
-        placement?: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage' | null;
+        placement?: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage' | null;
         /**
          * Page
          *
@@ -5472,7 +5472,7 @@ export type ListContentBlocksData = {
         /**
          * Placement
          */
-        placement?: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | 'homepage' | null;
+        placement?: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage' | null;
         /**
          * Published
          */
@@ -5678,7 +5678,7 @@ export type ListWidgetsData = {
         /**
          * Placement
          */
-        placement?: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | null;
+        placement?: 'ud_tickets' | 'ud_participate' | 'sidebar' | null;
         /**
          * Widget Type
          */

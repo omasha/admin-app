@@ -85,3 +85,16 @@ describe("Who sees a block", () => {
     expect(screen.queryByRole("textbox", { name: "Show to" })).not.toBeInTheDocument();
   });
 });
+
+describe("Placement choices", () => {
+  it.each(["/content-blocks/create", "/content-blocks", "/widgets/create", "/widgets"])(
+    "Navigation panel and Volunteer (retired) aren't offered on %s", async (path) => {
+      const user = userEvent.setup();
+      renderAt(path);
+      await user.click(await screen.findByRole("textbox", { name: "Placement" }));
+      expect(await screen.findByRole("option", { name: "Sidebar", hidden: true })).toBeInTheDocument();
+      for (const name of ["Navigation panel", "Volunteer (retired)"]) {
+        expect(screen.queryByRole("option", { name, hidden: true })).not.toBeInTheDocument();
+      }
+    });
+});
