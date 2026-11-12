@@ -13,6 +13,7 @@ import { ArrangeBlocks } from "./pages/arrangeBlocks";
 import { ContentBlockForm, ContentBlockList } from "./pages/contentBlocks";
 import { EmbeddedFormForm, EmbeddedFormList } from "./pages/embeddedForms";
 import { GrantCreate, GrantList } from "./pages/grants";
+import { StatsPage } from "./pages/stats";
 import { UserEdit, UserList, UserPassword, UserShow } from "./pages/users";
 import { WidgetForm, WidgetList } from "./pages/widgets";
 
@@ -58,6 +59,7 @@ export function App() {
           { name: "users", list: "/users", show: "/users/show/:id", edit: "/users/edit/:id" },
           { name: "user-profiles" },
           { name: "grants", list: "/grants", create: "/grants/create" },
+          { name: "stats", list: "/stats" },
         ]}
         options={{ syncWithLocation: true, warnWhenUnsavedChanges: true, disableTelemetry: true }}
       >
@@ -103,6 +105,9 @@ export function App() {
               <Route element={<Guarded resource="grants" action="create" />}>
                 <Route path="create" element={<GrantCreate />} />
               </Route>
+            </Route>
+            <Route path="/stats" element={<Guarded resource="stats" action="list" />}>
+              <Route index element={<StatsPage />} />
             </Route>
             <Route path="*" element={<NoAccess />} />
           </Route>

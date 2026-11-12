@@ -97,6 +97,54 @@ export type AddressIn = {
 };
 
 /**
+ * Affiliation
+ */
+export type Affiliation = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Year
+     */
+    year: number | null;
+    /**
+     * Roles
+     */
+    roles: Array<string>;
+};
+
+/**
+ * AffiliationList
+ */
+export type AffiliationList = {
+    /**
+     * Items
+     */
+    items: Array<Affiliation>;
+    /**
+     * Synced At
+     */
+    synced_at: string | null;
+};
+
+/**
+ * Affiliations
+ */
+export type Affiliations = {
+    /**
+     * Categories
+     */
+    categories: {
+        [key: string]: AffiliationList;
+    };
+};
+
+/**
  * AllocatorAccessWidget
  */
 export type AllocatorAccessWidget = {
@@ -1069,6 +1117,46 @@ export type ItemWarnings = {
 };
 
 /**
+ * LifApplication
+ */
+export type LifApplication = {
+    /**
+     * Sfid
+     */
+    sfid: string;
+    /**
+     * Sub Name
+     */
+    sub_name: string;
+    /**
+     * Submitted
+     */
+    submitted: string;
+    /**
+     * Status
+     */
+    status: string;
+    /**
+     * Can Cancel
+     */
+    can_cancel: boolean;
+};
+
+/**
+ * LifApplications
+ */
+export type LifApplications = {
+    /**
+     * Applications
+     */
+    applications: Array<LifApplication>;
+    /**
+     * Synced At
+     */
+    synced_at: string;
+};
+
+/**
  * LockResult
  */
 export type LockResult = {
@@ -1545,6 +1633,40 @@ export type PasswordChange = {
      * Password
      */
     password: string;
+};
+
+/**
+ * PeopleStats
+ */
+export type PeopleStats = {
+    /**
+     * Total
+     *
+     * People matching the filters; null: fewer than `small` (hidden)
+     */
+    total: number | null;
+    /**
+     * Group By
+     */
+    group_by: 'year' | 'country' | 'state' | null;
+    /**
+     * Rows
+     *
+     * One per year (newest first), country or state (largest first)
+     */
+    rows: Array<StatRow>;
+    /**
+     * More
+     *
+     * There were more rows than are sent
+     */
+    more: boolean;
+    /**
+     * Small
+     *
+     * Counts from 1 to small-1 are sent as null
+     */
+    small: number;
 };
 
 /**
@@ -2252,6 +2374,30 @@ export type SignupOut = {
      * Bpguid
      */
     bpguid: string;
+};
+
+/**
+ * StatRow
+ */
+export type StatRow = {
+    /**
+     * Value
+     *
+     * The year, the 2-letter country code, or the state. Empty: not given
+     */
+    value: string;
+    /**
+     * Country
+     *
+     * For group_by=state: the state's country. Otherwise null
+     */
+    country: string | null;
+    /**
+     * Count
+     *
+     * How many people; null: fewer than `small` (hidden)
+     */
+    count: number | null;
 };
 
 /**
@@ -5157,6 +5303,62 @@ export type DeleteGrantResponses = {
 
 export type DeleteGrantResponse = DeleteGrantResponses[keyof DeleteGrantResponses];
 
+export type GetPeopleStatsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Year
+         *
+         * Only people who say they attended this year
+         */
+        year?: number | null;
+        /**
+         * Country
+         */
+        country?: string | null;
+        /**
+         * State
+         *
+         * Needs `country` too
+         */
+        state?: string | null;
+        /**
+         * Status
+         */
+        status?: 'active' | 'flagged_for_deletion' | 'deactivated' | null;
+        /**
+         * Completed
+         *
+         * Profile filled in (false includes people with no profile)
+         */
+        completed?: boolean | null;
+        /**
+         * Group By
+         */
+        group_by?: 'year' | 'country' | 'state' | null;
+    };
+    url: '/v1/admin/stats/people';
+};
+
+export type GetPeopleStatsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetPeopleStatsError = GetPeopleStatsErrors[keyof GetPeopleStatsErrors];
+
+export type GetPeopleStatsResponses = {
+    /**
+     * Successful Response
+     */
+    200: PeopleStats;
+};
+
+export type GetPeopleStatsResponse = GetPeopleStatsResponses[keyof GetPeopleStatsResponses];
+
 export type ListPublishedContentData = {
     body?: never;
     path?: never;
@@ -5888,3 +6090,67 @@ export type UpdateEmbeddedFormResponses = {
 };
 
 export type UpdateEmbeddedFormResponse = UpdateEmbeddedFormResponses[keyof UpdateEmbeddedFormResponses];
+
+export type ListLowIncomeApplicationsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/forms/low-income';
+};
+
+export type ListLowIncomeApplicationsResponses = {
+    /**
+     * Successful Response
+     */
+    200: LifApplications;
+};
+
+export type ListLowIncomeApplicationsResponse = ListLowIncomeApplicationsResponses[keyof ListLowIncomeApplicationsResponses];
+
+export type CancelLowIncomeApplicationData = {
+    body?: never;
+    path: {
+        /**
+         * Sfid
+         *
+         * The application's Salesforce record ID
+         */
+        sfid: string;
+    };
+    query?: never;
+    url: '/v1/forms/low-income/{sfid}/cancel';
+};
+
+export type CancelLowIncomeApplicationErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CancelLowIncomeApplicationError = CancelLowIncomeApplicationErrors[keyof CancelLowIncomeApplicationErrors];
+
+export type CancelLowIncomeApplicationResponses = {
+    /**
+     * Successful Response
+     */
+    200: LifApplication;
+};
+
+export type CancelLowIncomeApplicationResponse = CancelLowIncomeApplicationResponses[keyof CancelLowIncomeApplicationResponses];
+
+export type ListAffiliationsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/affiliations';
+};
+
+export type ListAffiliationsResponses = {
+    /**
+     * Successful Response
+     */
+    200: Affiliations;
+};
+
+export type ListAffiliationsResponse = ListAffiliationsResponses[keyof ListAffiliationsResponses];
