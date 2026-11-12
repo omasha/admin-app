@@ -21,7 +21,7 @@ import {
 import { reorderContentBlocks } from "../api/generated/sdk.gen";
 import type { ContentBlockOut } from "../api/generated/types.gen";
 import { toHttpError } from "../api/client";
-import { Published } from "./contentBlocks";
+import { Audience, Published } from "./contentBlocks";
 import { blockPlacements as placements, blockTypes, labelFor } from "./options";
 
 const RESOURCE = "content-blocks";
@@ -156,6 +156,7 @@ function SortableRow({ block, position, onUp, onDown }: {
           <Text w={24} c="dimmed" ta="right">{position}</Text>
           <Text fw={600}>{title}</Text>
           <Badge variant="light" color="gray">{labelFor(blockTypes, block.block_type)}</Badge>
+          {block.audience !== "everyone" && <Audience value={block.audience} />}
           <Published value={block.published} />
         </Group>
         <Group gap={4} wrap="nowrap">

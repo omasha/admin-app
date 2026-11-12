@@ -3,6 +3,11 @@
 // Three types: an HTML block, a navigation tile, and a button. A button is its text and
 // where it goes, and lives on the Homepage placement: the portal's home page shows the
 // published ones to logged-in people, in order, on its photo (the first one stands out).
+//
+// "Show to" picks who sees a block: everyone, visitors only, or logged-in people only. Two
+// blocks next to each other, one for visitors and one for logged-in people, make a place
+// that says something different to each. Buttons don't have it: they're for logged-in
+// people already.
 
 import { Link, useParams } from "react-router";
 import { Alert, Badge, Button, Group, NumberInput, Select, Switch, TextInput } from "@mantine/core";
@@ -11,7 +16,7 @@ import { FormPage, orNull } from "../components/FormPage";
 import { ResourceList } from "../components/ResourceList";
 import { RichTextField } from "../components/RichTextField";
 import { useResourceForm } from "../components/useResourceForm";
-import { blockPlacements as placements, blockTypes, labelFor, yesNo } from "./options";
+import { audiences, blockPlacements as placements, blockTypes, labelFor, yesNo } from "./options";
 
 const RESOURCE = "content-blocks";
 
@@ -27,6 +32,7 @@ export function ContentBlockList() {
       filters={[
         { field: "placement", label: "Placement", options: placements },
         { field: "block_type", label: "Type", options: blockTypes },
+        { field: "audience", label: "Show to", options: audiences },
         { field: "published", label: "Published", options: yesNo },
       ]}
       columns={[
@@ -34,11 +40,20 @@ export function ContentBlockList() {
         { key: "placement", label: "Placement", sortable: true, render: (b) => labelFor(placements, b.placement) },
         { key: "sort_order", label: "Order", sortable: true },
         { key: "block_type", label: "Type", render: (b) => labelFor(blockTypes, b.block_type) },
+        { key: "audience", label: "Show to", render: (b) => <Audience value={b.audience} /> },
         { key: "published", label: "Status", render: (b) => <Published value={b.published} /> },
         { key: "updated_at", label: "Changed", sortable: true, render: (b) => new Date(b.updated_at + "Z").toLocaleString() },
       ]}
     />
   );
+}
+
+/** "Everyone" is the usual case, so it's plain text; the other two stand out. */
+export function Audience({ value }: { value: ContentBlockOut["audience"] }) {
+  if (value === "everyone") return <>{labelFor(audiences, value)}</>;
+  return <Badge color={value === "visitors" ? "bmpOrange" : "bmpBlue"} variant="light">
+    {value === "visitors" ? "Visitors only" : "Logged in only"}
+  </Badge>;
 }
 
 export function Published({ value }: { value: boolean }) {
@@ -54,21 +69,24 @@ type Values = {
   placement: ContentBlockIn["placement"] | null;
   sort_order: number;
   published: boolean;
+  audience: NonNullable<ContentBlockIn["audience"]>;
 };
 
 const empty: Values = {
   title: "", block_type: "html", body: "", link: "", css_class: "", placement: null, sort_order: 0, published: false,
+  audience: "everyone",
 };
 
 const fromRecord = (b: ContentBlockOut): Values => ({
   title: b.title ?? "", block_type: b.block_type, body: b.body ?? "", link: b.link ?? "", css_class: b.css_class ?? "",
-  placement: b.placement, sort_order: b.sort_order, published: b.published,
+  placement: b.placement, sort_order: b.sort_order, published: b.published, audience: b.audience,
 });
 
 const toPayload = (v: Values): ContentBlockIn => ({
   title: orNull(v.title), block_type: v.block_type, body: v.block_type === "button" ? null : orNull(v.body),
   link: v.block_type === "html" ? null : orNull(v.link), css_class: orNull(v.css_class),
   placement: v.placement as ContentBlockIn["placement"], sort_order: v.sort_order, published: v.published,
+  audience: v.block_type === "button" ? "everyone" : v.audience,
 });
 
 export function ContentBlockForm({ action }: { action: "create" | "edit" }) {
@@ -125,6 +143,11 @@ export function ContentBlockForm({ action }: { action: "create" | "edit" }) {
       )}
       <TextInput label="CSS class" description="Optional: a class the portal applies to the block"
                  {...form.getInputProps("css_class")} />
+      {!isButton && (
+        <Select label="Show to" data={audiences} allowDeselect={false}
+                description="Visitors are people who aren't logged in. Blocks not meant for someone are never sent to their browser."
+                {...form.getInputProps("audience")} />
+      )}
       <Switch label="Published" {...form.getInputProps("published", { type: "checkbox" })} />
     </FormPage>
   );

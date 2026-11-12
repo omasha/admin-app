@@ -58,6 +58,14 @@ export const userStatuses = [
   { value: "deactivated", label: "Deactivated" },
 ] satisfies Option<UserSummary["status"]>[];
 
+// Who sees a content block on the portal. The portal never receives a block that isn't for
+// the person looking (portal-api-v2 leaves it out of the answer).
+export const audiences = [
+  { value: "everyone", label: "Everyone" },
+  { value: "visitors", label: "Visitors only (not logged in)" },
+  { value: "logged_in", label: "Logged-in people only" },
+] satisfies Option<NonNullable<ContentBlockIn["audience"]>>[];
+
 export const yesNo = [
   { value: "true", label: "Yes" },
   { value: "false", label: "No" },

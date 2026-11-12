@@ -12,7 +12,7 @@ export const staffMe = {
 
 export const block = (id: number, title: string) => ({
   id, title, block_type: "html", body: "<p>Hi</p>", link: null, css_class: null, placement: "sidebar",
-  sort_order: id, published: true, created_at: "2026-11-05T10:00:00", updated_at: "2026-11-05T10:00:00",
+  sort_order: id, published: true, audience: "everyone", created_at: "2026-11-05T10:00:00", updated_at: "2026-11-05T10:00:00",
 });
 
 export const person = (id: number, first: string, email: string) => ({

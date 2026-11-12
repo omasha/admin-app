@@ -330,6 +330,12 @@ export type ContentBlockIn = {
      * Published
      */
     published?: boolean;
+    /**
+     * Audience
+     *
+     * Who sees it on the portal: everyone, visitors only (not logged in), or logged-in people only
+     */
+    audience?: 'everyone' | 'visitors' | 'logged_in';
 };
 
 /**
@@ -372,6 +378,12 @@ export type ContentBlockOut = {
      * Published
      */
     published: boolean;
+    /**
+     * Audience
+     *
+     * Who sees it on the portal: everyone, visitors only (not logged in), or logged-in people only
+     */
+    audience: 'everyone' | 'visitors' | 'logged_in';
     /**
      * Id
      */
@@ -2137,6 +2149,10 @@ export type PublicBlock = {
      * Sort Order
      */
     sort_order: number;
+    /**
+     * Audience
+     */
+    audience: 'everyone' | 'visitors' | 'logged_in';
 };
 
 /**
@@ -5453,6 +5469,10 @@ export type ListContentBlocksData = {
          * Block Type
          */
         block_type?: 'html' | 'nav' | 'button' | null;
+        /**
+         * Audience
+         */
+        audience?: 'everyone' | 'visitors' | 'logged_in' | null;
         /**
          * Page
          *
