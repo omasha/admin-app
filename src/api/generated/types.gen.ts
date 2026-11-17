@@ -163,7 +163,13 @@ export type AllocatorAccessWidget = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar';
+    /**
+     * Sort Order
+     *
+     * Its place among the placement's content blocks and widgets
+     */
+    sort_order: number;
     /**
      * Groups
      */
@@ -241,7 +247,7 @@ export type BlockOrder = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage';
     /**
      * Ids
      *
@@ -295,19 +301,23 @@ export type BodyUploadTemplates = {
  */
 export type ContentBlockIn = {
     /**
-     * Title
-     */
-    title?: string | null;
-    /**
      * Block Type
      */
-    block_type?: 'html' | 'nav';
+    block_type?: 'html' | 'button';
+    /**
+     * Title
+     *
+     * A button's text; required for a button
+     */
+    title?: string | null;
     /**
      * Body
      */
     body?: string | null;
     /**
      * Link
+     *
+     * Where a button goes (required for a button): a page of the portal, like /my-profile, or https://…, http://… or mailto:…. Other blocks have no link: it's dropped
      */
     link?: string | null;
     /**
@@ -317,7 +327,7 @@ export type ContentBlockIn = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage';
     /**
      * Sort Order
      */
@@ -326,6 +336,12 @@ export type ContentBlockIn = {
      * Published
      */
     published?: boolean;
+    /**
+     * Audience
+     *
+     * Who sees it on the portal: everyone, visitors only (not logged in), or logged-in people only
+     */
+    audience?: 'everyone' | 'visitors' | 'logged_in';
 };
 
 /**
@@ -333,19 +349,23 @@ export type ContentBlockIn = {
  */
 export type ContentBlockOut = {
     /**
-     * Title
-     */
-    title: string | null;
-    /**
      * Block Type
      */
-    block_type: 'html' | 'nav';
+    block_type: 'html' | 'button';
+    /**
+     * Title
+     *
+     * A button's text; required for a button
+     */
+    title: string | null;
     /**
      * Body
      */
     body: string | null;
     /**
      * Link
+     *
+     * Where a button goes (required for a button): a page of the portal, like /my-profile, or https://…, http://… or mailto:…. Other blocks have no link: it's dropped
      */
     link: string | null;
     /**
@@ -355,7 +375,7 @@ export type ContentBlockOut = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage';
     /**
      * Sort Order
      */
@@ -364,6 +384,12 @@ export type ContentBlockOut = {
      * Published
      */
     published: boolean;
+    /**
+     * Audience
+     *
+     * Who sees it on the portal: everyone, visitors only (not logged in), or logged-in people only
+     */
+    audience: 'everyone' | 'visitors' | 'logged_in';
     /**
      * Id
      */
@@ -1065,7 +1091,13 @@ export type HtmlWidget = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar';
+    /**
+     * Sort Order
+     *
+     * Its place among the placement's content blocks and widgets
+     */
+    sort_order: number;
     /**
      * Html
      */
@@ -2108,7 +2140,7 @@ export type PublicBlock = {
     /**
      * Block Type
      */
-    block_type: 'html' | 'nav';
+    block_type: 'html' | 'button';
     /**
      * Body
      */
@@ -2124,11 +2156,15 @@ export type PublicBlock = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage';
     /**
      * Sort Order
      */
     sort_order: number;
+    /**
+     * Audience
+     */
+    audience: 'everyone' | 'visitors' | 'logged_in';
 };
 
 /**
@@ -2631,7 +2667,7 @@ export type WidgetIn = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar';
     /**
      * Sort Order
      */
@@ -2663,7 +2699,7 @@ export type WidgetOut = {
     /**
      * Placement
      */
-    placement: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel';
+    placement: 'ud_tickets' | 'ud_participate' | 'sidebar';
     /**
      * Sort Order
      */
@@ -5366,7 +5402,7 @@ export type ListPublishedContentData = {
         /**
          * Placement
          */
-        placement?: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | null;
+        placement?: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage' | null;
         /**
          * Page
          *
@@ -5436,7 +5472,7 @@ export type ListContentBlocksData = {
         /**
          * Placement
          */
-        placement?: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | null;
+        placement?: 'ud_tickets' | 'ud_participate' | 'sidebar' | 'homepage' | null;
         /**
          * Published
          */
@@ -5444,7 +5480,11 @@ export type ListContentBlocksData = {
         /**
          * Block Type
          */
-        block_type?: 'html' | 'nav' | null;
+        block_type?: 'html' | 'button' | null;
+        /**
+         * Audience
+         */
+        audience?: 'everyone' | 'visitors' | 'logged_in' | null;
         /**
          * Page
          *
@@ -5638,7 +5678,7 @@ export type ListWidgetsData = {
         /**
          * Placement
          */
-        placement?: 'ud_tickets' | 'ud_participate' | 'ud_volunteer' | 'sidebar' | 'nav_panel' | null;
+        placement?: 'ud_tickets' | 'ud_participate' | 'sidebar' | null;
         /**
          * Widget Type
          */

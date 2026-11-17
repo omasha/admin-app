@@ -497,7 +497,9 @@ export const getPeopleStats = <ThrowOnError extends boolean = false>(options?: O
 /**
  * Published Content
  *
- * No login needed: the portal shows blocks to visitors who aren't logged in too.
+ * No login needed: visitors get the blocks for everyone and for visitors. With a valid
+ * login (Authorization: Bearer …) the answer has the blocks for everyone and for logged-in
+ * people instead. Blocks for the other group are never sent.
  */
 export const listPublishedContent = <ThrowOnError extends boolean = false>(options?: Options<ListPublishedContentData, ThrowOnError>): RequestResult<ListPublishedContentResponses, ListPublishedContentErrors, ThrowOnError> => (options?.client ?? client).get<ListPublishedContentResponses, ListPublishedContentErrors, ThrowOnError>({ url: '/v1/content', ...options });
 

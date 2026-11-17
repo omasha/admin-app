@@ -8,14 +8,18 @@ type Option<V> = { value: V; label: string };
 export const placements = [
   { value: "ud_participate", label: "Participate" },
   { value: "ud_tickets", label: "Tickets" },
-  { value: "ud_volunteer", label: "Volunteer (retired)" },
   { value: "sidebar", label: "Sidebar" },
-  { value: "nav_panel", label: "Navigation panel" },
+] satisfies Option<WidgetIn["placement"]>[];
+
+// Content blocks can also go on the portal's home page, which takes buttons only.
+export const blockPlacements = [
+  ...placements,
+  { value: "homepage", label: "Homepage" },
 ] satisfies Option<ContentBlockIn["placement"]>[];
 
 export const blockTypes = [
   { value: "html", label: "HTML block" },
-  { value: "nav", label: "Navigation tile" },
+  { value: "button", label: "Button" },
 ] satisfies Option<NonNullable<ContentBlockIn["block_type"]>>[];
 
 export const widgetTypes = [
@@ -50,6 +54,14 @@ export const userStatuses = [
   { value: "flagged_for_deletion", label: "Flagged for deletion" },
   { value: "deactivated", label: "Deactivated" },
 ] satisfies Option<UserSummary["status"]>[];
+
+// Who sees a content block on the portal. The portal never receives a block that isn't for
+// the person looking (portal-api-v2 leaves it out of the answer).
+export const audiences = [
+  { value: "everyone", label: "Everyone" },
+  { value: "visitors", label: "Visitors only (not logged in)" },
+  { value: "logged_in", label: "Logged-in people only" },
+] satisfies Option<NonNullable<ContentBlockIn["audience"]>>[];
 
 export const yesNo = [
   { value: "true", label: "Yes" },
