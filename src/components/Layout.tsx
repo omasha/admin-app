@@ -1,8 +1,10 @@
-import { NavLink as RouterNavLink, Outlet } from "react-router";
+import { NavLink as RouterNavLink, Outlet, useLocation } from "react-router";
 import { CanAccess, useGetIdentity, useLogout } from "@refinedev/core";
 import { AppShell, Badge, Button, Group, NavLink, Stack, Text, Title } from "@mantine/core";
 
-type Identity = { name: string; email: string };
+import { ErrorBoundary } from "./ErrorBoundary";
+
+type Identity ={ name: string; email: string };
 
 // The menu, in order. Each shows only to people allowed to list it; "/" opens the first one
 // the person may use (pages/auth.tsx, StartPage).
@@ -18,6 +20,7 @@ export const sections = [
 export function Layout() {
   const { data: identity } = useGetIdentity<Identity>();
   const { mutate: logout } = useLogout();
+  const { pathname } = useLocation();
   return (
     <AppShell header={{ height: 56 }} navbar={{ width: 220, breakpoint: "sm" }} padding="lg">
       <AppShell.Header px="md">
@@ -42,7 +45,10 @@ export function Layout() {
         </Stack>
       </AppShell.Navbar>
       <AppShell.Main>
-        <Outlet />
+        {/* Keyed by path: a crash on one page clears when the person navigates elsewhere. */}
+        <ErrorBoundary resetKey={pathname}>
+          <Outlet />
+        </ErrorBoundary>
       </AppShell.Main>
     </AppShell>
   );

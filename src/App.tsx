@@ -8,6 +8,7 @@ import { notifications } from "@mantine/notifications";
 import { dataProvider } from "./api/dataProvider";
 import { accessControlProvider, authProvider } from "./auth/providers";
 import { Layout } from "./components/Layout";
+import { NotFound } from "./components/NotFound";
 import { LoginCallback, LoginPage, NoAccess, StartPage } from "./pages/auth";
 import { ArrangeBlocks } from "./pages/arrangeBlocks";
 import { ContentBlockForm, ContentBlockList } from "./pages/contentBlocks";
@@ -109,7 +110,7 @@ export function App() {
             <Route path="/stats" element={<Guarded resource="stats" action="list" />}>
               <Route index element={<StatsPage />} />
             </Route>
-            <Route path="*" element={<NoAccess />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
         <UnsavedChangesNotifier />

@@ -9,13 +9,17 @@ import "./theme/tokens.css";
 
 import "./api/client"; // sets up the generated client (address, login token)
 import { App } from "./App";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import { theme } from "./theme";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MantineProvider theme={theme}>
       <Notifications position="top-right" />
-      <App />
+      {/* Last line of defence: crashes outside the page layout (login, Refine setup). */}
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </MantineProvider>
   </React.StrictMode>,
 );
