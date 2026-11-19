@@ -2,13 +2,18 @@
 // content-block bodies, HTML widget bodies and form instructions.
 //
 // The toolbar offers only what the API keeps (portal-api-v2 core/sanitize.py): headings 2–4,
-// bold, italic, bulleted and numbered lists, links. Anything else is removed on save, and the
+// bold, italic, bulleted and numbered lists, links, tables (not offered as buttons: paste them
+// in the HTML view, see below).
+//
+// "HTML" in the toolbar swaps the editor for a plain box holding the raw HTML, for what is easier
+// pasted than built (tables). The API cleans it on save like everything else. Anything else is removed on save, and the
 // saved answer is loaded back, so what's shown after saving is exactly what participants see.
 
-import { useEffect } from "react";
-import { Input } from "@mantine/core";
+import { useEffect, useState } from "react";
+import { Input, Textarea } from "@mantine/core";
 import { Link, RichTextEditor } from "@mantine/tiptap";
 import { useEditor } from "@tiptap/react";
+import { Table, TableCell, TableHeader, TableRow } from "@tiptap/extension-table";
 import StarterKit from "@tiptap/starter-kit";
 
 import "@mantine/tiptap/styles.css";
@@ -24,6 +29,7 @@ type Props = {
 const EMPTY = "<p></p>";
 
 export function RichTextField({ label, description, value, onChange, error }: Props) {
+  const [htmlView, setHtmlView] = useState(false);
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -38,6 +44,7 @@ export function RichTextField({ label, description, value, onChange, error }: Pr
         link: false, // replaced by Mantine's Link below
       }),
       Link.configure({ openOnClick: false, protocols: ["mailto"], defaultProtocol: "https" }),
+      Table, TableRow, TableHeader, TableCell,
     ],
     content: value || "",
     immediatelyRender: true,
@@ -81,8 +88,19 @@ export function RichTextField({ label, description, value, onChange, error }: Pr
             <RichTextEditor.Link />
             <RichTextEditor.Unlink />
           </RichTextEditor.ControlsGroup>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.Control onClick={() => setHtmlView((on) => !on)} active={htmlView}
+                                    aria-label="Edit as HTML" title="Edit as HTML" style={{ width: "auto", padding: "0 8px" }}>
+              HTML
+            </RichTextEditor.Control>
+          </RichTextEditor.ControlsGroup>
         </RichTextEditor.Toolbar>
-        <RichTextEditor.Content mih={140} />
+        {htmlView ? (
+          <Textarea value={value ?? ""} onChange={(e) => onChange(e.currentTarget.value)} autosize minRows={8}
+                    spellCheck={false} aria-label={`${label} (HTML)`} styles={{ input: { fontFamily: "monospace", border: 0 } }} />
+        ) : (
+          <RichTextEditor.Content mih={140} />
+        )}
       </RichTextEditor>
     </Input.Wrapper>
   );

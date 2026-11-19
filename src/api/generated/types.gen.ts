@@ -683,10 +683,6 @@ export type EmbeddedFormIn = {
      */
     profile_fields?: string | null;
     /**
-     * Is Public
-     */
-    is_public?: boolean;
-    /**
      * Instructions
      */
     instructions?: string | null;
@@ -775,10 +771,6 @@ export type EmbeddedFormOut = {
      */
     profile_fields: string | null;
     /**
-     * Is Public
-     */
-    is_public: boolean;
-    /**
      * Instructions
      */
     instructions: string | null;
@@ -842,6 +834,79 @@ export type EmbeddedFormOut = {
      * Updated At
      */
     updated_at: string;
+};
+
+/**
+ * FormCard
+ *
+ * What the listing card shows, for anyone. No embed address (except a link-only form's link, which is
+ * the card's link), no prefill list: those come with the form, which needs a login.
+ */
+export type FormCard = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Name In Link
+     */
+    name_in_link: string | null;
+    /**
+     * Source
+     */
+    source: 'salesforce' | 'surveygizmo' | 'link-only';
+    /**
+     * Embed Url
+     */
+    embed_url: string | null;
+    /**
+     * Url Path
+     */
+    url_path: string | null;
+    /**
+     * Instructions
+     */
+    instructions: string | null;
+    /**
+     * Sample Link
+     */
+    sample_link: string | null;
+    /**
+     * Opens At
+     */
+    opens_at: string | null;
+    /**
+     * Opens Label
+     */
+    opens_label: string | null;
+    /**
+     * Closes At
+     */
+    closes_at: string | null;
+    /**
+     * Closes Label
+     */
+    closes_label: string | null;
+    /**
+     * Display Order
+     */
+    display_order: number | null;
+    /**
+     * List Display
+     */
+    list_display: boolean;
+    /**
+     * List Art Display
+     */
+    list_art_display: boolean;
+    /**
+     * Css Class
+     */
+    css_class: string | null;
 };
 
 /**
@@ -1340,6 +1405,24 @@ export type MemberOut = {
 };
 
 /**
+ * MigrationResult
+ */
+export type MigrationResult = {
+    /**
+     * State
+     */
+    state: 'migrated' | 'unavailable' | 'blocked' | 'not_found';
+    /**
+     * Reason
+     */
+    reason?: string | null;
+    /**
+     * Copied Now
+     */
+    copied_now?: boolean;
+};
+
+/**
  * MyProfile
  *
  * The person's own account and profile: the portal's profile fields, decrypted.
@@ -1600,13 +1683,13 @@ export type PageEmbeddedFormOut = {
 };
 
 /**
- * Page[GrantOut]
+ * Page[FormCard]
  */
-export type PageGrantOut = {
+export type PageFormCard = {
     /**
      * Items
      */
-    items: Array<GrantOut>;
+    items: Array<FormCard>;
     /**
      * Total
      */
@@ -1614,13 +1697,13 @@ export type PageGrantOut = {
 };
 
 /**
- * Page[PortalForm]
+ * Page[GrantOut]
  */
-export type PagePortalForm = {
+export type PageGrantOut = {
     /**
      * Items
      */
-    items: Array<PortalForm>;
+    items: Array<GrantOut>;
     /**
      * Total
      */
@@ -1861,10 +1944,6 @@ export type PortalForm = {
      * Profile Fields
      */
     profile_fields: string | null;
-    /**
-     * Is Public
-     */
-    is_public: boolean;
     /**
      * Instructions
      */
@@ -4941,6 +5020,22 @@ export type GetMeResponses = {
 
 export type GetMeResponse = GetMeResponses[keyof GetMeResponses];
 
+export type MigrateMeData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/migration/me';
+};
+
+export type MigrateMeResponses = {
+    /**
+     * Successful Response
+     */
+    200: MigrationResult;
+};
+
+export type MigrateMeResponse = MigrateMeResponses[keyof MigrateMeResponses];
+
 export type GetMyProfileData = {
     body?: never;
     path?: never;
@@ -5844,7 +5939,55 @@ export type UpdateWidgetResponses = {
 
 export type UpdateWidgetResponse = UpdateWidgetResponses[keyof UpdateWidgetResponses];
 
-export type ListPublicFormsData = {
+export type ListLowIncomeApplicationsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/v1/forms/low-income';
+};
+
+export type ListLowIncomeApplicationsResponses = {
+    /**
+     * Successful Response
+     */
+    200: LifApplications;
+};
+
+export type ListLowIncomeApplicationsResponse = ListLowIncomeApplicationsResponses[keyof ListLowIncomeApplicationsResponses];
+
+export type CancelLowIncomeApplicationData = {
+    body?: never;
+    path: {
+        /**
+         * Sfid
+         *
+         * The application's Salesforce record ID
+         */
+        sfid: string;
+    };
+    query?: never;
+    url: '/v1/forms/low-income/{sfid}/cancel';
+};
+
+export type CancelLowIncomeApplicationErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CancelLowIncomeApplicationError = CancelLowIncomeApplicationErrors[keyof CancelLowIncomeApplicationErrors];
+
+export type CancelLowIncomeApplicationResponses = {
+    /**
+     * Successful Response
+     */
+    200: LifApplication;
+};
+
+export type CancelLowIncomeApplicationResponse = CancelLowIncomeApplicationResponses[keyof CancelLowIncomeApplicationResponses];
+
+export type ListFormsData = {
     body?: never;
     path?: never;
     query?: {
@@ -5873,28 +6016,28 @@ export type ListPublicFormsData = {
          */
         q?: string | null;
     };
-    url: '/v1/forms/public';
+    url: '/v1/forms';
 };
 
-export type ListPublicFormsErrors = {
+export type ListFormsErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type ListPublicFormsError = ListPublicFormsErrors[keyof ListPublicFormsErrors];
+export type ListFormsError = ListFormsErrors[keyof ListFormsErrors];
 
-export type ListPublicFormsResponses = {
+export type ListFormsResponses = {
     /**
      * Successful Response
      */
-    200: PagePortalForm;
+    200: PageFormCard;
 };
 
-export type ListPublicFormsResponse = ListPublicFormsResponses[keyof ListPublicFormsResponses];
+export type ListFormsResponse = ListFormsResponses[keyof ListFormsResponses];
 
-export type GetPublicFormData = {
+export type GetFormData = {
     body?: never;
     path: {
         /**
@@ -5903,56 +6046,26 @@ export type GetPublicFormData = {
         url_path: string;
     };
     query?: never;
-    url: '/v1/forms/public/{url_path}';
+    url: '/v1/forms/{url_path}';
 };
 
-export type GetPublicFormErrors = {
+export type GetFormErrors = {
     /**
      * Validation Error
      */
     422: HttpValidationError;
 };
 
-export type GetPublicFormError = GetPublicFormErrors[keyof GetPublicFormErrors];
+export type GetFormError = GetFormErrors[keyof GetFormErrors];
 
-export type GetPublicFormResponses = {
+export type GetFormResponses = {
     /**
      * Successful Response
      */
     200: PortalForm;
 };
 
-export type GetPublicFormResponse = GetPublicFormResponses[keyof GetPublicFormResponses];
-
-export type GetPrivateFormData = {
-    body?: never;
-    path: {
-        /**
-         * Url Path
-         */
-        url_path: string;
-    };
-    query?: never;
-    url: '/v1/forms/private/{url_path}';
-};
-
-export type GetPrivateFormErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type GetPrivateFormError = GetPrivateFormErrors[keyof GetPrivateFormErrors];
-
-export type GetPrivateFormResponses = {
-    /**
-     * Successful Response
-     */
-    200: PortalForm;
-};
-
-export type GetPrivateFormResponse = GetPrivateFormResponses[keyof GetPrivateFormResponses];
+export type GetFormResponse = GetFormResponses[keyof GetFormResponses];
 
 export type ListEmbeddedFormsData = {
     body?: never;
@@ -5962,10 +6075,6 @@ export type ListEmbeddedFormsData = {
          * Source
          */
         source?: 'salesforce' | 'surveygizmo' | 'link-only' | null;
-        /**
-         * Is Public
-         */
-        is_public?: boolean | null;
         /**
          * Published
          */
@@ -6130,54 +6239,6 @@ export type UpdateEmbeddedFormResponses = {
 };
 
 export type UpdateEmbeddedFormResponse = UpdateEmbeddedFormResponses[keyof UpdateEmbeddedFormResponses];
-
-export type ListLowIncomeApplicationsData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/v1/forms/low-income';
-};
-
-export type ListLowIncomeApplicationsResponses = {
-    /**
-     * Successful Response
-     */
-    200: LifApplications;
-};
-
-export type ListLowIncomeApplicationsResponse = ListLowIncomeApplicationsResponses[keyof ListLowIncomeApplicationsResponses];
-
-export type CancelLowIncomeApplicationData = {
-    body?: never;
-    path: {
-        /**
-         * Sfid
-         *
-         * The application's Salesforce record ID
-         */
-        sfid: string;
-    };
-    query?: never;
-    url: '/v1/forms/low-income/{sfid}/cancel';
-};
-
-export type CancelLowIncomeApplicationErrors = {
-    /**
-     * Validation Error
-     */
-    422: HttpValidationError;
-};
-
-export type CancelLowIncomeApplicationError = CancelLowIncomeApplicationErrors[keyof CancelLowIncomeApplicationErrors];
-
-export type CancelLowIncomeApplicationResponses = {
-    /**
-     * Successful Response
-     */
-    200: LifApplication;
-};
-
-export type CancelLowIncomeApplicationResponse = CancelLowIncomeApplicationResponses[keyof CancelLowIncomeApplicationResponses];
 
 export type ListAffiliationsData = {
     body?: never;

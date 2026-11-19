@@ -1,7 +1,7 @@
 // Embedded forms (API_ENDPOINTS §4): list, add, edit. All of DB_SCHEMA §4's fields.
 
 import { useParams } from "react-router";
-import { Badge, Divider, Group, NumberInput, Select, Switch, Text, TextInput } from "@mantine/core";
+import { Divider, Group, NumberInput, Select, Switch, Text, TextInput } from "@mantine/core";
 import type { EmbeddedFormIn, EmbeddedFormOut } from "../api/generated/types.gen";
 import { FormPage, orNull } from "../components/FormPage";
 import { ResourceList } from "../components/ResourceList";
@@ -21,13 +21,11 @@ export function EmbeddedFormList() {
       rowLabel={(f) => f.title}
       filters={[
         { field: "source", label: "Source", options: formSources },
-        { field: "is_public", label: "Public", options: yesNo },
         { field: "published", label: "Published", options: yesNo },
       ]}
       columns={[
         { key: "title", label: "Title", sortable: true },
-        { key: "url_path", label: "Address", render: (f) => f.url_path ? `/${f.is_public ? "public-form" : "form"}/${f.url_path}` : "—" },
-        { key: "is_public", label: "Who", render: (f) => f.is_public ? <Badge variant="light">Public</Badge> : <Badge variant="light" color="bmpOrange">Logged in</Badge> },
+        { key: "url_path", label: "Address", render: (f) => f.url_path ? `/participate/${f.url_path}` : "—" },
         { key: "display_order", label: "Order", sortable: true, render: (f) => f.display_order ?? "—" },
         { key: "closes_at", label: "Closes", sortable: true, render: (f) => f.closes_at ? new Date(f.closes_at).toLocaleString() : "—" },
         { key: "published", label: "Status", render: (f) => <Published value={f.published} /> },
@@ -44,7 +42,6 @@ type Values = {
   embed_url: string;
   url_path: string;
   profile_fields: string;
-  is_public: boolean;
   instructions: string;
   sample_link: string;
   opens_at: string; // "YYYY-MM-DDTHH:mm", as the datetime-local input gives it
@@ -62,7 +59,7 @@ type Values = {
 
 const empty: Values = {
   title: "", name_in_link: "", source: "surveygizmo", embed_type: "iframe", embed_url: "", url_path: "",
-  profile_fields: "", is_public: false, instructions: "", sample_link: "", opens_at: "", opens_label: "",
+  profile_fields: "", instructions: "", sample_link: "", opens_at: "", opens_label: "",
   closes_at: "", closes_label: "", embed_closed: false, display_order: "", list_display: false,
   list_art_display: false, height: "", css_class: "", published: false,
 };
@@ -72,7 +69,7 @@ const s = (value: string | null | undefined) => value ?? "";
 
 const fromRecord = (f: EmbeddedFormOut): Values => ({
   title: f.title, name_in_link: s(f.name_in_link), source: f.source, embed_type: f.embed_type ?? null,
-  embed_url: f.embed_url, url_path: s(f.url_path), profile_fields: s(f.profile_fields), is_public: f.is_public,
+  embed_url: f.embed_url, url_path: s(f.url_path), profile_fields: s(f.profile_fields),
   instructions: s(f.instructions), sample_link: s(f.sample_link), opens_at: toLocalInput(f.opens_at ?? null),
   opens_label: s(f.opens_label), closes_at: toLocalInput(f.closes_at ?? null), closes_label: s(f.closes_label),
   embed_closed: f.embed_closed, display_order: f.display_order ?? "", list_display: f.list_display,
@@ -86,7 +83,7 @@ const toPayload = (v: Values): EmbeddedFormIn => {
   return {
     title: v.title, name_in_link: orNull(v.name_in_link), source: v.source as EmbeddedFormIn["source"],
     embed_type: linkOnly ? null : v.embed_type, embed_url: v.embed_url, url_path: orNull(v.url_path),
-    profile_fields: orNull(v.profile_fields), is_public: v.is_public, instructions: orNull(v.instructions),
+    profile_fields: orNull(v.profile_fields), instructions: orNull(v.instructions),
     sample_link: orNull(v.sample_link), opens_at: orNull(v.opens_at), opens_label: orNull(v.opens_label),
     closes_at: orNull(v.closes_at), closes_label: orNull(v.closes_label), embed_closed: v.embed_closed,
     display_order: num(v.display_order), list_display: v.list_display, list_art_display: v.list_art_display,
@@ -114,11 +111,10 @@ export function EmbeddedFormForm({ action }: { action: "create" | "edit" }) {
                  {...form.getInputProps("embed_url")} />
       <Group grow align="start">
         <TextInput label="URL path" required={!linkOnly}
-                   description={v.url_path ? `Shown at /${v.is_public ? "public-form" : "form"}/${v.url_path}` : "Letters, digits, - and _"}
+                   description={v.url_path ? `Opens at /participate/${v.url_path} (people must log in)` : "Letters, digits, - and _"}
                    {...form.getInputProps("url_path")} />
         <TextInput label="Name in link" {...form.getInputProps("name_in_link")} />
       </Group>
-      <Switch label="Public (no login needed)" {...form.getInputProps("is_public", { type: "checkbox" })} />
       <RichTextField label="Instructions" description="Shown above the form"
                      value={v.instructions} onChange={(html) => form.setFieldValue("instructions", html)}
                      error={form.errors.instructions as string | undefined} />
