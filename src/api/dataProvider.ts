@@ -70,6 +70,15 @@ export const resources: Record<string, ResourceCalls> = {
     get: asCall(sdk.getUserProfile),
     idParam: "user_id",
   },
+  // Systems that call the service API: which Okta apps may look people up.
+  "service-clients": {
+    list: asCall(sdk.listServiceClients),
+    get: asCall(sdk.getServiceClient),
+    create: asCall(sdk.createServiceClient),
+    update: asCall(sdk.updateServiceClient),
+    remove: asCall(sdk.deleteServiceClient),
+    idParam: "service_client_id",
+  },
   // Permissions: give (create) and take away (remove); nothing to edit.
   grants: {
     list: asCall(sdk.listGrants),

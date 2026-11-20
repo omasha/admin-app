@@ -1,7 +1,7 @@
 // Choices shown in selects. The values are the API's own (src/api/generated/types.gen.ts);
 // `satisfies` makes the build fail if the API's list changes and these don't.
 
-import type { ContentBlockIn, EmbeddedFormIn, GrantIn, UserSummary, WidgetIn } from "../api/generated/types.gen";
+import type { ContentBlockIn, EmbeddedFormIn, GrantIn, ServiceClientIn, UserSummary, WidgetIn } from "../api/generated/types.gen";
 
 type Option<V> = { value: V; label: string };
 
@@ -48,6 +48,12 @@ export const permissions = [
   { value: "staff_admin", label: "Staff admin",
     description: "Everything: content, forms and permissions, as well as all of the above." },
 ] satisfies (Option<GrantIn["permission"]> & { description: string })[];
+
+// What a system calling the service API can be given (service/auth.py in portal-api-v2).
+export const serviceScopes = [
+  { value: "bp-api:profile.read", label: "Look people up",
+    description: "Find a person by bpguid or exact email and read their whole profile." },
+] satisfies (Option<ServiceClientIn["scopes"][number]> & { description: string })[];
 
 export const userStatuses = [
   { value: "active", label: "Active" },

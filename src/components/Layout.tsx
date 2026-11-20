@@ -14,6 +14,7 @@ export const sections = [
   { resource: "embedded-forms", label: "Embedded forms" },
   { resource: "users", label: "People" },
   { resource: "grants", label: "Permissions" },
+  { resource: "service-clients", label: "Systems with access" },
   { resource: "stats", label: "Statistics" },
 ];
 

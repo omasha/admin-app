@@ -23,6 +23,7 @@ export const resourcePermission: Record<string, Needs> = {
   users: { list: "fuser", show: "fuser", edit: "fuser_details" }, // edit: username, email, password (sent to Okta)
   "user-profiles": "fuser_details",
   grants: "staff_admin",
+  "service-clients": "staff_admin",
   stats: "staff_admin", // counts of people (by year attended, country, state); never names
 };
 

@@ -116,6 +116,10 @@ export type Affiliation = {
      * Roles
      */
     roles: Array<string>;
+    /**
+     * Photo Url
+     */
+    photo_url?: string | null;
 };
 
 /**
@@ -1303,6 +1307,21 @@ export type LookupOut = {
 };
 
 /**
+ * LookupPreview
+ *
+ * What the system would receive, and whether it would be let in right now.
+ */
+export type LookupPreview = {
+    /**
+     * Access
+     *
+     * `switched_off`: the system is off, so a real request is refused. `no_scope`: it hasn't been given the lookup scope
+     */
+    access: 'allowed' | 'switched_off' | 'no_scope';
+    result: ServiceProfile;
+};
+
+/**
  * Me
  */
 export type Me = {
@@ -1718,6 +1737,20 @@ export type PagePublicBlock = {
      * Items
      */
     items: Array<PublicBlock>;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * Page[ServiceClientOut]
+ */
+export type PageServiceClientOut = {
+    /**
+     * Items
+     */
+    items: Array<ServiceClientOut>;
     /**
      * Total
      */
@@ -2381,6 +2414,130 @@ export type SearchResult = {
      * Groups
      */
     groups: Array<GroupMatch>;
+};
+
+/**
+ * ServiceClientChange
+ *
+ * What can be changed after registering.
+ */
+export type ServiceClientChange = {
+    /**
+     * Name
+     *
+     * What the logs call this system
+     */
+    name: string;
+    /**
+     * Scopes
+     *
+     * What it may do
+     */
+    scopes: Array<'bp-api:profile.read'>;
+    /**
+     * Active
+     *
+     * False cuts it off at once, even while its token lasts
+     */
+    active: boolean;
+};
+
+/**
+ * ServiceClientIn
+ */
+export type ServiceClientIn = {
+    /**
+     * Name
+     *
+     * What the logs call this system
+     */
+    name: string;
+    /**
+     * Scopes
+     *
+     * What it may do
+     */
+    scopes: Array<'bp-api:profile.read'>;
+    /**
+     * Active
+     *
+     * False cuts it off at once, even while its token lasts
+     */
+    active: boolean;
+    /**
+     * Client Id
+     *
+     * The Okta app's client ID (the token's `cid`)
+     */
+    client_id: string;
+};
+
+/**
+ * ServiceClientOut
+ */
+export type ServiceClientOut = {
+    /**
+     * Id
+     */
+    id: number;
+    /**
+     * Client Id
+     */
+    client_id: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Scopes
+     */
+    scopes: Array<string>;
+    /**
+     * Active
+     */
+    active: boolean;
+    /**
+     * Created At
+     */
+    created_at: string;
+};
+
+/**
+ * ServiceProfile
+ *
+ * The person, as `guser` gave them: account fields, and the whole profile (private fields
+ * decrypted) or null when they haven't filled one in.
+ */
+export type ServiceProfile = {
+    /**
+     * Bpguid
+     */
+    bpguid: string;
+    /**
+     * Username
+     */
+    username: string;
+    /**
+     * Email
+     */
+    email: string;
+    /**
+     * First Name
+     */
+    first_name: string;
+    /**
+     * Last Name
+     */
+    last_name: string;
+    /**
+     * Status
+     */
+    status: 'active' | 'flagged_for_deletion' | 'deactivated';
+    /**
+     * Created At
+     */
+    created_at: string;
+    profile: ProfileDetails | null;
 };
 
 /**
@@ -6255,3 +6412,271 @@ export type ListAffiliationsResponses = {
 };
 
 export type ListAffiliationsResponse = ListAffiliationsResponses[keyof ListAffiliationsResponses];
+
+export type ServiceGetUserByEmailData = {
+    body?: never;
+    path?: never;
+    query: {
+        /**
+         * Email
+         */
+        email: string;
+    };
+    url: '/v1/service/users';
+};
+
+export type ServiceGetUserByEmailErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ServiceGetUserByEmailError = ServiceGetUserByEmailErrors[keyof ServiceGetUserByEmailErrors];
+
+export type ServiceGetUserByEmailResponses = {
+    /**
+     * Successful Response
+     */
+    200: ServiceProfile;
+};
+
+export type ServiceGetUserByEmailResponse = ServiceGetUserByEmailResponses[keyof ServiceGetUserByEmailResponses];
+
+export type ServiceGetUserByBpguidData = {
+    body?: never;
+    path: {
+        /**
+         * Bpguid
+         */
+        bpguid: string;
+    };
+    query?: never;
+    url: '/v1/service/users/{bpguid}';
+};
+
+export type ServiceGetUserByBpguidErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ServiceGetUserByBpguidError = ServiceGetUserByBpguidErrors[keyof ServiceGetUserByBpguidErrors];
+
+export type ServiceGetUserByBpguidResponses = {
+    /**
+     * Successful Response
+     */
+    200: ServiceProfile;
+};
+
+export type ServiceGetUserByBpguidResponse = ServiceGetUserByBpguidResponses[keyof ServiceGetUserByBpguidResponses];
+
+export type ListServiceClientsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Active
+         */
+        active?: boolean | null;
+        /**
+         * Page
+         *
+         * 1-based page number
+         */
+        page?: number;
+        /**
+         * Per Page
+         *
+         * Items per page (max 100)
+         */
+        per_page?: number;
+        /**
+         * Sort
+         *
+         * Comma-separated fields; a leading minus sorts descending
+         */
+        sort?: string | null;
+        /**
+         * Q
+         *
+         * Free-text search
+         */
+        q?: string | null;
+    };
+    url: '/v1/admin/service-clients';
+};
+
+export type ListServiceClientsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListServiceClientsError = ListServiceClientsErrors[keyof ListServiceClientsErrors];
+
+export type ListServiceClientsResponses = {
+    /**
+     * Successful Response
+     */
+    200: PageServiceClientOut;
+};
+
+export type ListServiceClientsResponse = ListServiceClientsResponses[keyof ListServiceClientsResponses];
+
+export type CreateServiceClientData = {
+    body: ServiceClientIn;
+    path?: never;
+    query?: never;
+    url: '/v1/admin/service-clients';
+};
+
+export type CreateServiceClientErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CreateServiceClientError = CreateServiceClientErrors[keyof CreateServiceClientErrors];
+
+export type CreateServiceClientResponses = {
+    /**
+     * Successful Response
+     */
+    201: ServiceClientOut;
+};
+
+export type CreateServiceClientResponse = CreateServiceClientResponses[keyof CreateServiceClientResponses];
+
+export type DeleteServiceClientData = {
+    body?: never;
+    path: {
+        /**
+         * Service Client Id
+         */
+        service_client_id: number;
+    };
+    query?: never;
+    url: '/v1/admin/service-clients/{service_client_id}';
+};
+
+export type DeleteServiceClientErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type DeleteServiceClientError = DeleteServiceClientErrors[keyof DeleteServiceClientErrors];
+
+export type DeleteServiceClientResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type DeleteServiceClientResponse = DeleteServiceClientResponses[keyof DeleteServiceClientResponses];
+
+export type GetServiceClientData = {
+    body?: never;
+    path: {
+        /**
+         * Service Client Id
+         */
+        service_client_id: number;
+    };
+    query?: never;
+    url: '/v1/admin/service-clients/{service_client_id}';
+};
+
+export type GetServiceClientErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetServiceClientError = GetServiceClientErrors[keyof GetServiceClientErrors];
+
+export type GetServiceClientResponses = {
+    /**
+     * Successful Response
+     */
+    200: ServiceClientOut;
+};
+
+export type GetServiceClientResponse = GetServiceClientResponses[keyof GetServiceClientResponses];
+
+export type UpdateServiceClientData = {
+    body: ServiceClientChange;
+    path: {
+        /**
+         * Service Client Id
+         */
+        service_client_id: number;
+    };
+    query?: never;
+    url: '/v1/admin/service-clients/{service_client_id}';
+};
+
+export type UpdateServiceClientErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateServiceClientError = UpdateServiceClientErrors[keyof UpdateServiceClientErrors];
+
+export type UpdateServiceClientResponses = {
+    /**
+     * Successful Response
+     */
+    200: ServiceClientOut;
+};
+
+export type UpdateServiceClientResponse = UpdateServiceClientResponses[keyof UpdateServiceClientResponses];
+
+export type PreviewServiceLookupData = {
+    body?: never;
+    path: {
+        /**
+         * Service Client Id
+         */
+        service_client_id: number;
+    };
+    query?: {
+        /**
+         * Bpguid
+         */
+        bpguid?: string | null;
+        /**
+         * Email
+         */
+        email?: string | null;
+    };
+    url: '/v1/admin/service-clients/{service_client_id}/lookup';
+};
+
+export type PreviewServiceLookupErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type PreviewServiceLookupError = PreviewServiceLookupErrors[keyof PreviewServiceLookupErrors];
+
+export type PreviewServiceLookupResponses = {
+    /**
+     * Successful Response
+     */
+    200: LookupPreview;
+};
+
+export type PreviewServiceLookupResponse = PreviewServiceLookupResponses[keyof PreviewServiceLookupResponses];

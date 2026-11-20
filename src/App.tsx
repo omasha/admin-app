@@ -14,6 +14,7 @@ import { ArrangeBlocks } from "./pages/arrangeBlocks";
 import { ContentBlockForm, ContentBlockList } from "./pages/contentBlocks";
 import { EmbeddedFormForm, EmbeddedFormList } from "./pages/embeddedForms";
 import { GrantCreate, GrantList } from "./pages/grants";
+import { ServiceClientForm, ServiceClientList } from "./pages/serviceClients";
 import { StatsPage } from "./pages/stats";
 import { UserEdit, UserList, UserPassword, UserShow } from "./pages/users";
 import { WidgetForm, WidgetList } from "./pages/widgets";
@@ -34,6 +35,7 @@ const resourceDefs = [
   { name: "content-blocks", List: ContentBlockList, Form: ContentBlockForm },
   { name: "widgets", List: WidgetList, Form: WidgetForm },
   { name: "embedded-forms", List: EmbeddedFormList, Form: EmbeddedFormForm },
+  { name: "service-clients", List: ServiceClientList, Form: ServiceClientForm },
 ];
 
 function Guarded({ resource, action }: { resource: string; action: string }) {

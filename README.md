@@ -4,7 +4,7 @@ A prototype of the unified admin app in `../refactor/REFACTOR_PLAN.md` §5 and `
 **Refine** for data, login and permissions, **Mantine 8** screens, over the **TypeScript client
 generated** from `portal-api-v2`'s API description. It covers content blocks, widgets and embedded
 forms, with the rich text editor (decision #13), plus People (today's WordPress "fuser" screens)
-and Permissions.
+Permissions, and Systems with access (which Okta apps may use the service API's lookups).
 
 The backend side is on `portal-api-v2`'s branch `feat-admin-app` (its README: "The plan's own database").
 This is separate from the allocator prototype (`../allocator-admin`, its own database, Okta groups).
@@ -72,6 +72,9 @@ src/
   pages/users.tsx         People: the search form, the person's page (summary, profile, permissions), username/email
                           change and new password (both sent to Okta by the backend)
   pages/grants.tsx        Permissions: the list, and "Give a permission" with a person search
+  pages/serviceClients.tsx  Systems with access: register an Okta app (client ID, name, what it may do), switch it
+                          on or off, delete it, and "Try a lookup": an email or bpguid shows what the system would
+                          receive, address fields included (staff admins). Only records it in the API; the Okta side is made in Okta
   pages/stats.tsx         Statistics: counts of people by year attended, country, state (staff admins);
                           pick filters and a "break down by", get a total and a table with bars
 ```
